@@ -1,0 +1,15 @@
+C:\Programming\C#\AgroCare\Services\bin\Debug\net6.0\Services.deps.json
+C:\Programming\C#\AgroCare\Services\bin\Debug\net6.0\Services.dll
+C:\Programming\C#\AgroCare\Services\bin\Debug\net6.0\Services.pdb
+C:\Programming\C#\AgroCare\Services\obj\Debug\net6.0\Services.csproj.AssemblyReference.cache
+C:\Programming\C#\AgroCare\Services\obj\Debug\net6.0\Services.GeneratedMSBuildEditorConfig.editorconfig
+C:\Programming\C#\AgroCare\Services\obj\Debug\net6.0\Services.AssemblyInfoInputs.cache
+C:\Programming\C#\AgroCare\Services\obj\Debug\net6.0\Services.AssemblyInfo.cs
+C:\Programming\C#\AgroCare\Services\obj\Debug\net6.0\Services.csproj.CoreCompileInputs.cache
+C:\Programming\C#\AgroCare\Services\obj\Debug\net6.0\Services.dll
+C:\Programming\C#\AgroCare\Services\obj\Debug\net6.0\refint\Services.dll
+C:\Programming\C#\AgroCare\Services\obj\Debug\net6.0\Services.pdb
+C:\Programming\C#\AgroCare\Services\obj\Debug\net6.0\ref\Services.dll
+C:\Programming\C#\AgroCare\Services\bin\Debug\net6.0\Models.dll
+C:\Programming\C#\AgroCare\Services\bin\Debug\net6.0\Models.pdb
+C:\Programming\C#\AgroCare\Services\obj\Debug\net6.0\Services.csproj.CopyComplete
