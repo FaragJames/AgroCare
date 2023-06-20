@@ -13,7 +13,7 @@ namespace AgroCare
 {
     public class SeedData
     {
-        static readonly string[] names = { "farmer", "buyer", "center", "admin", "executive" };
+        static readonly string[] names = { "farmer", "buyer", "store", "admin", "executive" };
         static readonly string password = "Secert123$";
 
 
@@ -32,11 +32,11 @@ namespace AgroCare
 
                 if (!appIdentity.Roles.Any() && roleManager != null)
                 {
-                    await roleManager.CreateAsync(new("Buyer"));
-                    await roleManager.CreateAsync(new("Admin"));
-                    await roleManager.CreateAsync(new("Executive"));
-                    await roleManager.CreateAsync(new("Farmer"));
-                    await roleManager.CreateAsync(new("Center"));
+                    foreach (var role in names)
+                    {
+                        await roleManager.CreateAsync(new($"{char.ToUpper(role[0]) + role[1..]}"));
+
+                    }
                 }
 
                 if (userManager != null && !appIdentity.Users.Any())

@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Models;
 using AgroCare.Controllers;
+using Models.Models;
 
 namespace AgroCare
 {
@@ -16,6 +17,10 @@ namespace AgroCare
             #region Services
             services.AddControllersWithViews();
             services.AddRazorPages();
+            services.AddDbContext<AppDbContext>(options =>
+            {
+                options.EnableSensitiveDataLogging(true);
+            });
             services.AddDbContext<AppIdentityDbContext>(options =>
             {
                 options.UseSqlServer(builder.Configuration.GetConnectionString("AgroCareIdentity"));
@@ -41,7 +46,7 @@ namespace AgroCare
 
             app.MapControllerRoute("center-default",
                 "/center",
-                new { controller = "Center", action = nameof(CenterController.ShowPurchases) });
+                new { controller = "Center", action = nameof(StoreController.ShowPurchases) });
             app.MapControllerRoute("buyer-default",
                 "/buyer",
                 new { controller = "Buyer", action = nameof(BuyerController.ShowOrders) });

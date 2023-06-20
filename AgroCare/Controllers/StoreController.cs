@@ -1,11 +1,11 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using NuGet.Protocol;
+using Models.Models;
 
 namespace AgroCare.Controllers
 {
-    [Authorize(Roles = "Center")]
-    public class CenterController : Controller
+    [Authorize(Roles = "Store")]
+    public class StoreController : Controller
     {
         public IActionResult Index()
         {
@@ -21,7 +21,7 @@ namespace AgroCare.Controllers
 
         [NonAction]
         [HttpPost]
-        public IActionResult CreatePurchase(PurchaseViewModel model)
+        public IActionResult CreatePurchase(/*PurchaseViewModel model*/)
         {
             //The model includes the center's id.
             return View(nameof(ShowPurchases));

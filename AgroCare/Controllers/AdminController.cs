@@ -2,6 +2,7 @@
 using Services;
 using Models;
 using Microsoft.AspNetCore.Authorization;
+using Models.Models;
 
 namespace AgroCare.Controllers
 {
@@ -43,9 +44,9 @@ namespace AgroCare.Controllers
 
         [NonAction]
         [HttpPost]
-        public void FeedbackToBuyer(FeedbackViewModel model)
+        public void FeedbackToBuyer(/*FeedbackViewModel model*/)
         {
-            
+
         }
         #endregion
     }

@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Models.Models;
 
 namespace AgroCare.Controllers
 {
@@ -27,7 +28,7 @@ namespace AgroCare.Controllers
 
         [NonAction]
         [HttpPost]
-        public IActionResult CreatePlan(PlanViewModel model)
+        public IActionResult CreatePlan(/*PlanViewModel model*/)
         {
             //The model includes the executive's id.
             return View(nameof(ReceivedTasks));

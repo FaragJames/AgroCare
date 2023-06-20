@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Models.Models;
 
 namespace AgroCare.Controllers
 {
@@ -20,7 +21,7 @@ namespace AgroCare.Controllers
 
         [NonAction]
         [HttpPost]
-        public IActionResult CreateOrder(OrderViewModel model)
+        public IActionResult CreateOrder(/*OrderViewModel model*/)
         {
             //The model includes the buyer's id.
 
@@ -31,7 +32,7 @@ namespace AgroCare.Controllers
 
         [NonAction]
         [HttpPatch]
-        public IActionResult CreateOrder()
+        public IActionResult CreateOrder(string s)
         {
             return View(nameof(ShowOrders));
         }
