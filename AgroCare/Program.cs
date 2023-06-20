@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Models;
+using AgroCare.Controllers;
 
 namespace AgroCare
 {
@@ -37,12 +38,29 @@ namespace AgroCare
             app.UseStaticFiles();
             app.UseAuthentication();
             app.UseAuthorization();
+
+            app.MapControllerRoute("center-default",
+                "/center",
+                new { controller = "Center", action = nameof(CenterController.ShowPurchases) });
+            app.MapControllerRoute("buyer-default",
+                "/buyer",
+                new { controller = "Buyer", action = nameof(BuyerController.ShowOrders) });
+            app.MapControllerRoute("farmer-default",
+                "/farmer",
+                new { controller = "Farmer", action = nameof(FarmerController.ShowPlans) });
+            app.MapControllerRoute("executive-default",
+                "/executive",
+                new { controller = "Executive", action = nameof(ExecutiveController.ReceivedTasks) });
+            app.MapControllerRoute("admin-default",
+                "/admin",
+                new { controller = "Admin", action = nameof(AdminController.ReceivedOrders) });
             app.MapDefaultControllerRoute();
             app.MapRazorPages();
+            #endregion
+
 
             await SeedData.Seed(app);
             app.Run();
-            #endregion
         }
     }
 }
