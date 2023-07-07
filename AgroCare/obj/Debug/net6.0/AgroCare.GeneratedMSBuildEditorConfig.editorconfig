@@ -52,10 +52,6 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQnV5ZXJcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Programming/C\#/AgroCare/AgroCare/Views/Center/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2VudGVyXEluZGV4LmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
 [C:/Programming/C\#/AgroCare/AgroCare/Views/Executive/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRXhlY3V0aXZlXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
@@ -66,6 +62,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Programming/C\#/AgroCare/AgroCare/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Programming/C\#/AgroCare/AgroCare/Views/Store/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3RvcmVcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Programming/C\#/AgroCare/AgroCare/Views/_ViewImports.cshtml]

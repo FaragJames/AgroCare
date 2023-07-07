@@ -19,6 +19,7 @@ namespace AgroCare
             services.AddRazorPages();
             services.AddDbContext<AppDbContext>(options =>
             {
+                options.UseSqlServer(builder.Configuration.GetConnectionString("FarmCompany"));
                 options.EnableSensitiveDataLogging(true);
             });
             services.AddDbContext<AppIdentityDbContext>(options =>
@@ -44,9 +45,9 @@ namespace AgroCare
             app.UseAuthentication();
             app.UseAuthorization();
 
-            app.MapControllerRoute("center-default",
-                "/center",
-                new { controller = "Center", action = nameof(StoreController.ShowPurchases) });
+            app.MapControllerRoute("store-default",
+                "/store",
+                new { controller = "Store", action = nameof(StoreController.ShowPurchases) });
             app.MapControllerRoute("buyer-default",
                 "/buyer",
                 new { controller = "Buyer", action = nameof(BuyerController.ShowOrders) });

@@ -2,17 +2,18 @@
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.Extensions.Configuration;
 
 namespace Models.Models
 {
     public partial class AppDbContext : DbContext
     {
-        readonly IConfiguration _configuration;
-        public AppDbContext(DbContextOptions<AppDbContext> options, IConfiguration configuration)
+        public AppDbContext()
+        {
+        }
+
+        public AppDbContext(DbContextOptions<AppDbContext> options)
             : base(options)
         {
-            _configuration = configuration;
         }
 
         public virtual DbSet<Action> Actions { get; set; } = null!;
@@ -35,13 +36,6 @@ namespace Models.Models
         public virtual DbSet<Store> Stores { get; set; } = null!;
         public virtual DbSet<StoreType> StoreTypes { get; set; } = null!;
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            if (!optionsBuilder.IsConfigured)
-            {
-                optionsBuilder.UseSqlServer(_configuration.GetConnectionString("FarmCompany"));
-            }
-        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -73,7 +67,6 @@ namespace Models.Models
                 entity.HasOne(d => d.HeadEngineer)
                     .WithMany(p => p.InverseHeadEngineer)
                     .HasForeignKey(d => d.HeadEngineerId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Engineer_Engineer");
             });
 
@@ -139,7 +132,6 @@ namespace Models.Models
                 entity.HasOne(d => d.ExecutiveTeam)
                     .WithMany(p => p.OrderExecutiveTeams)
                     .HasForeignKey(d => d.ExecutiveTeamId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Order_Engineer1");
             });
 

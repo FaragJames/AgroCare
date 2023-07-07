@@ -23,14 +23,14 @@ namespace AgroCare.Controllers
         [HttpPost]
         public IActionResult CreatePurchase(/*PurchaseViewModel model*/)
         {
-            //The model includes the center's id.
+            //The model includes the store's id.
             return View(nameof(ShowPurchases));
         }
 
         [NonAction]
         public IActionResult ShowPurchases()
         {
-            //Get then pass the center's id.
+            //Get then pass the store's id.
             return View();
         }
 
