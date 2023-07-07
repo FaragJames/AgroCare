@@ -86,7 +86,7 @@ namespace Models.Migrations.AppDb
                         .HasColumnType("int")
                         .HasColumnName("Engineer_Type_Id");
 
-                    b.Property<int>("HeadEngineerId")
+                    b.Property<int?>("HeadEngineerId")
                         .HasColumnType("int")
                         .HasColumnName("Head_Engineer_Id");
 
@@ -243,7 +243,7 @@ namespace Models.Migrations.AppDb
                         .HasColumnType("int")
                         .HasColumnName("Buyer_Id");
 
-                    b.Property<int>("ExecutiveTeamId")
+                    b.Property<int?>("ExecutiveTeamId")
                         .HasColumnType("int")
                         .HasColumnName("Executive_Team_Id");
 
@@ -359,7 +359,6 @@ namespace Models.Migrations.AppDb
                         .HasColumnType("int");
 
                     b.Property<string>("Details")
-                        .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
@@ -511,7 +510,6 @@ namespace Models.Migrations.AppDb
                     b.HasOne("Models.Models.Engineer", "HeadEngineer")
                         .WithMany("InverseHeadEngineer")
                         .HasForeignKey("HeadEngineerId")
-                        .IsRequired()
                         .HasConstraintName("FK_Engineer_Engineer");
 
                     b.Navigation("EngineerType");
@@ -563,7 +561,6 @@ namespace Models.Migrations.AppDb
                     b.HasOne("Models.Models.Engineer", "ExecutiveTeam")
                         .WithMany("OrderExecutiveTeams")
                         .HasForeignKey("ExecutiveTeamId")
-                        .IsRequired()
                         .HasConstraintName("FK_Order_Engineer1");
 
                     b.Navigation("AdminEngineer");

@@ -21,7 +21,7 @@ namespace Models.Models
         [Column("Engineer_Type_Id")]
         public int EngineerTypeId { get; set; }
         [Column("Head_Engineer_Id")]
-        public int HeadEngineerId { get; set; }
+        public int? HeadEngineerId { get; set; }
         [StringLength(50)]
         public string UserName { get; set; } = null!;
         [StringLength(50)]
@@ -35,7 +35,7 @@ namespace Models.Models
         public virtual EngineerType EngineerType { get; set; } = null!;
         [ForeignKey("HeadEngineerId")]
         [InverseProperty("InverseHeadEngineer")]
-        public virtual Engineer HeadEngineer { get; set; } = null!;
+        public virtual Engineer? HeadEngineer { get; set; }
         [InverseProperty("HeadEngineer")]
         public virtual ICollection<Engineer> InverseHeadEngineer { get; set; }
         [InverseProperty("AdminEngineer")]

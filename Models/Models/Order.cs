@@ -21,7 +21,7 @@ namespace Models.Models
         [Column("Admin_Engineer_Id")]
         public int AdminEngineerId { get; set; }
         [Column("Executive_Team_Id")]
-        public int ExecutiveTeamId { get; set; }
+        public int? ExecutiveTeamId { get; set; }
         [Column("Order_Date", TypeName = "date")]
         public DateTime OrderDate { get; set; }
 
@@ -33,7 +33,7 @@ namespace Models.Models
         public virtual Buyer Buyer { get; set; } = null!;
         [ForeignKey("ExecutiveTeamId")]
         [InverseProperty("OrderExecutiveTeams")]
-        public virtual Engineer ExecutiveTeam { get; set; } = null!;
+        public virtual Engineer? ExecutiveTeam { get; set; }
         [InverseProperty("Order")]
         public virtual ICollection<OrderDetail> OrderDetails { get; set; }
     }

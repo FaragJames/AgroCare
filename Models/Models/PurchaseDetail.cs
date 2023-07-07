@@ -18,7 +18,7 @@ namespace Models.Models
         public int Quantity { get; set; }
         public float Price { get; set; }
         [StringLength(50)]
-        public string Details { get; set; } = null!;
+        public string? Details { get; set; }
 
         [ForeignKey("PurchaseId")]
         [InverseProperty("PurchaseDetails")]
