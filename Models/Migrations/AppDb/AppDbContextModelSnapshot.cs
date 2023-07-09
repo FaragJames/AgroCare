@@ -17,15 +17,18 @@ namespace Models.Migrations.AppDb
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.18")
+                .HasAnnotation("ProductVersion", "7.0.8")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
-            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
+            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
             modelBuilder.Entity("Models.Models.Action", b =>
                 {
                     b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -40,7 +43,10 @@ namespace Models.Migrations.AppDb
             modelBuilder.Entity("Models.Models.AgriculturalItem", b =>
                 {
                     b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -55,7 +61,10 @@ namespace Models.Migrations.AppDb
             modelBuilder.Entity("Models.Models.Buyer", b =>
                 {
                     b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -80,7 +89,10 @@ namespace Models.Migrations.AppDb
             modelBuilder.Entity("Models.Models.Engineer", b =>
                 {
                     b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int>("EngineerTypeId")
                         .HasColumnType("int")
@@ -120,14 +132,18 @@ namespace Models.Migrations.AppDb
             modelBuilder.Entity("Models.Models.EngineerType", b =>
                 {
                     b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.HasKey("Id");
+                    b.HasKey("Id")
+                        .HasName("PK_Type");
 
                     b.ToTable("Engineer_Type");
                 });
@@ -135,7 +151,10 @@ namespace Models.Migrations.AppDb
             modelBuilder.Entity("Models.Models.Farmer", b =>
                 {
                     b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -160,7 +179,10 @@ namespace Models.Migrations.AppDb
             modelBuilder.Entity("Models.Models.Item", b =>
                 {
                     b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -178,7 +200,10 @@ namespace Models.Migrations.AppDb
             modelBuilder.Entity("Models.Models.Land", b =>
                 {
                     b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<float>("Area")
                         .HasColumnType("real");
@@ -218,7 +243,10 @@ namespace Models.Migrations.AppDb
             modelBuilder.Entity("Models.Models.LandType", b =>
                 {
                     b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -233,7 +261,10 @@ namespace Models.Migrations.AppDb
             modelBuilder.Entity("Models.Models.Order", b =>
                 {
                     b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int>("AdminEngineerId")
                         .HasColumnType("int")
@@ -265,7 +296,10 @@ namespace Models.Migrations.AppDb
             modelBuilder.Entity("Models.Models.OrderDetail", b =>
                 {
                     b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<DateTime>("DeliveryDate")
                         .HasColumnType("date")
@@ -298,7 +332,10 @@ namespace Models.Migrations.AppDb
             modelBuilder.Entity("Models.Models.Plan", b =>
                 {
                     b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<DateTime>("FinishDate")
                         .HasColumnType("date")
@@ -319,7 +356,8 @@ namespace Models.Migrations.AppDb
                         .HasColumnType("date")
                         .HasColumnName("Start_Date");
 
-                    b.HasKey("Id");
+                    b.HasKey("Id")
+                        .HasName("PK_Order_Distribution");
 
                     b.HasIndex("LandId");
 
@@ -331,7 +369,10 @@ namespace Models.Migrations.AppDb
             modelBuilder.Entity("Models.Models.Purchase", b =>
                 {
                     b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<DateTime>("Date")
                         .HasColumnType("date");
@@ -356,7 +397,10 @@ namespace Models.Migrations.AppDb
             modelBuilder.Entity("Models.Models.PurchaseDetail", b =>
                 {
                     b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Details")
                         .HasMaxLength(50)
@@ -387,7 +431,10 @@ namespace Models.Migrations.AppDb
             modelBuilder.Entity("Models.Models.SoilType", b =>
                 {
                     b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -402,7 +449,10 @@ namespace Models.Migrations.AppDb
             modelBuilder.Entity("Models.Models.Step", b =>
                 {
                     b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int>("ActionId")
                         .HasColumnType("int")
@@ -436,7 +486,10 @@ namespace Models.Migrations.AppDb
             modelBuilder.Entity("Models.Models.StepDetail", b =>
                 {
                     b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int>("AgriculturalItemId")
                         .HasColumnType("int")
@@ -461,7 +514,10 @@ namespace Models.Migrations.AppDb
             modelBuilder.Entity("Models.Models.Store", b =>
                 {
                     b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Location")
                         .IsRequired()
@@ -487,7 +543,10 @@ namespace Models.Migrations.AppDb
             modelBuilder.Entity("Models.Models.StoreType", b =>
                 {
                     b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Name")
                         .IsRequired()
