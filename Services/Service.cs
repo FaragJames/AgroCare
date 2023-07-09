@@ -8,24 +8,32 @@ using System.Threading.Tasks;
 
 namespace Services
 {
-    public class Service <T> where T : class
+    public class Service <T>: IService<T> where T : class
     {
-        AppDbContext _context;
+        protected AppDbContext _context;
+
 
 
         public Service(AppDbContext context)
         {
             _context = context;
         }
-        public List<T> GetAll()
+
+        public virtual IQueryable<T> GetAll()
         {
-            return _context.Set<T>().ToList();
+            return _context.Set<T>();
         }
-        public async Task<T?> GetOne(int id)
+
+        //***NOTE: Return type is Nullable.***//
+        public virtual async Task<T?> GetOneAsync(int id)
         {
-            return await _context.Set<T>().FindAsync(id);
+            if (GetAll() is DbSet<T> all)
+                return await all.FindAsync(id);
+            else
+                return await Task.FromResult<T?>(null);
+
         }
-        public async Task<bool> Add(T entity)
+        public virtual async Task<bool> AddAsync(T entity)
         {
             try
             {
@@ -39,7 +47,7 @@ namespace Services
 
             return true;
         }
-        public async Task<bool> Edit(T entity)
+        public virtual async Task<bool> EditAsync(T entity)
         {
             try
             {
@@ -53,11 +61,11 @@ namespace Services
             
             return true;
         }
-        public async Task<bool> Remove(int id)
+        public virtual async Task<bool> RemoveAsync(T entity)
         {
             try
             {
-                _context.Remove(GetOne(id));
+                _context.Remove(entity);
                 await _context.SaveChangesAsync();
                 return true;
             }
@@ -66,9 +74,9 @@ namespace Services
                 return false;
             }
         }
-        public bool DoesExist(int id)
+        public virtual bool DoesExist(int id)
         {
-            return GetOne(id) != null;
+            return GetOneAsync(id) != null;
         }
 
     }

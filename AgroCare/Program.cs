@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Models;
 using AgroCare.Controllers;
 using Models.Models;
+using Services;
 
 namespace AgroCare
 {
@@ -19,16 +20,19 @@ namespace AgroCare
             services.AddRazorPages();
             services.AddDbContext<AppDbContext>(options =>
             {
-                options.UseSqlServer(builder.Configuration.GetConnectionString("FarmCompany"));
+                options.UseSqlServer(builder.Configuration.GetConnectionString("FarmCompany")!);
                 options.EnableSensitiveDataLogging(true);
             });
             services.AddDbContext<AppIdentityDbContext>(options =>
             {
-                options.UseSqlServer(builder.Configuration.GetConnectionString("AgroCareIdentity"));
+                options.UseSqlServer(builder.Configuration.GetConnectionString("AgroCareIdentity")!);
                 options.EnableSensitiveDataLogging(true);
             });
             services.AddIdentity<IdentityUser, IdentityRole>()
                 .AddEntityFrameworkStores<AppIdentityDbContext>();
+
+            services.AddScoped(typeof(IService<>), typeof(Service<>));
+            services.AddScoped<IService<Plan>, PlanService>();
             #endregion
 
 
