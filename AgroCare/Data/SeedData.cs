@@ -21,7 +21,7 @@ namespace AgroCare
             var roleManager = services.GetService<RoleManager<IdentityRole>>();
             var userManager = services.GetService<UserManager<IdentityUser>>();
 
-            string json, path = "JsonDummyData/";
+            string json, path = "Data/JsonDummyData/";
 
             if (appIdentity != null)
             {
@@ -182,9 +182,6 @@ namespace AgroCare
 
 
 
-
-
-
                 if (!context.Actions.Any())
                 {
                     await context.AddRangeAsync(actions);
@@ -245,6 +242,16 @@ namespace AgroCare
                     await context.AddAsync(plan);
                 }
 
+                if (!context.Steps.Any())
+                {
+                    await context.AddAsync(step);
+                }
+
+                if (!context.StepDetails.Any())
+                {
+                    await context.AddAsync(stepDetail);
+                }
+
                 if (!context.Purchases.Any())
                 {
 
@@ -258,16 +265,6 @@ namespace AgroCare
                 if (!context.SoilTypes.Any())
                 {
                     await context.AddRangeAsync(soilTypes);
-                }
-
-                if (!context.Steps.Any())
-                {
-                    await context.AddAsync(step);
-                }
-
-                if (!context.StepDetails.Any())
-                {
-                    await context.AddAsync(stepDetail);
                 }
 
                 if (!context.Stores.Any())
