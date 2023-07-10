@@ -18,6 +18,7 @@ namespace Services
             return base.GetAll()
                 .Include(p => p.OrderDetails)
                 .Include(p => p.Land)
+                    .ThenInclude(l => l.Farmer)
                 .Include(p => p.Steps)
                     .ThenInclude(s => s.Action)
                 .Include(p => p.Steps)
@@ -26,18 +27,19 @@ namespace Services
         }
         public override async Task<bool> RemoveAsync(Plan plan)
         {
-            try
-            {
-                _context.RemoveRange(plan.Steps.SelectMany(s => s.StepDetails));
-                _context.RemoveRange(plan.Steps);
-                _context.Remove(plan);
-                await _context.SaveChangesAsync();
-                return true;
-            }
-            catch (Exception)
-            {
-                return false;
-            }
+            _context.RemoveRange(plan.Steps.SelectMany(s => s.StepDetails));
+            _context.RemoveRange(plan.Steps);
+            return await base.RemoveAsync(plan);
+        }
+
+        public IQueryable<Plan> GetAllByLandId(int landId)
+        {
+            return GetAll().Where(p => p.LandId == landId);
+        }
+        //For the Farmer's page.
+        public IQueryable<Plan> GetAllByFarmerId(int farmerId)
+        {
+            return GetAll().Where(p => p.Land.FarmerId == farmerId);
         }
     }
 }

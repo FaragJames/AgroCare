@@ -22,17 +22,23 @@ namespace Services
         }
         public override async Task<bool> RemoveAsync(Purchase entity)
         {
-            try
-            {
-                _context.RemoveRange(entity.PurchaseDetails);
-                _context.Remove(entity);
-                await _context.SaveChangesAsync();
-                return true;
-            }
-            catch (Exception)
-            {
-                return false;
-            }
+            _context.RemoveRange(entity.PurchaseDetails);
+            return await base.RemoveAsync(entity);
+        }
+
+        public IQueryable<Purchase> GetPendingPurchases()
+        {
+            return GetAll().Where(p => p.Plan.FinishDate < DateTime.Now);
+        }
+        //For the Store's page.
+        public IQueryable<Purchase> GetPendingPurchasesByStoreId(int storeId)
+        {
+            return GetPendingPurchases().Where(p => p.StoreId == storeId);
+        }
+        //For the Farmer's plan's purchases page.
+        public IQueryable<Purchase> GetPendingPurchasesByPlanId(int planId)
+        {
+            return GetPendingPurchases().Where(p =>  p.PlanId == planId);
         }
     }
 }
