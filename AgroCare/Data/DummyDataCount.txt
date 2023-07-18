@@ -1,0 +1,22 @@
+Actions: 5.
+AgriculturalItem: 6.
+LandType: 5.
+SoilType: 6.
+EngineerType: 2.
+
+Buyer: 3.
+Farmer: 3.
+Land: 5.
+Engineer: 10.
+Item: 5.
+
+Order: 3.
+OrderDetail: 5.
+Plan: 5.
+Step: 10.
+StepDetail: 6.
+
+StoreType: 3.
+Store: 3.
+Purchase: 3.
+PurchaseDetail: 6.

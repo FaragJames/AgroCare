@@ -1,6 +1,5 @@
 C:\Programming\C#\AgroCare\AgroCare\bin\Debug\net7.0\appsettings.Development.json
 C:\Programming\C#\AgroCare\AgroCare\bin\Debug\net7.0\appsettings.json
-C:\Programming\C#\AgroCare\AgroCare\bin\Debug\net7.0\JsonDummyData\Buyer.json
 C:\Programming\C#\AgroCare\AgroCare\bin\Debug\net7.0\AgroCare.staticwebassets.runtime.json
 C:\Programming\C#\AgroCare\AgroCare\bin\Debug\net7.0\AgroCare.exe
 C:\Programming\C#\AgroCare\AgroCare\bin\Debug\net7.0\AgroCare.deps.json
@@ -249,8 +248,6 @@ C:\Programming\C#\AgroCare\AgroCare\obj\Debug\net7.0\refint\AgroCare.dll
 C:\Programming\C#\AgroCare\AgroCare\obj\Debug\net7.0\AgroCare.pdb
 C:\Programming\C#\AgroCare\AgroCare\obj\Debug\net7.0\AgroCare.genruntimeconfig.cache
 C:\Programming\C#\AgroCare\AgroCare\obj\Debug\net7.0\ref\AgroCare.dll
-C:\Programming\C#\AgroCare\AgroCare\bin\Debug\net7.0\JsonDummyData\Engineer.json
-C:\Programming\C#\AgroCare\AgroCare\bin\Debug\net7.0\JsonDummyData\Farmer.json
 C:\Programming\C#\AgroCare\AgroCare\bin\Debug\net7.0\Azure.Core.dll
 C:\Programming\C#\AgroCare\AgroCare\bin\Debug\net7.0\Azure.Identity.dll
 C:\Programming\C#\AgroCare\AgroCare\bin\Debug\net7.0\Microsoft.AspNetCore.Cryptography.Internal.dll
@@ -267,3 +264,6 @@ C:\Programming\C#\AgroCare\AgroCare\bin\Debug\net7.0\Microsoft.SqlServer.Server.
 C:\Programming\C#\AgroCare\AgroCare\bin\Debug\net7.0\Mono.TextTemplating.dll
 C:\Programming\C#\AgroCare\AgroCare\bin\Debug\net7.0\System.CodeDom.dll
 C:\Programming\C#\AgroCare\AgroCare\bin\Debug\net7.0\System.Memory.Data.dll
+C:\Programming\C#\AgroCare\AgroCare\bin\Debug\net7.0\Data\JsonDummyData\Buyer.json
+C:\Programming\C#\AgroCare\AgroCare\bin\Debug\net7.0\Data\JsonDummyData\Engineer.json
+C:\Programming\C#\AgroCare\AgroCare\bin\Debug\net7.0\Data\JsonDummyData\Farmer.json

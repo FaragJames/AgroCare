@@ -1,0 +1,722 @@
+[
+  {
+    "Id": 5,
+    "OrderDetailsId": 5,
+    "LandId": 5,
+    "StartDate": "2023-07-18T00:00:00",
+    "FinishDate": "2023-07-18T00:00:00",
+    "Quantity": 34.43,
+    "Land": null,
+    "OrderDetails": null,
+    "Purchases": [],
+    "Steps": [
+      {
+        "Id": 5,
+        "PlanId": 5,
+        "ActionId": 18,
+        "EstimatedStartDate": "2023-07-18T00:00:00",
+        "EstimatedFinishDate": "2023-07-18T00:00:00",
+        "IsChecked": false,
+        "Action": {
+          "Id": 18,
+          "Name": "Plow",
+          "Steps": []
+        },
+        "StepDetails": [
+          {
+            "Id": 5,
+            "StepId": 5,
+            "AgriculturalItemId": 21,
+            "Quantity": 34.4,
+            "AgriculturalItem": {
+              "Id": 21,
+              "Name": "Axe",
+              "StepDetails": []
+            }
+          }
+        ]
+      },
+      {
+        "Id": 6,
+        "PlanId": 5,
+        "ActionId": 19,
+        "EstimatedStartDate": "2023-07-18T00:00:00",
+        "EstimatedFinishDate": "2023-07-18T00:00:00",
+        "IsChecked": false,
+        "Action": {
+          "Id": 19,
+          "Name": "Level",
+          "Steps": []
+        },
+        "StepDetails": [
+          {
+            "Id": 6,
+            "StepId": 6,
+            "AgriculturalItemId": 22,
+            "Quantity": 34.4,
+            "AgriculturalItem": {
+              "Id": 22,
+              "Name": "Rake",
+              "StepDetails": []
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "Id": 6,
+    "OrderDetailsId": 6,
+    "LandId": 6,
+    "StartDate": "2023-07-18T00:00:00",
+    "FinishDate": "2023-07-18T00:00:00",
+    "Quantity": 34.43,
+    "Land": null,
+    "OrderDetails": null,
+    "Purchases": [],
+    "Steps": [
+      {
+        "Id": 7,
+        "PlanId": 6,
+        "ActionId": 20,
+        "EstimatedStartDate": "2023-07-18T00:00:00",
+        "EstimatedFinishDate": "2023-07-18T00:00:00",
+        "IsChecked": false,
+        "Action": {
+          "Id": 20,
+          "Name": "Test Soil",
+          "Steps": []
+        },
+        "StepDetails": [
+          {
+            "Id": 7,
+            "StepId": 7,
+            "AgriculturalItemId": 23,
+            "Quantity": 34.4,
+            "AgriculturalItem": {
+              "Id": 23,
+              "Name": "Shovel",
+              "StepDetails": []
+            }
+          }
+        ]
+      },
+      {
+        "Id": 8,
+        "PlanId": 6,
+        "ActionId": 21,
+        "EstimatedStartDate": "2023-07-18T00:00:00",
+        "EstimatedFinishDate": "2023-07-18T00:00:00",
+        "IsChecked": false,
+        "Action": {
+          "Id": 21,
+          "Name": "Fertilize",
+          "Steps": []
+        },
+        "StepDetails": [
+          {
+            "Id": 8,
+            "StepId": 8,
+            "AgriculturalItemId": 24,
+            "Quantity": 34.4,
+            "AgriculturalItem": {
+              "Id": 24,
+              "Name": "Gardening Fork",
+              "StepDetails": []
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "Id": 7,
+    "OrderDetailsId": 7,
+    "LandId": 7,
+    "StartDate": "2023-07-18T00:00:00",
+    "FinishDate": "2023-07-18T00:00:00",
+    "Quantity": 34.43,
+    "Land": null,
+    "OrderDetails": null,
+    "Purchases": [],
+    "Steps": [
+      {
+        "Id": 9,
+        "PlanId": 7,
+        "ActionId": 18,
+        "EstimatedStartDate": "2023-07-18T00:00:00",
+        "EstimatedFinishDate": "2023-07-18T00:00:00",
+        "IsChecked": false,
+        "Action": {
+          "Id": 18,
+          "Name": "Plow",
+          "Steps": [
+            {
+              "Id": 5,
+              "PlanId": 5,
+              "ActionId": 18,
+              "EstimatedStartDate": "2023-07-18T00:00:00",
+              "EstimatedFinishDate": "2023-07-18T00:00:00",
+              "IsChecked": false,
+              "Plan": {
+                "Id": 5,
+                "OrderDetailsId": 5,
+                "LandId": 5,
+                "StartDate": "2023-07-18T00:00:00",
+                "FinishDate": "2023-07-18T00:00:00",
+                "Quantity": 34.43,
+                "Land": null,
+                "OrderDetails": null,
+                "Purchases": [],
+                "Steps": [
+                  {
+                    "Id": 6,
+                    "PlanId": 5,
+                    "ActionId": 19,
+                    "EstimatedStartDate": "2023-07-18T00:00:00",
+                    "EstimatedFinishDate": "2023-07-18T00:00:00",
+                    "IsChecked": false,
+                    "Action": {
+                      "Id": 19,
+                      "Name": "Level",
+                      "Steps": [
+                        {
+                          "Id": 10,
+                          "PlanId": 7,
+                          "ActionId": 19,
+                          "EstimatedStartDate": "2023-07-18T00:00:00",
+                          "EstimatedFinishDate": "2023-07-18T00:00:00",
+                          "IsChecked": false,
+                          "StepDetails": [
+                            {
+                              "Id": 10,
+                              "StepId": 10,
+                              "AgriculturalItemId": 26,
+                              "Quantity": 34.4,
+                              "AgriculturalItem": {
+                                "Id": 26,
+                                "Name": "Tractor",
+                                "StepDetails": []
+                              }
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    "StepDetails": [
+                      {
+                        "Id": 6,
+                        "StepId": 6,
+                        "AgriculturalItemId": 22,
+                        "Quantity": 34.4,
+                        "AgriculturalItem": {
+                          "Id": 22,
+                          "Name": "Rake",
+                          "StepDetails": []
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              "StepDetails": [
+                {
+                  "Id": 5,
+                  "StepId": 5,
+                  "AgriculturalItemId": 21,
+                  "Quantity": 34.4,
+                  "AgriculturalItem": {
+                    "Id": 21,
+                    "Name": "Axe",
+                    "StepDetails": []
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "StepDetails": [
+          {
+            "Id": 9,
+            "StepId": 9,
+            "AgriculturalItemId": 25,
+            "Quantity": 34.4,
+            "AgriculturalItem": {
+              "Id": 25,
+              "Name": "Wheel Barrow",
+              "StepDetails": []
+            }
+          }
+        ]
+      },
+      {
+        "Id": 10,
+        "PlanId": 7,
+        "ActionId": 19,
+        "EstimatedStartDate": "2023-07-18T00:00:00",
+        "EstimatedFinishDate": "2023-07-18T00:00:00",
+        "IsChecked": false,
+        "Action": {
+          "Id": 19,
+          "Name": "Level",
+          "Steps": [
+            {
+              "Id": 6,
+              "PlanId": 5,
+              "ActionId": 19,
+              "EstimatedStartDate": "2023-07-18T00:00:00",
+              "EstimatedFinishDate": "2023-07-18T00:00:00",
+              "IsChecked": false,
+              "Plan": {
+                "Id": 5,
+                "OrderDetailsId": 5,
+                "LandId": 5,
+                "StartDate": "2023-07-18T00:00:00",
+                "FinishDate": "2023-07-18T00:00:00",
+                "Quantity": 34.43,
+                "Land": null,
+                "OrderDetails": null,
+                "Purchases": [],
+                "Steps": [
+                  {
+                    "Id": 5,
+                    "PlanId": 5,
+                    "ActionId": 18,
+                    "EstimatedStartDate": "2023-07-18T00:00:00",
+                    "EstimatedFinishDate": "2023-07-18T00:00:00",
+                    "IsChecked": false,
+                    "Action": {
+                      "Id": 18,
+                      "Name": "Plow",
+                      "Steps": [
+                        {
+                          "Id": 9,
+                          "PlanId": 7,
+                          "ActionId": 18,
+                          "EstimatedStartDate": "2023-07-18T00:00:00",
+                          "EstimatedFinishDate": "2023-07-18T00:00:00",
+                          "IsChecked": false,
+                          "StepDetails": [
+                            {
+                              "Id": 9,
+                              "StepId": 9,
+                              "AgriculturalItemId": 25,
+                              "Quantity": 34.4,
+                              "AgriculturalItem": {
+                                "Id": 25,
+                                "Name": "Wheel Barrow",
+                                "StepDetails": []
+                              }
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    "StepDetails": [
+                      {
+                        "Id": 5,
+                        "StepId": 5,
+                        "AgriculturalItemId": 21,
+                        "Quantity": 34.4,
+                        "AgriculturalItem": {
+                          "Id": 21,
+                          "Name": "Axe",
+                          "StepDetails": []
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              "StepDetails": [
+                {
+                  "Id": 6,
+                  "StepId": 6,
+                  "AgriculturalItemId": 22,
+                  "Quantity": 34.4,
+                  "AgriculturalItem": {
+                    "Id": 22,
+                    "Name": "Rake",
+                    "StepDetails": []
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "StepDetails": [
+          {
+            "Id": 10,
+            "StepId": 10,
+            "AgriculturalItemId": 26,
+            "Quantity": 34.4,
+            "AgriculturalItem": {
+              "Id": 26,
+              "Name": "Tractor",
+              "StepDetails": []
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "Id": 8,
+    "OrderDetailsId": 8,
+    "LandId": 8,
+    "StartDate": "2023-07-18T00:00:00",
+    "FinishDate": "2023-07-18T00:00:00",
+    "Quantity": 34.43,
+    "Land": null,
+    "OrderDetails": null,
+    "Purchases": [],
+    "Steps": [
+      {
+        "Id": 11,
+        "PlanId": 8,
+        "ActionId": 20,
+        "EstimatedStartDate": "2023-07-18T00:00:00",
+        "EstimatedFinishDate": "2023-07-18T00:00:00",
+        "IsChecked": false,
+        "Action": {
+          "Id": 20,
+          "Name": "Test Soil",
+          "Steps": [
+            {
+              "Id": 7,
+              "PlanId": 6,
+              "ActionId": 20,
+              "EstimatedStartDate": "2023-07-18T00:00:00",
+              "EstimatedFinishDate": "2023-07-18T00:00:00",
+              "IsChecked": false,
+              "Plan": {
+                "Id": 6,
+                "OrderDetailsId": 6,
+                "LandId": 6,
+                "StartDate": "2023-07-18T00:00:00",
+                "FinishDate": "2023-07-18T00:00:00",
+                "Quantity": 34.43,
+                "Land": null,
+                "OrderDetails": null,
+                "Purchases": [],
+                "Steps": [
+                  {
+                    "Id": 8,
+                    "PlanId": 6,
+                    "ActionId": 21,
+                    "EstimatedStartDate": "2023-07-18T00:00:00",
+                    "EstimatedFinishDate": "2023-07-18T00:00:00",
+                    "IsChecked": false,
+                    "Action": {
+                      "Id": 21,
+                      "Name": "Fertilize",
+                      "Steps": []
+                    },
+                    "StepDetails": [
+                      {
+                        "Id": 8,
+                        "StepId": 8,
+                        "AgriculturalItemId": 24,
+                        "Quantity": 34.4,
+                        "AgriculturalItem": {
+                          "Id": 24,
+                          "Name": "Gardening Fork",
+                          "StepDetails": []
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              "StepDetails": [
+                {
+                  "Id": 7,
+                  "StepId": 7,
+                  "AgriculturalItemId": 23,
+                  "Quantity": 34.4,
+                  "AgriculturalItem": {
+                    "Id": 23,
+                    "Name": "Shovel",
+                    "StepDetails": []
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "StepDetails": []
+      },
+      {
+        "Id": 12,
+        "PlanId": 8,
+        "ActionId": 22,
+        "EstimatedStartDate": "2023-07-18T00:00:00",
+        "EstimatedFinishDate": "2023-07-18T00:00:00",
+        "IsChecked": false,
+        "Action": {
+          "Id": 22,
+          "Name": "Seed",
+          "Steps": []
+        },
+        "StepDetails": []
+      }
+    ]
+  },
+  {
+    "Id": 9,
+    "OrderDetailsId": 9,
+    "LandId": 9,
+    "StartDate": "2023-07-18T00:00:00",
+    "FinishDate": "2023-07-18T00:00:00",
+    "Quantity": 34.43,
+    "Land": null,
+    "OrderDetails": null,
+    "Purchases": [],
+    "Steps": [
+      {
+        "Id": 13,
+        "PlanId": 9,
+        "ActionId": 21,
+        "EstimatedStartDate": "2023-07-18T00:00:00",
+        "EstimatedFinishDate": "2023-07-18T00:00:00",
+        "IsChecked": false,
+        "Action": {
+          "Id": 21,
+          "Name": "Fertilize",
+          "Steps": [
+            {
+              "Id": 8,
+              "PlanId": 6,
+              "ActionId": 21,
+              "EstimatedStartDate": "2023-07-18T00:00:00",
+              "EstimatedFinishDate": "2023-07-18T00:00:00",
+              "IsChecked": false,
+              "Plan": {
+                "Id": 6,
+                "OrderDetailsId": 6,
+                "LandId": 6,
+                "StartDate": "2023-07-18T00:00:00",
+                "FinishDate": "2023-07-18T00:00:00",
+                "Quantity": 34.43,
+                "Land": null,
+                "OrderDetails": null,
+                "Purchases": [],
+                "Steps": [
+                  {
+                    "Id": 7,
+                    "PlanId": 6,
+                    "ActionId": 20,
+                    "EstimatedStartDate": "2023-07-18T00:00:00",
+                    "EstimatedFinishDate": "2023-07-18T00:00:00",
+                    "IsChecked": false,
+                    "Action": {
+                      "Id": 20,
+                      "Name": "Test Soil",
+                      "Steps": [
+                        {
+                          "Id": 11,
+                          "PlanId": 8,
+                          "ActionId": 20,
+                          "EstimatedStartDate": "2023-07-18T00:00:00",
+                          "EstimatedFinishDate": "2023-07-18T00:00:00",
+                          "IsChecked": false,
+                          "Plan": {
+                            "Id": 8,
+                            "OrderDetailsId": 8,
+                            "LandId": 8,
+                            "StartDate": "2023-07-18T00:00:00",
+                            "FinishDate": "2023-07-18T00:00:00",
+                            "Quantity": 34.43,
+                            "Land": null,
+                            "OrderDetails": null,
+                            "Purchases": [],
+                            "Steps": [
+                              {
+                                "Id": 12,
+                                "PlanId": 8,
+                                "ActionId": 22,
+                                "EstimatedStartDate": "2023-07-18T00:00:00",
+                                "EstimatedFinishDate": "2023-07-18T00:00:00",
+                                "IsChecked": false,
+                                "Action": {
+                                  "Id": 22,
+                                  "Name": "Seed",
+                                  "Steps": [
+                                    {
+                                      "Id": 14,
+                                      "PlanId": 9,
+                                      "ActionId": 22,
+                                      "EstimatedStartDate": "2023-07-18T00:00:00",
+                                      "EstimatedFinishDate": "2023-07-18T00:00:00",
+                                      "IsChecked": false,
+                                      "StepDetails": []
+                                    }
+                                  ]
+                                },
+                                "StepDetails": []
+                              }
+                            ]
+                          },
+                          "StepDetails": []
+                        }
+                      ]
+                    },
+                    "StepDetails": [
+                      {
+                        "Id": 7,
+                        "StepId": 7,
+                        "AgriculturalItemId": 23,
+                        "Quantity": 34.4,
+                        "AgriculturalItem": {
+                          "Id": 23,
+                          "Name": "Shovel",
+                          "StepDetails": []
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              "StepDetails": [
+                {
+                  "Id": 8,
+                  "StepId": 8,
+                  "AgriculturalItemId": 24,
+                  "Quantity": 34.4,
+                  "AgriculturalItem": {
+                    "Id": 24,
+                    "Name": "Gardening Fork",
+                    "StepDetails": []
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "StepDetails": []
+      },
+      {
+        "Id": 14,
+        "PlanId": 9,
+        "ActionId": 22,
+        "EstimatedStartDate": "2023-07-18T00:00:00",
+        "EstimatedFinishDate": "2023-07-18T00:00:00",
+        "IsChecked": false,
+        "Action": {
+          "Id": 22,
+          "Name": "Seed",
+          "Steps": [
+            {
+              "Id": 12,
+              "PlanId": 8,
+              "ActionId": 22,
+              "EstimatedStartDate": "2023-07-18T00:00:00",
+              "EstimatedFinishDate": "2023-07-18T00:00:00",
+              "IsChecked": false,
+              "Plan": {
+                "Id": 8,
+                "OrderDetailsId": 8,
+                "LandId": 8,
+                "StartDate": "2023-07-18T00:00:00",
+                "FinishDate": "2023-07-18T00:00:00",
+                "Quantity": 34.43,
+                "Land": null,
+                "OrderDetails": null,
+                "Purchases": [],
+                "Steps": [
+                  {
+                    "Id": 11,
+                    "PlanId": 8,
+                    "ActionId": 20,
+                    "EstimatedStartDate": "2023-07-18T00:00:00",
+                    "EstimatedFinishDate": "2023-07-18T00:00:00",
+                    "IsChecked": false,
+                    "Action": {
+                      "Id": 20,
+                      "Name": "Test Soil",
+                      "Steps": [
+                        {
+                          "Id": 7,
+                          "PlanId": 6,
+                          "ActionId": 20,
+                          "EstimatedStartDate": "2023-07-18T00:00:00",
+                          "EstimatedFinishDate": "2023-07-18T00:00:00",
+                          "IsChecked": false,
+                          "Plan": {
+                            "Id": 6,
+                            "OrderDetailsId": 6,
+                            "LandId": 6,
+                            "StartDate": "2023-07-18T00:00:00",
+                            "FinishDate": "2023-07-18T00:00:00",
+                            "Quantity": 34.43,
+                            "Land": null,
+                            "OrderDetails": null,
+                            "Purchases": [],
+                            "Steps": [
+                              {
+                                "Id": 8,
+                                "PlanId": 6,
+                                "ActionId": 21,
+                                "EstimatedStartDate": "2023-07-18T00:00:00",
+                                "EstimatedFinishDate": "2023-07-18T00:00:00",
+                                "IsChecked": false,
+                                "Action": {
+                                  "Id": 21,
+                                  "Name": "Fertilize",
+                                  "Steps": [
+                                    {
+                                      "Id": 13,
+                                      "PlanId": 9,
+                                      "ActionId": 21,
+                                      "EstimatedStartDate": "2023-07-18T00:00:00",
+                                      "EstimatedFinishDate": "2023-07-18T00:00:00",
+                                      "IsChecked": false,
+                                      "StepDetails": []
+                                    }
+                                  ]
+                                },
+                                "StepDetails": [
+                                  {
+                                    "Id": 8,
+                                    "StepId": 8,
+                                    "AgriculturalItemId": 24,
+                                    "Quantity": 34.4,
+                                    "AgriculturalItem": {
+                                      "Id": 24,
+                                      "Name": "Gardening Fork",
+                                      "StepDetails": []
+                                    }
+                                  }
+                                ]
+                              }
+                            ]
+                          },
+                          "StepDetails": [
+                            {
+                              "Id": 7,
+                              "StepId": 7,
+                              "AgriculturalItemId": 23,
+                              "Quantity": 34.4,
+                              "AgriculturalItem": {
+                                "Id": 23,
+                                "Name": "Shovel",
+                                "StepDetails": []
+                              }
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    "StepDetails": []
+                  }
+                ]
+              },
+              "StepDetails": []
+            }
+          ]
+        },
+        "StepDetails": []
+      }
+    ]
+  }
+]

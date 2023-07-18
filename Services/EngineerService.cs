@@ -17,7 +17,7 @@ namespace Services
         public IQueryable<Engineer> GetHeadEngineers()
         {
             return GetAll().Where(e => e.EngineerType.Name.Contains("executive")
-                && e.HeadEngineerId == null);
+                && e.HeadEngineerId.HasValue);
         }
         public IQueryable<Engineer> GetEngineersByType(int engineerTypeId)
         {

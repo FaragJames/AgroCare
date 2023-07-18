@@ -37,7 +37,7 @@ namespace Models.Migrations.AppDb
 
                     b.HasKey("Id");
 
-                    b.ToTable("Action");
+                    b.ToTable("Action", (string)null);
                 });
 
             modelBuilder.Entity("Models.Models.AgriculturalItem", b =>
@@ -55,7 +55,7 @@ namespace Models.Migrations.AppDb
 
                     b.HasKey("Id");
 
-                    b.ToTable("Agricultural_Item");
+                    b.ToTable("Agricultural_Item", (string)null);
                 });
 
             modelBuilder.Entity("Models.Models.Buyer", b =>
@@ -83,7 +83,7 @@ namespace Models.Migrations.AppDb
 
                     b.HasKey("Id");
 
-                    b.ToTable("Buyer");
+                    b.ToTable("Buyer", (string)null);
                 });
 
             modelBuilder.Entity("Models.Models.Engineer", b =>
@@ -126,7 +126,7 @@ namespace Models.Migrations.AppDb
 
                     b.HasIndex("HeadEngineerId");
 
-                    b.ToTable("Engineer");
+                    b.ToTable("Engineer", (string)null);
                 });
 
             modelBuilder.Entity("Models.Models.EngineerType", b =>
@@ -145,7 +145,7 @@ namespace Models.Migrations.AppDb
                     b.HasKey("Id")
                         .HasName("PK_Type");
 
-                    b.ToTable("Engineer_Type");
+                    b.ToTable("Engineer_Type", (string)null);
                 });
 
             modelBuilder.Entity("Models.Models.Farmer", b =>
@@ -173,7 +173,7 @@ namespace Models.Migrations.AppDb
 
                     b.HasKey("Id");
 
-                    b.ToTable("Farmer");
+                    b.ToTable("Farmer", (string)null);
                 });
 
             modelBuilder.Entity("Models.Models.Item", b =>
@@ -194,7 +194,7 @@ namespace Models.Migrations.AppDb
 
                     b.HasKey("Id");
 
-                    b.ToTable("Item");
+                    b.ToTable("Item", (string)null);
                 });
 
             modelBuilder.Entity("Models.Models.Land", b =>
@@ -237,7 +237,7 @@ namespace Models.Migrations.AppDb
 
                     b.HasIndex("TypeId");
 
-                    b.ToTable("Land");
+                    b.ToTable("Land", (string)null);
                 });
 
             modelBuilder.Entity("Models.Models.LandType", b =>
@@ -255,7 +255,7 @@ namespace Models.Migrations.AppDb
 
                     b.HasKey("Id");
 
-                    b.ToTable("Land_Type");
+                    b.ToTable("Land_Type", (string)null);
                 });
 
             modelBuilder.Entity("Models.Models.Order", b =>
@@ -290,7 +290,7 @@ namespace Models.Migrations.AppDb
 
                     b.HasIndex("ExecutiveTeamId");
 
-                    b.ToTable("Order");
+                    b.ToTable("Order", (string)null);
                 });
 
             modelBuilder.Entity("Models.Models.OrderDetail", b =>
@@ -326,7 +326,7 @@ namespace Models.Migrations.AppDb
 
                     b.HasIndex("OrderId");
 
-                    b.ToTable("Order_Details");
+                    b.ToTable("Order_Details", (string)null);
                 });
 
             modelBuilder.Entity("Models.Models.Plan", b =>
@@ -363,7 +363,7 @@ namespace Models.Migrations.AppDb
 
                     b.HasIndex("OrderDetailsId");
 
-                    b.ToTable("Plan");
+                    b.ToTable("Plan", (string)null);
                 });
 
             modelBuilder.Entity("Models.Models.Purchase", b =>
@@ -391,7 +391,7 @@ namespace Models.Migrations.AppDb
 
                     b.HasIndex("StoreId");
 
-                    b.ToTable("Purchase");
+                    b.ToTable("Purchase", (string)null);
                 });
 
             modelBuilder.Entity("Models.Models.PurchaseDetail", b =>
@@ -425,7 +425,7 @@ namespace Models.Migrations.AppDb
 
                     b.HasIndex("PurchaseId");
 
-                    b.ToTable("Purchase_Details");
+                    b.ToTable("Purchase_Details", (string)null);
                 });
 
             modelBuilder.Entity("Models.Models.SoilType", b =>
@@ -443,7 +443,7 @@ namespace Models.Migrations.AppDb
 
                     b.HasKey("Id");
 
-                    b.ToTable("Soil_Type");
+                    b.ToTable("Soil_Type", (string)null);
                 });
 
             modelBuilder.Entity("Models.Models.Step", b =>
@@ -480,7 +480,7 @@ namespace Models.Migrations.AppDb
 
                     b.HasIndex("PlanId");
 
-                    b.ToTable("Step");
+                    b.ToTable("Step", (string)null);
                 });
 
             modelBuilder.Entity("Models.Models.StepDetail", b =>
@@ -508,7 +508,7 @@ namespace Models.Migrations.AppDb
 
                     b.HasIndex("StepId");
 
-                    b.ToTable("Step_Details");
+                    b.ToTable("Step_Details", (string)null);
                 });
 
             modelBuilder.Entity("Models.Models.Store", b =>
@@ -537,7 +537,7 @@ namespace Models.Migrations.AppDb
 
                     b.HasIndex("TypeId");
 
-                    b.ToTable("Store");
+                    b.ToTable("Store", (string)null);
                 });
 
             modelBuilder.Entity("Models.Models.StoreType", b =>
@@ -555,7 +555,7 @@ namespace Models.Migrations.AppDb
 
                     b.HasKey("Id");
 
-                    b.ToTable("Store_Type");
+                    b.ToTable("Store_Type", (string)null);
                 });
 
             modelBuilder.Entity("Models.Models.Engineer", b =>
