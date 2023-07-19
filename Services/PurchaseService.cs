@@ -28,7 +28,7 @@ namespace Services
 
         public IQueryable<Purchase> GetPendingPurchases()
         {
-            return GetAll().Where(p => p.Plan.FinishDate < DateTime.Now);
+            return GetAll().Where(p => p.Plan.FinishDate < DateOnly.FromDateTime(DateTime.Now));
         }
         //For the Store's page.
         public IQueryable<Purchase> GetPendingPurchasesByStoreId(int storeId)

@@ -1,12 +1,13 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Models.Models;
+using Models.Models.Auxiliary;
+using System.Numerics;
 
 namespace Services
 {
-    public class Service<T>: IService<T> where T : class
+    public class Service<T>: IService<T> where T : class, IBaseProperties
     {
         protected AppDbContext _context;
-
 
 
         public Service(AppDbContext context)
@@ -22,10 +23,11 @@ namespace Services
         //***NOTE: Return type is Nullable.***//
         public virtual async Task<T?> GetOneAsync(int id)
         {
-            if (GetAll() is DbSet<T> all)
+            var result = GetAll();
+            if (result is DbSet<T> all)
                 return await all.FindAsync(id);
             else
-                return await Task.FromResult<T?>(null);
+                return result.FirstOrDefault(e => e.Id == id);
 
         }
         public virtual async Task<bool> AddAsync(T entity)
@@ -73,6 +75,5 @@ namespace Services
         {
             return GetOneAsync(id) != null;
         }
-
     }
 }

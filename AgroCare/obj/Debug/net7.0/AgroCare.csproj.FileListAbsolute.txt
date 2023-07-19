@@ -267,3 +267,4 @@ C:\Programming\C#\AgroCare\AgroCare\bin\Debug\net7.0\System.Memory.Data.dll
 C:\Programming\C#\AgroCare\AgroCare\bin\Debug\net7.0\Data\JsonDummyData\Buyer.json
 C:\Programming\C#\AgroCare\AgroCare\bin\Debug\net7.0\Data\JsonDummyData\Engineer.json
 C:\Programming\C#\AgroCare\AgroCare\bin\Debug\net7.0\Data\JsonDummyData\Farmer.json
+C:\Programming\C#\AgroCare\AgroCare\bin\Debug\net7.0\Data\JsonDummyData\DeleteMe.json

@@ -3,9 +3,8 @@ using Microsoft.EntityFrameworkCore;
 using Models;
 using Models.Models;
 using Newtonsoft.Json;
-using System.Numerics;
 
-namespace AgroCare
+namespace AgroCare.Data
 {
     public class SeedData
     {
@@ -141,17 +140,17 @@ namespace AgroCare
 
                 List<Order> orders = new()
                 {
-                    new() { Buyer = buyers[0], AdminEngineer = engineers[0], ExecutiveTeam = engineers[3], OrderDate = DateTime.Now },
-                    new() { Buyer = buyers[1], AdminEngineer = engineers[1], ExecutiveTeam = engineers[3], OrderDate = DateTime.Now },
-                    new() { Buyer = buyers[2], AdminEngineer = engineers[2], ExecutiveTeam = engineers[7], OrderDate = DateTime.Now }
+                    new() { Buyer = buyers[0], AdminEngineer = engineers[0], ExecutiveTeam = engineers[3], OrderDate = DateOnly.FromDateTime(DateTime.Now) },
+                    new() { Buyer = buyers[1], AdminEngineer = engineers[1], ExecutiveTeam = engineers[3], OrderDate = DateOnly.FromDateTime(DateTime.Now) },
+                    new() { Buyer = buyers[2], AdminEngineer = engineers[2], ExecutiveTeam = engineers[7], OrderDate = DateOnly.FromDateTime(DateTime.Now) }
                 };
                 List<OrderDetail> orderDetails = new()
                 {
-                    new() { Order = orders[0], Item = items[0], Kilos = 4, KiloPrice = 123.23F, DeliveryDate = DateTime.Now },
-                    new() { Order = orders[1], Item = items[1], Kilos = 4, KiloPrice = 123.23F, DeliveryDate = DateTime.Now },
-                    new() { Order = orders[1], Item = items[2], Kilos = 4, KiloPrice = 123.23F, DeliveryDate = DateTime.Now },
-                    new() { Order = orders[2], Item = items[3], Kilos = 4, KiloPrice = 123.23F, DeliveryDate = DateTime.Now },
-                    new() { Order = orders[2], Item = items[4], Kilos = 4, KiloPrice = 123.23F, DeliveryDate = DateTime.Now }
+                    new() { Order = orders[0], Item = items[0], Kilos = 4, KiloPrice = 123.23F, DeliveryDate = DateOnly.FromDateTime(DateTime.Now) },
+                    new() { Order = orders[1], Item = items[1], Kilos = 4, KiloPrice = 123.23F, DeliveryDate = DateOnly.FromDateTime(DateTime.Now) },
+                    new() { Order = orders[1], Item = items[2], Kilos = 4, KiloPrice = 123.23F, DeliveryDate = DateOnly.FromDateTime(DateTime.Now) },
+                    new() { Order = orders[2], Item = items[3], Kilos = 4, KiloPrice = 123.23F, DeliveryDate = DateOnly.FromDateTime(DateTime.Now) },
+                    new() { Order = orders[2], Item = items[4], Kilos = 4, KiloPrice = 123.23F, DeliveryDate = DateOnly.FromDateTime(DateTime.Now) }
                 };
                 List<Land> lands = new() {
                     new() { Farmer = farmers[0], Type = landTypes[0], SoilType = soilTypes[0], HasWell = true, Area = 34.34f, Location = "fasdf" },
@@ -161,24 +160,24 @@ namespace AgroCare
                     new() { Farmer = farmers[0], Type = landTypes[4], SoilType = soilTypes[4], HasWell = true, Area = 34.34f, Location = "fasdf" }
                 };
                 List<Plan> plans = new() {
-                    new() { Land = lands[0], OrderDetails = orderDetails[0], StartDate = DateTime.Now, FinishDate = DateTime.Now, Quantity = 34.43f },
-                    new() { Land = lands[1], OrderDetails = orderDetails[1], StartDate = DateTime.Now, FinishDate = DateTime.Now, Quantity = 34.43f },
-                    new() { Land = lands[2], OrderDetails = orderDetails[2], StartDate = DateTime.Now, FinishDate = DateTime.Now, Quantity = 34.43f },
-                    new() { Land = lands[3], OrderDetails = orderDetails[3], StartDate = DateTime.Now, FinishDate = DateTime.Now, Quantity = 34.43f },
-                    new() { Land = lands[4], OrderDetails = orderDetails[4], StartDate = DateTime.Now, FinishDate = DateTime.Now, Quantity = 34.43f }
+                    new() { Land = lands[0], OrderDetails = orderDetails[0], StartDate = DateOnly.FromDateTime(DateTime.Now), FinishDate = DateOnly.FromDateTime(DateTime.Now), Quantity = 34.43f },
+                    new() { Land = lands[1], OrderDetails = orderDetails[1], StartDate = DateOnly.FromDateTime(DateTime.Now), FinishDate = DateOnly.FromDateTime(DateTime.Now), Quantity = 34.43f },
+                    new() { Land = lands[2], OrderDetails = orderDetails[2], StartDate = DateOnly.FromDateTime(DateTime.Now), FinishDate = DateOnly.FromDateTime(DateTime.Now), Quantity = 34.43f },
+                    new() { Land = lands[3], OrderDetails = orderDetails[3], StartDate = DateOnly.FromDateTime(DateTime.Now), FinishDate = DateOnly.FromDateTime(DateTime.Now), Quantity = 34.43f },
+                    new() { Land = lands[4], OrderDetails = orderDetails[4], StartDate = DateOnly.FromDateTime(DateTime.Now), FinishDate = DateOnly.FromDateTime(DateTime.Now), Quantity = 34.43f }
 
                 };
                 List<Step> steps = new() {
-                    new() { Plan = plans[0], Action = actions[0], EstimatedFinishDate = DateTime.Now, EstimatedStartDate = DateTime.Now, IsChecked = false },
-                    new() { Plan = plans[0], Action = actions[1], EstimatedFinishDate = DateTime.Now, EstimatedStartDate = DateTime.Now, IsChecked = false },
-                    new() { Plan = plans[1], Action = actions[2], EstimatedFinishDate = DateTime.Now, EstimatedStartDate = DateTime.Now, IsChecked = false },
-                    new() { Plan = plans[1], Action = actions[3], EstimatedFinishDate = DateTime.Now, EstimatedStartDate = DateTime.Now, IsChecked = false },
-                    new() { Plan = plans[2], Action = actions[0], EstimatedFinishDate = DateTime.Now, EstimatedStartDate = DateTime.Now, IsChecked = false },
-                    new() { Plan = plans[2], Action = actions[1], EstimatedFinishDate = DateTime.Now, EstimatedStartDate = DateTime.Now, IsChecked = false },
-                    new() { Plan = plans[3], Action = actions[2], EstimatedFinishDate = DateTime.Now, EstimatedStartDate = DateTime.Now, IsChecked = false },
-                    new() { Plan = plans[3], Action = actions[4], EstimatedFinishDate = DateTime.Now, EstimatedStartDate = DateTime.Now, IsChecked = false },
-                    new() { Plan = plans[4], Action = actions[3], EstimatedFinishDate = DateTime.Now, EstimatedStartDate = DateTime.Now, IsChecked = false },
-                    new() { Plan = plans[4], Action = actions[4], EstimatedFinishDate = DateTime.Now, EstimatedStartDate = DateTime.Now, IsChecked = false },
+                    new() { Plan = plans[0], Action = actions[0], EstimatedFinishDate = DateOnly.FromDateTime(DateTime.Now), EstimatedStartDate = DateOnly.FromDateTime(DateTime.Now), IsChecked = false },
+                    new() { Plan = plans[0], Action = actions[1], EstimatedFinishDate = DateOnly.FromDateTime(DateTime.Now), EstimatedStartDate = DateOnly.FromDateTime(DateTime.Now), IsChecked = false },
+                    new() { Plan = plans[1], Action = actions[2], EstimatedFinishDate = DateOnly.FromDateTime(DateTime.Now), EstimatedStartDate = DateOnly.FromDateTime(DateTime.Now), IsChecked = false },
+                    new() { Plan = plans[1], Action = actions[3], EstimatedFinishDate = DateOnly.FromDateTime(DateTime.Now), EstimatedStartDate = DateOnly.FromDateTime(DateTime.Now), IsChecked = false },
+                    new() { Plan = plans[2], Action = actions[0], EstimatedFinishDate = DateOnly.FromDateTime(DateTime.Now), EstimatedStartDate = DateOnly.FromDateTime(DateTime.Now), IsChecked = false },
+                    new() { Plan = plans[2], Action = actions[1], EstimatedFinishDate = DateOnly.FromDateTime(DateTime.Now), EstimatedStartDate = DateOnly.FromDateTime(DateTime.Now), IsChecked = false },
+                    new() { Plan = plans[3], Action = actions[2], EstimatedFinishDate = DateOnly.FromDateTime(DateTime.Now), EstimatedStartDate = DateOnly.FromDateTime(DateTime.Now), IsChecked = false },
+                    new() { Plan = plans[3], Action = actions[4], EstimatedFinishDate = DateOnly.FromDateTime(DateTime.Now), EstimatedStartDate = DateOnly.FromDateTime(DateTime.Now), IsChecked = false },
+                    new() { Plan = plans[4], Action = actions[3], EstimatedFinishDate = DateOnly.FromDateTime(DateTime.Now), EstimatedStartDate = DateOnly.FromDateTime(DateTime.Now), IsChecked = false },
+                    new() { Plan = plans[4], Action = actions[4], EstimatedFinishDate = DateOnly.FromDateTime(DateTime.Now), EstimatedStartDate = DateOnly.FromDateTime(DateTime.Now), IsChecked = false },
                 };
                 List<StepDetail> stepDetails = new() {
                     new() { Step = steps[0], AgriculturalItem = agriculturalItems[0], Quantity = 34.4f },
@@ -197,9 +196,9 @@ namespace AgroCare
                 };
                 var purchases = new List<Purchase>
                 {
-                    new Purchase { Store = stores[0], Plan = plans[0], Date = DateTime.Now },
-                    new Purchase { Store = stores[2], Plan = plans[1], Date = DateTime.Now },
-                    new Purchase { Store = stores[1], Plan = plans[2], Date = DateTime.Now }
+                    new Purchase { Store = stores[0], Plan = plans[0], Date = DateOnly.FromDateTime(DateTime.Now) },
+                    new Purchase { Store = stores[2], Plan = plans[1], Date = DateOnly.FromDateTime(DateTime.Now) },
+                    new Purchase { Store = stores[1], Plan = plans[2], Date = DateOnly.FromDateTime(DateTime.Now) }
                 };
                 var purchaseDetails = new List<PurchaseDetail>
                 {

@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
+using Models.Models.Auxiliary;
 
 namespace Models.Models
 {
     [Table("Step")]
-    public partial class Step
+    public partial class Step : IBaseProperties
     {
         [Key]
         public int Id { get; set; }
@@ -19,10 +20,10 @@ namespace Models.Models
         public int ActionId { get; set; }
 
         [Column("Estimated_Start_Date", TypeName = "date")]
-        public DateTime EstimatedStartDate { get; set; }
+        public DateOnly EstimatedStartDate { get; set; }
 
         [Column("Estimated_Finish_Date", TypeName = "date")]
-        public DateTime EstimatedFinishDate { get; set; }
+        public DateOnly EstimatedFinishDate { get; set; }
 
         [Column("Is_Checked")]
         public bool IsChecked { get; set; }

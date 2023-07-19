@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
+using Models.Models.Auxiliary;
 
 namespace Models.Models
 {
     [Table("Step_Details")]
-    public partial class StepDetail
+    public partial class StepDetail : IBaseProperties
     {
         [Key]
         public int Id { get; set; }

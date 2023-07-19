@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
+using Models.Models.Auxiliary;
 
 namespace Models.Models
 {
     [Table("Purchase")]
-    public partial class Purchase
+    public partial class Purchase : IBaseProperties
     {
         [Key]
         public int Id { get; set; }
@@ -19,7 +20,7 @@ namespace Models.Models
         public int PlanId { get; set; }
 
         [Column(TypeName = "date")]
-        public DateTime Date { get; set; }
+        public DateOnly Date { get; set; }
 
         [ForeignKey("PlanId")]
         [InverseProperty("Purchases")]

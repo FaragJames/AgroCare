@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
+using Models.Models.Auxiliary;
 
 namespace Models.Models
 {
     [Table("Plan")]
-    public partial class Plan
+    public partial class Plan : IBaseProperties
     {
         [Key]
         public int Id { get; set; }
@@ -19,10 +20,10 @@ namespace Models.Models
         public int LandId { get; set; }
 
         [Column("Start_Date", TypeName = "date")]
-        public DateTime StartDate { get; set; }
+        public DateOnly StartDate { get; set; }
 
         [Column("Finish_Date", TypeName = "date")]
-        public DateTime FinishDate { get; set; }
+        public DateOnly FinishDate { get; set; }
 
         public float Quantity { get; set; }
 

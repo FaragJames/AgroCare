@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Models;
 using AgroCare.Controllers;
+using AgroCare.Data;
 using Models.Models;
 using Services;
 
@@ -32,14 +33,14 @@ namespace AgroCare
                 .AddEntityFrameworkStores<AppIdentityDbContext>();
 
             services.AddScoped(typeof(IService<>), typeof(Service<>));
-            services.AddScoped<IService<Plan>, PlanService>();
-            services.AddScoped<IService<Purchase>, PurchaseService>();
-            services.AddScoped<IService<Order>, OrderService>();
-            services.AddScoped<IService<Land>, LandService>();
-            services.AddScoped<IService<Step>, StepService>();
-            services.AddScoped<IService<Farmer>, FarmerService>();
-            services.AddScoped<IService<Store>, StoreService>();
-            services.AddScoped<IService<Engineer>, EngineerService>();
+            services.AddScoped<PlanService>();
+            services.AddScoped<PurchaseService>();
+            services.AddScoped<OrderService>();
+            services.AddScoped<LandService>();
+            services.AddScoped<StepService>();
+            services.AddScoped<FarmerService>();
+            services.AddScoped<StoreService>();
+            services.AddScoped<EngineerService>();
             #endregion
 
 

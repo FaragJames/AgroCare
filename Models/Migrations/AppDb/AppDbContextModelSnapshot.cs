@@ -278,7 +278,7 @@ namespace Models.Migrations.AppDb
                         .HasColumnType("int")
                         .HasColumnName("Executive_Team_Id");
 
-                    b.Property<DateTime>("OrderDate")
+                    b.Property<DateOnly>("OrderDate")
                         .HasColumnType("date")
                         .HasColumnName("Order_Date");
 
@@ -301,7 +301,7 @@ namespace Models.Migrations.AppDb
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<DateTime>("DeliveryDate")
+                    b.Property<DateOnly>("DeliveryDate")
                         .HasColumnType("date")
                         .HasColumnName("Delivery_Date");
 
@@ -337,7 +337,7 @@ namespace Models.Migrations.AppDb
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<DateTime>("FinishDate")
+                    b.Property<DateOnly>("FinishDate")
                         .HasColumnType("date")
                         .HasColumnName("Finish_Date");
 
@@ -352,7 +352,7 @@ namespace Models.Migrations.AppDb
                     b.Property<float>("Quantity")
                         .HasColumnType("real");
 
-                    b.Property<DateTime>("StartDate")
+                    b.Property<DateOnly>("StartDate")
                         .HasColumnType("date")
                         .HasColumnName("Start_Date");
 
@@ -374,7 +374,7 @@ namespace Models.Migrations.AppDb
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<DateTime>("Date")
+                    b.Property<DateOnly>("Date")
                         .HasColumnType("date");
 
                     b.Property<int>("PlanId")
@@ -458,11 +458,11 @@ namespace Models.Migrations.AppDb
                         .HasColumnType("int")
                         .HasColumnName("Action_Id");
 
-                    b.Property<DateTime>("EstimatedFinishDate")
+                    b.Property<DateOnly>("EstimatedFinishDate")
                         .HasColumnType("date")
                         .HasColumnName("Estimated_Finish_Date");
 
-                    b.Property<DateTime>("EstimatedStartDate")
+                    b.Property<DateOnly>("EstimatedStartDate")
                         .HasColumnType("date")
                         .HasColumnName("Estimated_Start_Date");
 

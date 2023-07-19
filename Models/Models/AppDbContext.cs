@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using Microsoft.EntityFrameworkCore;
+using Models.Models.Auxiliary;
 
 namespace Models.Models
 {
@@ -170,6 +172,11 @@ namespace Models.Models
             });
 
             OnModelCreatingPartial(modelBuilder);
+        }
+        protected override void ConfigureConventions(ModelConfigurationBuilder builder)
+        {
+            builder.Properties<DateOnly>()
+                .HaveConversion<DateOnlyCustomConverter>();
         }
 
         partial void OnModelCreatingPartial(ModelBuilder modelBuilder);

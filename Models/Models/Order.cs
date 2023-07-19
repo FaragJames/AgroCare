@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
+using Models.Models.Auxiliary;
 
 namespace Models.Models
 {
     [Table("Order")]
-    public partial class Order
+    public partial class Order : IBaseProperties
     {
         [Key]
         public int Id { get; set; }
@@ -22,7 +23,7 @@ namespace Models.Models
         public int? ExecutiveTeamId { get; set; }
 
         [Column("Order_Date", TypeName = "date")]
-        public DateTime OrderDate { get; set; }
+        public DateOnly OrderDate { get; set; }
 
         [ForeignKey("AdminEngineerId")]
         [InverseProperty("OrderAdminEngineers")]

@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
+using Models.Models.Auxiliary;
 
 namespace Models.Models
 {
     [Table("Purchase_Details")]
-    public partial class PurchaseDetail
+    public partial class PurchaseDetail : IBaseProperties
     {
         [Key]
         public int Id { get; set; }

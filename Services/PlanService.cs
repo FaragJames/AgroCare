@@ -31,6 +31,20 @@ namespace Services
             _context.RemoveRange(plan.Steps);
             return await base.RemoveAsync(plan);
         }
+        public async Task<bool> RemoveStepsAsync(Plan plan)
+        {
+            try
+            {
+                _context.RemoveRange(plan.Steps.SelectMany(s => s.StepDetails));
+                _context.RemoveRange(plan.Steps);
+                await _context.SaveChangesAsync();
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
 
         public IQueryable<Plan> GetAllByLandId(int landId)
         {

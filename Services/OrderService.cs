@@ -52,7 +52,7 @@ namespace Services
         {
             return GetAll().Where(o =>
                 o.ExecutiveTeamId.HasValue &&
-                o.OrderDetails.Where(oD => oD.DeliveryDate < DateTime.Now).Any());
+                o.OrderDetails.Where(oD => oD.DeliveryDate < DateOnly.FromDateTime(DateTime.Now)).Any());
         }
         //For the Buyer's page.
         public IQueryable<Order> GetUnderwayOrdersByBuyerId(int buyerId)

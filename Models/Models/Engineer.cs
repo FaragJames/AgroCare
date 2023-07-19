@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
+using Models.Models.Auxiliary;
 
 namespace Models.Models
 {
     [Table("Engineer")]
-    public partial class Engineer
+    public partial class Engineer : IBaseProperties
     {
         [Key]
         public int Id { get; set; }

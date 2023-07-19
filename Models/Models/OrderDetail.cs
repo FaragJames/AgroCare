@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
+using Models.Models.Auxiliary;
 
 namespace Models.Models
 {
     [Table("Order_Details")]
-    public partial class OrderDetail
+    public partial class OrderDetail : IBaseProperties
     {
         [Key]
         public int Id { get; set; }
@@ -24,7 +25,7 @@ namespace Models.Models
         public float KiloPrice { get; set; }
 
         [Column("Delivery_Date", TypeName = "date")]
-        public DateTime DeliveryDate { get; set; }
+        public DateOnly DeliveryDate { get; set; }
 
         [ForeignKey("ItemId")]
         [InverseProperty("OrderDetails")]
