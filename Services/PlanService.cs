@@ -1,10 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Models.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Services
 {
@@ -16,9 +11,9 @@ namespace Services
         public override IQueryable<Plan> GetAll()
         {
             return base.GetAll()
-                //.Include(p => p.OrderDetails)
-                //.Include(p => p.Land)
-                //    .ThenInclude(l => l.Farmer)
+                .Include(p => p.OrderDetails)
+                .Include(p => p.Land)
+                    .ThenInclude(l => l.Farmer)
                 .Include(p => p.Steps)
                     .ThenInclude(s => s.Action)
                 .Include(p => p.Steps)

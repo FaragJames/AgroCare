@@ -17,7 +17,7 @@ namespace AgroCare
 
 
             #region Services
-            services.AddControllersWithViews();
+            services.AddControllersWithViews().AddNewtonsoftJson();
             services.AddRazorPages();
             services.AddDbContext<AppDbContext>(options =>
             {
@@ -31,6 +31,7 @@ namespace AgroCare
             });
             services.AddIdentity<IdentityUser, IdentityRole>()
                 .AddEntityFrameworkStores<AppIdentityDbContext>();
+            services.AddAutoMapper(typeof(Program).Assembly);
 
             services.AddScoped(typeof(IService<>), typeof(Service<>));
             services.AddScoped<PlanService>();

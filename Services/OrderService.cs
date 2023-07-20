@@ -1,10 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Models.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Services
 {
@@ -50,9 +45,10 @@ namespace Services
         }
         public IQueryable<Order> GetUnderwayOrders()
         {
+            OrderDetail now = new() { DeliveryDate = DateOnly.FromDateTime(DateTime.Now) };
             return GetAll().Where(o =>
                 o.ExecutiveTeamId.HasValue &&
-                o.OrderDetails.Where(oD => oD.DeliveryDate < DateOnly.FromDateTime(DateTime.Now)).Any());
+                o.OrderDetails.Any(oD => oD.DeliveryDate > now.DeliveryDate));
         }
         //For the Buyer's page.
         public IQueryable<Order> GetUnderwayOrdersByBuyerId(int buyerId)

@@ -1,10 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Models.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Services
 {
@@ -28,7 +23,8 @@ namespace Services
 
         public IQueryable<Purchase> GetPendingPurchases()
         {
-            return GetAll().Where(p => p.Plan.FinishDate < DateOnly.FromDateTime(DateTime.Now));
+            Plan now = new() { FinishDate = DateOnly.FromDateTime(DateTime.Now) };
+            return GetAll().Where(p => p.Plan.FinishDate > now.FinishDate);
         }
         //For the Store's page.
         public IQueryable<Purchase> GetPendingPurchasesByStoreId(int storeId)

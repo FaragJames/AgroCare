@@ -11,7 +11,8 @@ namespace Services
 
         public override IQueryable<Step> GetAll()
         {
-            return base.GetAll().Include(s => s.Action)
+            return base.GetAll()
+                .Include(s => s.Action)
                 .Include(s => s.StepDetails)
                     .ThenInclude(s => s.AgriculturalItem);
         }
