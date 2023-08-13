@@ -5,6 +5,7 @@
         public int Kilos { get; set; }
         public float KiloPrice { get; set; }
         public DateOnly DeliveryDate { get; set; }
+        public string? Feedback { get; set; }
         public ItemDto Item { get; set; } = null!;
     }
 }

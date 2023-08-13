@@ -15,7 +15,7 @@ namespace AgroCare.Controllers
         private readonly IMapper mapper;
         private readonly IService<AgriculturalItem> agriItemService;
         private readonly IService<OrderDetail> orderDetailService;
-        private readonly IService<Item> itemService;
+        private readonly IService<Item> ItemService;
         private readonly IService<Engineer> engineerService;
         private readonly IService<Buyer> buyerService;
         readonly PlanService planService;
@@ -26,7 +26,7 @@ namespace AgroCare.Controllers
 
         public TestController(IService<Models.Models.Action> actionService, IMapper mapper,
             IService<AgriculturalItem> agriItemService, IService<OrderDetail> orderDetailService,
-            IService<Item> itemService, IService<Engineer> engineerService, IService<Buyer> buyerService,
+            IService<Item> ItemService, IService<Engineer> engineerService, IService<Buyer> buyerService,
             PlanService planService,OrderService orderService, PurchaseService purchaseService,
             LandService landService, FarmerService farmerService)
         {
@@ -34,7 +34,7 @@ namespace AgroCare.Controllers
             this.mapper = mapper;
             this.agriItemService = agriItemService;
             this.orderDetailService = orderDetailService;
-            this.itemService = itemService;
+            this.ItemService = ItemService;
             this.engineerService = engineerService;
             this.buyerService = buyerService;
             this.planService = planService;
@@ -65,7 +65,7 @@ namespace AgroCare.Controllers
                     DeliveryDate = DateOnly.MinValue.AddDays(1),
                     Kilos = 33,
                     KiloPrice = 23.234F,
-                    Item = itemService.GetAll().First()
+                    Item = ItemService.GetAll().First()
                 });
             }
 
@@ -86,7 +86,7 @@ namespace AgroCare.Controllers
                         DeliveryDate = DateOnly.MaxValue,
                         Kilos = 33,
                         KiloPrice = 23.234F,
-                        Item = itemService.GetAll().First()
+                        Item = ItemService.GetAll().First()
                     }
                 }
             };

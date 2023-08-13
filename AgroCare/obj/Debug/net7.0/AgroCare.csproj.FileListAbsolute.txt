@@ -267,9 +267,9 @@ C:\Programming\C#\AgroCare\AgroCare\bin\Debug\net7.0\System.Memory.Data.dll
 C:\Programming\C#\AgroCare\AgroCare\bin\Debug\net7.0\Data\JsonDummyData\Buyer.json
 C:\Programming\C#\AgroCare\AgroCare\bin\Debug\net7.0\Data\JsonDummyData\Engineer.json
 C:\Programming\C#\AgroCare\AgroCare\bin\Debug\net7.0\Data\JsonDummyData\Farmer.json
-C:\Programming\C#\AgroCare\AgroCare\bin\Debug\net7.0\Data\JsonDummyData\DeleteMe.json
 C:\Programming\C#\AgroCare\AgroCare\bin\Debug\net7.0\AutoMapper.dll
 C:\Programming\C#\AgroCare\AgroCare\bin\Debug\net7.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
 C:\Programming\C#\AgroCare\AgroCare\bin\Debug\net7.0\Microsoft.AspNetCore.JsonPatch.dll
 C:\Programming\C#\AgroCare\AgroCare\bin\Debug\net7.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
 C:\Programming\C#\AgroCare\AgroCare\bin\Debug\net7.0\Newtonsoft.Json.Bson.dll
+C:\Programming\C#\AgroCare\AgroCare\bin\Debug\net7.0\libman.json

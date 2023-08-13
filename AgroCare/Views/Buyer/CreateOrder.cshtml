@@ -1,0 +1,87 @@
+﻿@model ItemsOrderViewModel
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="~/css/buyer/buyer.css">
+</head>
+
+<body class="">
+    <div class="container">
+        <header>
+            <h1>Your Shopping Cart</h1>
+            <div class="new">
+                <a asp-action="ShowOrders"><img src="~/images/buyer/bell.png" /></a>
+                <div class="shopping">
+                    <img src="~/images/buyer/cart.png">
+                    <span class="quantity">0</span>
+                </div>
+            </div>
+        </header>
+
+        <div class="list">
+            @foreach (var item in Model.Items)
+            {
+                <div class="item">
+                    <img src="">
+                    <div class="title">@item.Name</div>
+                    <div class="price">@item.Price</div>
+                    <button onclick="addToCard(@item.Id, '@(item.Name)', @(item.Price))">Add To Cart</button>
+                </div>
+            }
+        </div>
+    </div>
+
+    @{
+        bool patch = Model.Order != null;
+    }
+    <form id="myForm" class="card" method="@(patch ? "patch" : "post")">
+        <div class="card-header">
+            <h1>Card</h1>
+        </div>
+        <ul class="listCard">
+            @if (patch)
+            {
+                <input id="orderId" value="@Model.Order!.Id" disabled hidden/>
+                foreach(var orderDetail in Model.Order!.OrderDetails)
+                {
+                    <li id="listItem@(orderDetail.Item.Id)">
+                        <div><img src="" /></div>
+                        <div>@orderDetail.Item.Name</div>
+                        <input type="date" class="date" id="deliveryDate" name="deliveryDate" value="@orderDetail.DeliveryDate">
+                        <input type="number" id="itemId" name="itemId" value="@orderDetail.Item.Id" hidden>
+                        <input type="number" id="kiloPrice" name="kiloPrice" value="@orderDetail.KiloPrice" hidden>
+                        <div class="total-kilo-price">@(orderDetail.KiloPrice * orderDetail.Kilos)</div>
+                        <div>
+                            <button onclick="changeQuantity(@orderDetail.Item.Id, @orderDetail.KiloPrice - 1)">-</button>
+                            <input class="count" name="kilos" id="kilos" value="@orderDetail.Kilos" hidden>
+                            <div class="count">@orderDetail.Kilos</div>
+                            <button onclick="changeQuantity(@orderDetail.Item.Id, @orderDetail.KiloPrice + 1)">+</button>
+                        </div>
+                    </li>
+                }
+            }
+        </ul>
+        <div class="checkOut">
+            <div class="total">0</div>
+            <button class="Send" type="submit">Send</button>
+            <div class="closeShopping">Close</div>
+        </div>
+    </form>
+
+    @if (!patch)
+    {
+        <script src="~/js/buyer/create_buyer_order_post.js"></script>
+    }
+    else
+    {
+        <script src="~/js/buyer/create_buyer_order_patch.js"></script>
+    }
+</body>
+
+</html>

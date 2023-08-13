@@ -1,0 +1,74 @@
+﻿@model List<OrderDto>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <link rel="stylesheet" href="~/css/buyer/buyer.css" />
+</head>
+
+<body class="">
+    <div class="container">
+        <ul class="status">
+            <div class="first-li">
+                <select id="mySelect">
+                    @for (int i = 0; i < Model.Count; i++)
+                    {
+                        if (i != 0)
+                        {
+                            <option value="table@(i + 1)">Order@(i + 1)</option>
+                            continue;
+                        }
+
+                        <option value="table@(i + 1)" selected>Order@(i + 1)</option>
+                    }
+                </select>
+                <span>@(Model.Count)</span>
+            </div>
+            <li class="active" data-state="wait">Waiting</li>
+            <li data-state="excute"><a asp-action="ShowUnderwayOrders">Executing</a></li>
+        </ul>
+        <div class="table wait">
+            <table>
+                <thead>
+                    <tr>
+                        <td>Item Name</td>
+                        <td>Quantity</td>
+                        <td>Delivery Date</td>
+                        <td>Message</td>
+                    </tr>
+                </thead>
+                @for (int i = 0; i < Model.Count; i++)
+                {
+                    <tbody class="table@(i + 1)">
+                        @foreach (var item in Model[i].OrderDetails)
+                        {
+                            <tr>
+                                <td>@item.Item.Name</td>
+                                <td>@item.Kilos</td>
+                                <td>@item.DeliveryDate</td>
+                                <td>@(item.Feedback ?? "")</td>
+                            </tr>
+                        }
+                    </tbody>
+                    <tfoot class="table@(i + 1)">
+                        <tr>
+                            <td>
+                                <a asp-action="CreateOrder" asp-route-orderId="@Model[i].Id">
+                                    <img class="active" src="~/images/buyer/edit.png" alt="edit" />
+                                </a>
+                            </td>
+                        </tr>
+                    </tfoot>
+                }
+            </table>
+        </div>
+    </div>
+
+    <script src="~/js/buyer/show_buyer_orders.js"></script>
+</body>
+</html>

@@ -47,13 +47,13 @@ namespace AgroCare.Pages.Account
 
             if (ModelState.IsValid)
             {
-                var splits = Input.Email.Split('@');
-                var result = await _signInManager.PasswordSignInAsync(splits[0],
+                var userName = Input.Email.Split('@')[0];
+                var result = await _signInManager.PasswordSignInAsync(userName,
                     Input.Password, Input.RememberMe, lockoutOnFailure: false);
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User logged in.");
-                    return LocalRedirect($"~/{splits[0][..^1]}");
+                    return LocalRedirect($"~/{userName[..^1]}");
                 }
                 
                 ModelState.AddModelError(string.Empty, "Invalid login attempt.");

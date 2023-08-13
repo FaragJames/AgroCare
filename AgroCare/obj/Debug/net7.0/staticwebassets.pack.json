@@ -5,12 +5,212 @@
       "PackagePath": "staticwebassets\\AgroCare.bundle.scp.css"
     },
     {
+      "Id": "C:\\Programming\\C#\\AgroCare\\AgroCare\\wwwroot\\css\\buyer\\buyer.css",
+      "PackagePath": "staticwebassets\\css\\buyer\\buyer.css"
+    },
+    {
+      "Id": "C:\\Programming\\C#\\AgroCare\\AgroCare\\wwwroot\\css\\index\\all.css",
+      "PackagePath": "staticwebassets\\css\\index\\all.css"
+    },
+    {
+      "Id": "C:\\Programming\\C#\\AgroCare\\AgroCare\\wwwroot\\css\\index\\animate.css",
+      "PackagePath": "staticwebassets\\css\\index\\animate.css"
+    },
+    {
+      "Id": "C:\\Programming\\C#\\AgroCare\\AgroCare\\wwwroot\\css\\index\\bootstrap.min.css",
+      "PackagePath": "staticwebassets\\css\\index\\bootstrap.min.css"
+    },
+    {
+      "Id": "C:\\Programming\\C#\\AgroCare\\AgroCare\\wwwroot\\css\\index\\bootstrap.min.css.map",
+      "PackagePath": "staticwebassets\\css\\index\\bootstrap.min.css.map"
+    },
+    {
+      "Id": "C:\\Programming\\C#\\AgroCare\\AgroCare\\wwwroot\\css\\index\\fontawesome.min.css",
+      "PackagePath": "staticwebassets\\css\\index\\fontawesome.min.css"
+    },
+    {
+      "Id": "C:\\Programming\\C#\\AgroCare\\AgroCare\\wwwroot\\css\\index\\style.css",
+      "PackagePath": "staticwebassets\\css\\index\\style.css"
+    },
+    {
+      "Id": "C:\\Programming\\C#\\AgroCare\\AgroCare\\wwwroot\\css\\index\\webfonts\\fa-brands-400.ttf",
+      "PackagePath": "staticwebassets\\css\\index\\webfonts\\fa-brands-400.ttf"
+    },
+    {
+      "Id": "C:\\Programming\\C#\\AgroCare\\AgroCare\\wwwroot\\css\\index\\webfonts\\fa-brands-400.woff2",
+      "PackagePath": "staticwebassets\\css\\index\\webfonts\\fa-brands-400.woff2"
+    },
+    {
+      "Id": "C:\\Programming\\C#\\AgroCare\\AgroCare\\wwwroot\\css\\index\\webfonts\\fa-regular-400.ttf",
+      "PackagePath": "staticwebassets\\css\\index\\webfonts\\fa-regular-400.ttf"
+    },
+    {
+      "Id": "C:\\Programming\\C#\\AgroCare\\AgroCare\\wwwroot\\css\\index\\webfonts\\fa-regular-400.woff2",
+      "PackagePath": "staticwebassets\\css\\index\\webfonts\\fa-regular-400.woff2"
+    },
+    {
+      "Id": "C:\\Programming\\C#\\AgroCare\\AgroCare\\wwwroot\\css\\index\\webfonts\\fa-solid-900.ttf",
+      "PackagePath": "staticwebassets\\css\\index\\webfonts\\fa-solid-900.ttf"
+    },
+    {
+      "Id": "C:\\Programming\\C#\\AgroCare\\AgroCare\\wwwroot\\css\\index\\webfonts\\fa-solid-900.woff2",
+      "PackagePath": "staticwebassets\\css\\index\\webfonts\\fa-solid-900.woff2"
+    },
+    {
+      "Id": "C:\\Programming\\C#\\AgroCare\\AgroCare\\wwwroot\\css\\index\\webfonts\\fa-v4compatibility.ttf",
+      "PackagePath": "staticwebassets\\css\\index\\webfonts\\fa-v4compatibility.ttf"
+    },
+    {
+      "Id": "C:\\Programming\\C#\\AgroCare\\AgroCare\\wwwroot\\css\\index\\webfonts\\fa-v4compatibility.woff2",
+      "PackagePath": "staticwebassets\\css\\index\\webfonts\\fa-v4compatibility.woff2"
+    },
+    {
+      "Id": "C:\\Programming\\C#\\AgroCare\\AgroCare\\wwwroot\\css\\login\\login.css",
+      "PackagePath": "staticwebassets\\css\\login\\login.css"
+    },
+    {
       "Id": "C:\\Programming\\C#\\AgroCare\\AgroCare\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
     },
     {
       "Id": "C:\\Programming\\C#\\AgroCare\\AgroCare\\wwwroot\\favicon.ico",
       "PackagePath": "staticwebassets\\favicon.ico"
+    },
+    {
+      "Id": "C:\\Programming\\C#\\AgroCare\\AgroCare\\wwwroot\\images\\buyer\\bell.png",
+      "PackagePath": "staticwebassets\\images\\buyer\\bell.png"
+    },
+    {
+      "Id": "C:\\Programming\\C#\\AgroCare\\AgroCare\\wwwroot\\images\\buyer\\cart.png",
+      "PackagePath": "staticwebassets\\images\\buyer\\cart.png"
+    },
+    {
+      "Id": "C:\\Programming\\C#\\AgroCare\\AgroCare\\wwwroot\\images\\buyer\\edit.png",
+      "PackagePath": "staticwebassets\\images\\buyer\\edit.png"
+    },
+    {
+      "Id": "C:\\Programming\\C#\\AgroCare\\AgroCare\\wwwroot\\images\\index\\Apple.jpg",
+      "PackagePath": "staticwebassets\\images\\index\\Apple.jpg"
+    },
+    {
+      "Id": "C:\\Programming\\C#\\AgroCare\\AgroCare\\wwwroot\\images\\index\\Corn.jpg",
+      "PackagePath": "staticwebassets\\images\\index\\Corn.jpg"
+    },
+    {
+      "Id": "C:\\Programming\\C#\\AgroCare\\AgroCare\\wwwroot\\images\\index\\Grape.jpg",
+      "PackagePath": "staticwebassets\\images\\index\\Grape.jpg"
+    },
+    {
+      "Id": "C:\\Programming\\C#\\AgroCare\\AgroCare\\wwwroot\\images\\index\\Lemon.jpg",
+      "PackagePath": "staticwebassets\\images\\index\\Lemon.jpg"
+    },
+    {
+      "Id": "C:\\Programming\\C#\\AgroCare\\AgroCare\\wwwroot\\images\\index\\Main.jpg",
+      "PackagePath": "staticwebassets\\images\\index\\Main.jpg"
+    },
+    {
+      "Id": "C:\\Programming\\C#\\AgroCare\\AgroCare\\wwwroot\\images\\index\\Orange.jpg",
+      "PackagePath": "staticwebassets\\images\\index\\Orange.jpg"
+    },
+    {
+      "Id": "C:\\Programming\\C#\\AgroCare\\AgroCare\\wwwroot\\images\\index\\Peach.jpg",
+      "PackagePath": "staticwebassets\\images\\index\\Peach.jpg"
+    },
+    {
+      "Id": "C:\\Programming\\C#\\AgroCare\\AgroCare\\wwwroot\\images\\index\\logo.png",
+      "PackagePath": "staticwebassets\\images\\index\\logo.png"
+    },
+    {
+      "Id": "C:\\Programming\\C#\\AgroCare\\AgroCare\\wwwroot\\images\\index\\ارض.jpg",
+      "PackagePath": "staticwebassets\\images\\index\\ارض.jpg"
+    },
+    {
+      "Id": "C:\\Programming\\C#\\AgroCare\\AgroCare\\wwwroot\\images\\index\\الشعار.png",
+      "PackagePath": "staticwebassets\\images\\index\\الشعار.png"
+    },
+    {
+      "Id": "C:\\Programming\\C#\\AgroCare\\AgroCare\\wwwroot\\images\\index\\بندورة.jpg",
+      "PackagePath": "staticwebassets\\images\\index\\بندورة.jpg"
+    },
+    {
+      "Id": "C:\\Programming\\C#\\AgroCare\\AgroCare\\wwwroot\\images\\index\\توت.jpg",
+      "PackagePath": "staticwebassets\\images\\index\\توت.jpg"
+    },
+    {
+      "Id": "C:\\Programming\\C#\\AgroCare\\AgroCare\\wwwroot\\images\\index\\جزر.jpg",
+      "PackagePath": "staticwebassets\\images\\index\\جزر.jpg"
+    },
+    {
+      "Id": "C:\\Programming\\C#\\AgroCare\\AgroCare\\wwwroot\\images\\index\\حصادة.jpg",
+      "PackagePath": "staticwebassets\\images\\index\\حصادة.jpg"
+    },
+    {
+      "Id": "C:\\Programming\\C#\\AgroCare\\AgroCare\\wwwroot\\images\\index\\دراقنة.jpg",
+      "PackagePath": "staticwebassets\\images\\index\\دراقنة.jpg"
+    },
+    {
+      "Id": "C:\\Programming\\C#\\AgroCare\\AgroCare\\wwwroot\\images\\index\\زبون1.png",
+      "PackagePath": "staticwebassets\\images\\index\\زبون1.png"
+    },
+    {
+      "Id": "C:\\Programming\\C#\\AgroCare\\AgroCare\\wwwroot\\images\\index\\زبون2.png",
+      "PackagePath": "staticwebassets\\images\\index\\زبون2.png"
+    },
+    {
+      "Id": "C:\\Programming\\C#\\AgroCare\\AgroCare\\wwwroot\\images\\index\\زبون3.png",
+      "PackagePath": "staticwebassets\\images\\index\\زبون3.png"
+    },
+    {
+      "Id": "C:\\Programming\\C#\\AgroCare\\AgroCare\\wwwroot\\images\\index\\زبون4.png",
+      "PackagePath": "staticwebassets\\images\\index\\زبون4.png"
+    },
+    {
+      "Id": "C:\\Programming\\C#\\AgroCare\\AgroCare\\wwwroot\\images\\index\\زيتون.jpg",
+      "PackagePath": "staticwebassets\\images\\index\\زيتون.jpg"
+    },
+    {
+      "Id": "C:\\Programming\\C#\\AgroCare\\AgroCare\\wwwroot\\images\\index\\سنابل.jpg",
+      "PackagePath": "staticwebassets\\images\\index\\سنابل.jpg"
+    },
+    {
+      "Id": "C:\\Programming\\C#\\AgroCare\\AgroCare\\wwwroot\\images\\index\\سنبلة.jpg",
+      "PackagePath": "staticwebassets\\images\\index\\سنبلة.jpg"
+    },
+    {
+      "Id": "C:\\Programming\\C#\\AgroCare\\AgroCare\\wwwroot\\images\\index\\شجر طولي.jpg",
+      "PackagePath": "staticwebassets\\images\\index\\شجر طولي.jpg"
+    },
+    {
+      "Id": "C:\\Programming\\C#\\AgroCare\\AgroCare\\wwwroot\\images\\index\\عنب احمر.jpg",
+      "PackagePath": "staticwebassets\\images\\index\\عنب احمر.jpg"
+    },
+    {
+      "Id": "C:\\Programming\\C#\\AgroCare\\AgroCare\\wwwroot\\images\\login\\شخص.png",
+      "PackagePath": "staticwebassets\\images\\login\\شخص.png"
+    },
+    {
+      "Id": "C:\\Programming\\C#\\AgroCare\\AgroCare\\wwwroot\\js\\buyer\\create_buyer_order_post.js",
+      "PackagePath": "staticwebassets\\js\\buyer\\create_buyer_order_post.js"
+    },
+    {
+      "Id": "C:\\Programming\\C#\\AgroCare\\AgroCare\\wwwroot\\js\\buyer\\show_buyer_orders.js",
+      "PackagePath": "staticwebassets\\js\\buyer\\show_buyer_orders.js"
+    },
+    {
+      "Id": "C:\\Programming\\C#\\AgroCare\\AgroCare\\wwwroot\\js\\chat.js",
+      "PackagePath": "staticwebassets\\js\\chat.js"
+    },
+    {
+      "Id": "C:\\Programming\\C#\\AgroCare\\AgroCare\\wwwroot\\js\\index\\bootstrap.bundle.min.js",
+      "PackagePath": "staticwebassets\\js\\index\\bootstrap.bundle.min.js"
+    },
+    {
+      "Id": "C:\\Programming\\C#\\AgroCare\\AgroCare\\wwwroot\\js\\index\\bootstrap.bundle.min.js.map",
+      "PackagePath": "staticwebassets\\js\\index\\bootstrap.bundle.min.js.map"
+    },
+    {
+      "Id": "C:\\Programming\\C#\\AgroCare\\AgroCare\\wwwroot\\js\\index\\script.js",
+      "PackagePath": "staticwebassets\\js\\index\\script.js"
     },
     {
       "Id": "C:\\Programming\\C#\\AgroCare\\AgroCare\\wwwroot\\js\\site.js",
@@ -243,6 +443,14 @@
     {
       "Id": "C:\\Programming\\C#\\AgroCare\\AgroCare\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
       "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.map"
+    },
+    {
+      "Id": "C:\\Programming\\C#\\AgroCare\\AgroCare\\wwwroot\\lib\\signalr\\dist\\browser\\signalr.js",
+      "PackagePath": "staticwebassets\\lib\\signalr\\dist\\browser\\signalr.js"
+    },
+    {
+      "Id": "C:\\Programming\\C#\\AgroCare\\AgroCare\\wwwroot\\lib\\signalr\\dist\\browser\\signalr.min.js",
+      "PackagePath": "staticwebassets\\lib\\signalr\\dist\\browser\\signalr.min.js"
     },
     {
       "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.AgroCare.Microsoft.AspNetCore.StaticWebAssets.props",

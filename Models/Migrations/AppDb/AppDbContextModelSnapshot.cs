@@ -17,7 +17,7 @@ namespace Models.Migrations.AppDb
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "7.0.8")
+                .HasAnnotation("ProductVersion", "7.0.9")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -37,7 +37,7 @@ namespace Models.Migrations.AppDb
 
                     b.HasKey("Id");
 
-                    b.ToTable("Action", (string)null);
+                    b.ToTable("Action");
                 });
 
             modelBuilder.Entity("Models.Models.AgriculturalItem", b =>
@@ -55,7 +55,7 @@ namespace Models.Migrations.AppDb
 
                     b.HasKey("Id");
 
-                    b.ToTable("Agricultural_Item", (string)null);
+                    b.ToTable("Agricultural_Item");
                 });
 
             modelBuilder.Entity("Models.Models.Buyer", b =>
@@ -83,7 +83,7 @@ namespace Models.Migrations.AppDb
 
                     b.HasKey("Id");
 
-                    b.ToTable("Buyer", (string)null);
+                    b.ToTable("Buyer");
                 });
 
             modelBuilder.Entity("Models.Models.Engineer", b =>
@@ -126,7 +126,7 @@ namespace Models.Migrations.AppDb
 
                     b.HasIndex("HeadEngineerId");
 
-                    b.ToTable("Engineer", (string)null);
+                    b.ToTable("Engineer");
                 });
 
             modelBuilder.Entity("Models.Models.EngineerType", b =>
@@ -145,7 +145,7 @@ namespace Models.Migrations.AppDb
                     b.HasKey("Id")
                         .HasName("PK_Type");
 
-                    b.ToTable("Engineer_Type", (string)null);
+                    b.ToTable("Engineer_Type");
                 });
 
             modelBuilder.Entity("Models.Models.Farmer", b =>
@@ -173,7 +173,7 @@ namespace Models.Migrations.AppDb
 
                     b.HasKey("Id");
 
-                    b.ToTable("Farmer", (string)null);
+                    b.ToTable("Farmer");
                 });
 
             modelBuilder.Entity("Models.Models.Item", b =>
@@ -189,12 +189,12 @@ namespace Models.Migrations.AppDb
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<double>("Price")
-                        .HasColumnType("float");
+                    b.Property<float>("Price")
+                        .HasColumnType("real");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Item", (string)null);
+                    b.ToTable("Item");
                 });
 
             modelBuilder.Entity("Models.Models.Land", b =>
@@ -237,7 +237,7 @@ namespace Models.Migrations.AppDb
 
                     b.HasIndex("TypeId");
 
-                    b.ToTable("Land", (string)null);
+                    b.ToTable("Land");
                 });
 
             modelBuilder.Entity("Models.Models.LandType", b =>
@@ -255,7 +255,7 @@ namespace Models.Migrations.AppDb
 
                     b.HasKey("Id");
 
-                    b.ToTable("Land_Type", (string)null);
+                    b.ToTable("Land_Type");
                 });
 
             modelBuilder.Entity("Models.Models.Order", b =>
@@ -274,11 +274,23 @@ namespace Models.Migrations.AppDb
                         .HasColumnType("int")
                         .HasColumnName("Buyer_Id");
 
+                    b.Property<bool>("ClickedByAdmin")
+                        .HasColumnType("bit")
+                        .HasColumnName("Clicked_By_Admin");
+
+                    b.Property<bool>("ClickedByBuyer")
+                        .HasColumnType("bit")
+                        .HasColumnName("Clicked_By_Buyer");
+
+                    b.Property<bool>("ClickedByTeam")
+                        .HasColumnType("bit")
+                        .HasColumnName("Clicked_By_Team");
+
                     b.Property<int?>("ExecutiveTeamId")
                         .HasColumnType("int")
                         .HasColumnName("Executive_Team_Id");
 
-                    b.Property<DateOnly>("OrderDate")
+                    b.Property<DateTime>("OrderDate")
                         .HasColumnType("date")
                         .HasColumnName("Order_Date");
 
@@ -290,7 +302,7 @@ namespace Models.Migrations.AppDb
 
                     b.HasIndex("ExecutiveTeamId");
 
-                    b.ToTable("Order", (string)null);
+                    b.ToTable("Order");
                 });
 
             modelBuilder.Entity("Models.Models.OrderDetail", b =>
@@ -301,9 +313,12 @@ namespace Models.Migrations.AppDb
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<DateOnly>("DeliveryDate")
+                    b.Property<DateTime>("DeliveryDate")
                         .HasColumnType("date")
                         .HasColumnName("Delivery_Date");
+
+                    b.Property<string>("Feedback")
+                        .HasColumnType("nvarchar(150)");
 
                     b.Property<int>("ItemId")
                         .HasColumnType("int")
@@ -326,7 +341,7 @@ namespace Models.Migrations.AppDb
 
                     b.HasIndex("OrderId");
 
-                    b.ToTable("Order_Details", (string)null);
+                    b.ToTable("Order_Details");
                 });
 
             modelBuilder.Entity("Models.Models.Plan", b =>
@@ -337,7 +352,11 @@ namespace Models.Migrations.AppDb
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<DateOnly>("FinishDate")
+                    b.Property<bool>("ClickByFarmer")
+                        .HasColumnType("bit")
+                        .HasColumnName("Clicked_By_Farmer");
+
+                    b.Property<DateTime>("FinishDate")
                         .HasColumnType("date")
                         .HasColumnName("Finish_Date");
 
@@ -352,7 +371,7 @@ namespace Models.Migrations.AppDb
                     b.Property<float>("Quantity")
                         .HasColumnType("real");
 
-                    b.Property<DateOnly>("StartDate")
+                    b.Property<DateTime>("StartDate")
                         .HasColumnType("date")
                         .HasColumnName("Start_Date");
 
@@ -363,7 +382,7 @@ namespace Models.Migrations.AppDb
 
                     b.HasIndex("OrderDetailsId");
 
-                    b.ToTable("Plan", (string)null);
+                    b.ToTable("Plan");
                 });
 
             modelBuilder.Entity("Models.Models.Purchase", b =>
@@ -374,7 +393,7 @@ namespace Models.Migrations.AppDb
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<DateOnly>("Date")
+                    b.Property<DateTime>("Date")
                         .HasColumnType("date");
 
                     b.Property<int>("PlanId")
@@ -391,7 +410,7 @@ namespace Models.Migrations.AppDb
 
                     b.HasIndex("StoreId");
 
-                    b.ToTable("Purchase", (string)null);
+                    b.ToTable("Purchase");
                 });
 
             modelBuilder.Entity("Models.Models.PurchaseDetail", b =>
@@ -405,6 +424,10 @@ namespace Models.Migrations.AppDb
                     b.Property<string>("Details")
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
+
+                    b.Property<bool>("IsRented")
+                        .HasColumnType("bit")
+                        .HasColumnName("Is_Rented");
 
                     b.Property<string>("Item")
                         .IsRequired()
@@ -425,7 +448,7 @@ namespace Models.Migrations.AppDb
 
                     b.HasIndex("PurchaseId");
 
-                    b.ToTable("Purchase_Details", (string)null);
+                    b.ToTable("Purchase_Details");
                 });
 
             modelBuilder.Entity("Models.Models.SoilType", b =>
@@ -443,7 +466,7 @@ namespace Models.Migrations.AppDb
 
                     b.HasKey("Id");
 
-                    b.ToTable("Soil_Type", (string)null);
+                    b.ToTable("Soil_Type");
                 });
 
             modelBuilder.Entity("Models.Models.Step", b =>
@@ -458,11 +481,11 @@ namespace Models.Migrations.AppDb
                         .HasColumnType("int")
                         .HasColumnName("Action_Id");
 
-                    b.Property<DateOnly>("EstimatedFinishDate")
+                    b.Property<DateTime>("EstimatedFinishDate")
                         .HasColumnType("date")
                         .HasColumnName("Estimated_Finish_Date");
 
-                    b.Property<DateOnly>("EstimatedStartDate")
+                    b.Property<DateTime>("EstimatedStartDate")
                         .HasColumnType("date")
                         .HasColumnName("Estimated_Start_Date");
 
@@ -480,7 +503,7 @@ namespace Models.Migrations.AppDb
 
                     b.HasIndex("PlanId");
 
-                    b.ToTable("Step", (string)null);
+                    b.ToTable("Step");
                 });
 
             modelBuilder.Entity("Models.Models.StepDetail", b =>
@@ -508,7 +531,7 @@ namespace Models.Migrations.AppDb
 
                     b.HasIndex("StepId");
 
-                    b.ToTable("Step_Details", (string)null);
+                    b.ToTable("Step_Details");
                 });
 
             modelBuilder.Entity("Models.Models.Store", b =>
@@ -537,7 +560,7 @@ namespace Models.Migrations.AppDb
 
                     b.HasIndex("TypeId");
 
-                    b.ToTable("Store", (string)null);
+                    b.ToTable("Store");
                 });
 
             modelBuilder.Entity("Models.Models.StoreType", b =>
@@ -555,7 +578,7 @@ namespace Models.Migrations.AppDb
 
                     b.HasKey("Id");
 
-                    b.ToTable("Store_Type", (string)null);
+                    b.ToTable("Store_Type");
                 });
 
             modelBuilder.Entity("Models.Models.Engineer", b =>

@@ -5,6 +5,7 @@ using AgroCare.Controllers;
 using AgroCare.Data;
 using Models.Models;
 using Services;
+using AgroCare.Hubs;
 
 namespace AgroCare
 {
@@ -19,6 +20,7 @@ namespace AgroCare
             #region Services
             services.AddControllersWithViews().AddNewtonsoftJson();
             services.AddRazorPages();
+            services.AddSignalR();
             services.AddDbContext<AppDbContext>(options =>
             {
                 options.UseSqlServer(builder.Configuration.GetConnectionString("FarmCompany")!);
@@ -63,7 +65,7 @@ namespace AgroCare
                 new { controller = "Store", action = nameof(StoreController.ShowPurchases) });
             app.MapControllerRoute("buyer-default",
                 "/buyer",
-                new { controller = "Buyer", action = nameof(BuyerController.ShowOrders) });
+                new { controller = "Buyer", action = nameof(BuyerController.ShowPendingOrders) });
             app.MapControllerRoute("farmer-default",
                 "/farmer",
                 new { controller = "Farmer", action = nameof(FarmerController.ShowPlans) });
@@ -75,6 +77,7 @@ namespace AgroCare
                 new { controller = "Admin", action = nameof(AdminController.ReceivedOrders) });
             app.MapDefaultControllerRoute();
             app.MapRazorPages();
+            app.MapHub<ChatHub>("/chatHub");
             #endregion
 
 

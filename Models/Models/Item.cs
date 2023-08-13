@@ -16,7 +16,7 @@ namespace Models.Models
         [StringLength(50)]
         public string Name { get; set; } = null!;
 
-        public double Price { get; set; }
+        public float Price { get; set; }
 
         [InverseProperty("Item")]
         public virtual ICollection<OrderDetail> OrderDetails { get; set; } = new List<OrderDetail>();

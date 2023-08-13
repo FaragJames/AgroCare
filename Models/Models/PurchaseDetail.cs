@@ -19,6 +19,8 @@ namespace Models.Models
         [StringLength(50)]
         public string Item { get; set; } = null!;
 
+        [Column("Is_Rented")]
+        public bool IsRented { get; set; }
         public int Quantity { get; set; }
 
         public float Price { get; set; }

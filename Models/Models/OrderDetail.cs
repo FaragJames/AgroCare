@@ -27,6 +27,9 @@ namespace Models.Models
         [Column("Delivery_Date", TypeName = "date")]
         public DateOnly DeliveryDate { get; set; }
 
+        [Column(TypeName = "nvarchar(150)")]
+        public string? Feedback { get; set; }
+
         [ForeignKey("ItemId")]
         [InverseProperty("OrderDetails")]
         public virtual Item Item { get; set; } = null!;

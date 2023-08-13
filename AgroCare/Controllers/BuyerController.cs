@@ -1,67 +1,66 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using AgroCare.Data.DTOs;
+using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Models.Models;
+using Services;
+using AgroCare.ViewModels;
+using Microsoft.AspNetCore.JsonPatch;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace AgroCare.Controllers
 {
     [Authorize(Roles = "Buyer")]
     public class BuyerController : Controller
     {
+        private readonly IMapper _mapper;
+        private readonly IService<Item> _itemService;
+        private readonly OrderService _orderService;
+
+
+        public BuyerController(IMapper mapper, IService<Item> itemService, OrderService orderService)
+        {
+            _mapper = mapper;
+            _itemService = itemService;
+            _orderService = orderService;
+        }
         public IActionResult Index()
         {
             return View();
         }
 
-        [NonAction]
-        [HttpGet]
-        public IActionResult CreateOrder(long? id)
+        [HttpGet("{orderId}")]
+        public IActionResult CreateOrder(int? orderId)
         {
-            throw new NotImplementedException();
+            OrderDto? orderDto = orderId.HasValue ?
+                _mapper.Map<OrderDto>(_orderService.GetPendingOrdersByBuyerId(39).Where(o => o.Id == orderId).First())
+                : null;
+            var itemsDto = _itemService.GetAll().Select(i => _mapper.Map<ItemDto>(i)).ToList();
+            return View(new ItemsOrderViewModel(orderDto, itemsDto));
         }
 
-        [NonAction]
         [HttpPost]
-        public IActionResult CreateOrder(/*OrderViewModel model*/)
+        public IActionResult CreateOrder(List<OrderDetail> items)
         {
-            //The model includes the buyer's id.
-
             //Algorithm (Queue Theory) for assigning an admin to the order.
-
-            return View(nameof(ShowOrders));
+            return View(nameof(ShowPendingOrders));
         }
 
-        [NonAction]
-        [HttpPatch]
-        public IActionResult CreateOrder(string s)
+        [HttpPatch("{orderId}")]
+        public string CreateOrder(int orderId, Dictionary<int, JsonPatchDocument<Order>> operations)
         {
-            return View(nameof(ShowOrders));
+            return "true";
         }
 
-        [NonAction]
-        public IActionResult ShowOrders()
+        public IActionResult ShowPendingOrders()
         {
-            //Get then pass the buyer's id.
-            throw new NotImplementedException();
+            var pending = _orderService.GetPendingOrdersByBuyerId(39).Select(i => _mapper.Map<OrderDto>(i));
+            return View(pending.ToList());
         }
-
-        #region Add to an API Controller.
-        [NonAction]
-        public IEnumerable<Order> GetPendingOrders(long? id)
+        public IActionResult ShowUnderwayOrders()
         {
-            throw new NotImplementedException();
+            var underway = _orderService.GetUnderwayOrdersByBuyerId(39).Select(i => _mapper.Map<OrderDto>(i));
+            return View(underway.ToList());
         }
-
-        [NonAction]
-        public IEnumerable<Order> GetUnderExecutionOrders(long? id)
-        {
-            throw new NotImplementedException();
-        }
-
-        [NonAction]
-        public IEnumerable<Order> GetExecutedOrders(long? id)
-        {
-            throw new NotImplementedException();
-        }
-        #endregion
     }
 }

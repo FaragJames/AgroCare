@@ -1,11 +1,502 @@
 ﻿@page "/"
 @model AgroCare.Pages.IndexModel
-
 @{
     ViewData["Title"] = "Home Page";
+    Layout = null;
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- font awsom  -->
+    <link rel="stylesheet" href="~/css/index/fontawesome.min.css">
+    <link rel="stylesheet" href="~/css/index/all.css">
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="~/css/index/bootstrap.min.css">
+    <link rel="stylesheet" href="~/css/index/bootstrap.min.css.map">
+    <!--  custom style css -->
+    <link rel="stylesheet" href="~/css/index/style.css">
+    <!-- font google -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,700;1,500&family=Roboto+Condensed:wght@300;400;700&family=Roboto:wght@100;300;400&display=swap"
+          rel="stylesheet">
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <!-- animate css -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- custem js file  -->
+    <script src="~/js/index/script.js" defer></script>
+    <title>Agro Care site</title>
+</head>
+
+<body>
+    <!-- start header section  -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <div data-aos="zoom-in-left" data-aos-delay="150" href="#" class="logo">
+                    <img src="~/images/index/logo.png" alt="" style="width:50px ; height: 70px; padding-bottom: 10px;">
+                    AgroCare
+                </div>
+            </a>
+            <button class="navbar-toggler text-light fs-1" type="button" data-bs-toggle="collapse" data-bs-target="#main"
+                    aria-controls="main" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="main">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link text-light active p-2 p-lg-3" aria-current="page" href="#home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-light p-2 p-lg-3" href="#about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-light p-2 p-lg-3" href="#Prouducts">Prouducts</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-light p-2 p-lg-3" href="#tool">Tool</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-light p-2 p-lg-3" href="#gallery">Earth</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-light p-2  p-lg-3" href="#review">Views</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-light p-2  p-lg-3" href="#contact">Contact</a>
+                    </li>
+
+                </ul>
+
+            </div>
+
+            <div class="search ps-2 pe-2 d-none d-lg-block">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </div>
+
+            <a class="d-none d-lg-block bouttn" asp-page="/Account/Login" target="_blank"> Login </a>
+        </div>
+    </nav>
+    <!-- end header section  -->
+    <!-- start home section -->
+
+    <section class="home" id="home">
+        <div class="slide">
+            <img class="video-slide active" src="~/images/index/Main.jpg" autoplay muted loop>
+            <div class="content active">
+                <h1>  HELLO TO AGRO CARE</h1>
+                <p>We are pleased to offer you a unique experience , where we provide the latest technologhies and agricultural products to achieve the best results.</p>
+
+            </div>
+
+        </div>
+    </section>
+    <!-- end home section -->
+    <!-- start about section  -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="box-continer row justify-content-around  align-items-center">
+                <div class="col-lg-6  col-md-12  ">
+
+                    <div class="video-continer" data-aos="fade-right" data-delay="150">
+                        <img src="~/images/index/الشعار.png" class="video">
+                    </div>
+
+                </div>
+                <div class="col-lg-6  col-md-12 ">
+
+                    <div class="content ">
+                        <span>Why Choose Us?</span>
+                        <h3>Trust,Quality and boncle tuning </h3>
+                        <p>Do not miss the opportunity to get the latest technologies and agricultural products that help you improve your productivity and profit weaken our extensive experience in agricultural stairs and enjoy our advisory advisory services.</p>
+                        <a href="#" class="bouttn">Read more</a>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </section>
+    <!-- end about section  -->
+    <!-- start destination section -->
+    <section class="destination" id="Prouducts">
+        <div class="container">
+            <div class="heading">
+                <span>Our Prouducts</span>
+            </div>
+            <div class="box-continer row">
+                <div class="col-lg-3 col-md-6">
+                    <div class="box " data-aos="fade-up" data-aos-delay="150">
+                        <div class="imge">
+                            <img src="~/images/index/Corn.jpg" alt="">
+                        </div>
+                        <div class="content">
+                            <h3>Corn</h3>
+                            <p>Enjoy the delicious taste.</p>
+                            <a href="#">Read More</a>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-lg-3 col-md-6">
+                    <div class="box " data-aos="fade-up" data-aos-delay="300">
+                        <div class="imge">
+                            <img src="~/images/index/Orange.jpg" alt="">
+                        </div>
+                        <div class="content">
+                            <h3>Orange</h3>
+                            <p>Enjoy the delicious taste.</p>
+                            <a href="#">Read More</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6">
+
+                    <div class="box col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="450">
+                        <div class="imge">
+                            <img src="~/images/index/بندورة.jpg" alt="">
+                        </div>
+                        <div class="content">
+                            <h3>Tomato</h3>
+                            <p>Enjoy the delicious taste.</p>
+                            <a href="#">Read More</a>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+                <div class="col-lg-3 col-md 6">
+                    <div class="box " data-aos="fade-up" data-aos-delay="600">
+                        <div class="imge">
+                            <img src="~/images/index/عنب احمر.jpg" alt="">
+                        </div>
+                        <div class="content">
+                            <h3>Red Grapes</h3>
+                            <p>Enjoy the delicious taste.</p>
+                            <a href="#">Read More</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6">
+                    <div class="box " data-aos="fade-up" data-aos-delay="750">
+                        <div class="imge">
+                            <img src="~/images/index/جزر.jpg" alt="">
+                        </div>
+                        <div class="content">
+                            <h3>Carrot</h3>
+                            <p>Enjoy the delicious taste.</p>
+                            <a href="#">Read More</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6">
+                    <div class="box " data-aos="fade-up" data-aos-delay="900">
+                        <div class="imge">
+                            <img src="~/images/index/Apple.jpg" alt="">
+                        </div>
+                        <div class="content">
+                            <h3>Apple</h3>
+                            <p>Enjoy the delicious taste.</p>
+                            <a href="#">Read More</a>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-lg-3 col-md-6">
+                    <div class="box " data-aos="fade-up" data-aos-delay="1050">
+                        <div class="imge">
+                            <img src="~/images/index/دراقنة.jpg" alt="">
+                        </div>
+                        <div class="content">
+                            <h3>Peach</h3>
+                            <p>Enjoy the delicious taste.</p>
+                            <a href="#">Read More</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6">
+                    <div class="box col-lg-2 col-md-4 col-sm-6" data-aos="fade-up" data-aos-delay="1200">
+                        <div class="imge">
+                            <img src="~/images/index/توت.jpg" alt="">
+                        </div>
+                        <div class="content">
+                            <h3>Blueberry</h3>
+                            <p>Enjoy the delicious taste.</p>
+                            <a href="#">Read More</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- end destination section -->
+    <!-- start tool section -->
+    <section class="services" id="tool">
+        <div class="container">
+            <div class="heading">
+                <span>Our Tools</span>
+                <h1>Countless Expericences</h1>
+            </div>
+            <div class="box-continer row">
+                <div class="col-lg-4 col-md-6">
+                    <div class="box" data-aos="fade-up" data-aos-delay="150">
+                        <span class="material-symbols-outlined">
+                            carpenter
+                        </span>
+                        <h3>Reaper</h3>
+                        <p>The design of solid and strong, the saw is the perfect tool for the converting of wood to perfect pieces.</p>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6">
+                    <div class="box" data-aos="fade-up" data-aos-delay="300">
+                        <span class="material-symbols-outlined">
+                            agriculture
+                        </span>
+                        <h3>compost</h3>
+                        <p>Our harvest provides you with the time and effort to collect your crop with all accuracy and easy.</p>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6">
+                    <div class="box" data-aos="fade-up" data-aos-delay="450">
+                        <span class="material-symbols-outlined">
+                            content_cut
+                        </span>
+                        <h3>scissors</h3>
+                        <p>Use agricultural scissors to collect with your efficiency and high efficiency without whatever pills.</p>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6">
+                    <div class="box" data-aos="fade-up" data-aos-delay="600">
+                        <span class="material-symbols-outlined">
+                            pill
+                        </span>
+                        <h3>Fertilize</h3>
+                        <p>Do not let the food shortage affects your agriculture, use agricultural vitamins on achieving the ideal growth.</p>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6">
+                    <div class="box" data-aos="fade-up" data-aos-delay="750">
+                        <span class="material-symbols-outlined">water_pump</span>
+                        <h3>water_pump</h3>
+                        <p>Your plant deserves effective irrigation and rich products, use the special water bottom to achieve it.</p>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6">
+                    <div class="box" data-aos="fade-up" data-aos-delay="900">
+                        <span class="material-symbols-outlined">
+                            potted_plant
+                        </span>
+                        <h3>Potted Plant</h3>
+                        <p>Agriculture of the agriculture allows you to control your growth growth environment in an easy and effective way.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+    <!-- end tool section -->
+    <!-- start gallary section -->
+    <section class="gallery " id="gallery">
+        <div class="container">
+            <div class="heading">
+                <span>Our Earth</span>
+                <h1>We Record Memories</h1>
+            </div>
+            <div class="box-container">
+                <div class="box" data-aos="fade-up" data-aos-delay="150">
+                    <img src="~/images/index/شجر طولي.jpg" alt="">
+
+                </div>
+                <div class="box" data-aos="fade-up" data-aos-delay="300">
+                    <img src="~/images/index/سنابل.jpg" alt="">
+
+                </div>
+                <div class="box" data-aos="fade-up" data-aos-delay="450">
+                    <img src="~/images/index/Peach.jpg" alt="">
+
+                </div>
+                <div class="box" data-aos="fade-up" data-aos-delay="600">
+                    <img src="~/images/index/سنبلة.jpg" alt="">
+
+                </div>
+                <div class="box" data-aos="fade-up" data-aos-delay="750">
+                    <img src="~/images/index/Grape.jpg" alt="">
+
+                </div>
+                <div class="box" data-aos="fade-up" data-aos-delay="900">
+                    <img src="~/images/index/حصادة.jpg" alt="">
+
+                </div>
+                <div class="box" data-aos="fade-up" data-aos-delay="1050">
+                    <img src="~/images/index/زيتون.jpg" alt="">
+
+                </div>
+                <div class="box" data-aos="fade-up" data-aos-delay="1200">
+                    <img src="~/images/index/ارض.jpg" alt="">
+                    >
+                </div>
+                <div class="box" data-aos="fade-up" data-aos-delay="1350">
+                    <img src="~/images/index/Lemon.jpg" alt="">
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- end gallary section -->
+    <!-- start review section -->
+    <section class="review" id="review">
+        <div class="container">
+            <div class="heading">
+                <span>Opinions Customers</span>
+            </div>
+            <div class="review-content row align-items-center gab">
+                <div class="col-lg-6 col-md-12">
+                    <div class="content" data-aos="fade-right" data-aos-delay="300">
+                        <span>testimonials</span>
+                        <h3>good news from our clients</h3>
+                        <p>AGRO CARE has a bluless way to theircustomers with their opinion and hearing their observations and their in their opinion.</p>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-12">
+                    <div class="box-container row" data-aos="fade-left" data-aos-delay="600">
+
+                        <div class="col-lg-6 col-md-6 ">
+                            <div class="box">
+                                <p>They used their agricultural products and notice a great difference in my productivity.</p>
+                                <div class="user">
+                                    <img src="~/images/index/زبون1.png" alt="">
+                                    <div class="info">
+                                        <h3>john deo</h3>
+                                        <span>designer</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6">
+                            <div class="box">
+                                <p>WOW...he became severely recommended.</p>
+                                <div class="user">
+                                    <img src="~/images/index/زبون2.png" alt="">
+                                    <div class="info">
+                                        <h3>john deo</h3>
+                                        <span>designer</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6">
+                            <div class="box">
+                                <p>I am completely satisfied with the quality of the products you do , and i can not dispense in my farme.</p>
+                                <div class="user">
+                                    <img src="~/images/index/زبون3.png" alt="">
+                                    <div class="info">
+                                        <h3>john deo</h3>
+                                        <span>designer</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6">
+                            <div class="box">
+                                <p>Said strongly using their agriculture products , the guarantee you high quality and productivity.</p>
+                                <div class="user">
+                                    <img src="~/images/index/زبون4.png" alt="">
+                                    <div class="info">
+                                        <h3>john deo</h3>
+                                        <span>designer</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+    </section>
+    <!-- end review section -->
+    <!-- start footer section  -->
+    <footer class="footer">
+        <div class="container">
+
+            <div class="box-continer row" id="contact">
+                <div class="col-md-6 col-lg-4">
+                    <div class="box" data-aos="fade-up" data-aos-delay="450">
+                        <a href="#" class="logo">
+                            <img src="~/images/index/logo.png" alt=""
+                                 style="width:50px ; height: 70px; padding-bottom: 10px;">AgroCare
+                        </a>
+                        <p>We are proud to provide excellent agricultural services and high quality products for our valued customers.</p>
+                        <div class="share">
+                            <a href="#" class="fab fa-facebook"></a>
+                            <a href="#" class="fab fa-twitter"></a>
+                            <a href="#" class="fab fa-instagram"></a>
+                            <a href="#" class="fab fa-linkedin"></a>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="box" data-aos="fade-up" data-aos-delay="600">
+                        <h3>Quick Links</h3>
+                        <a href="#home" class="links"><i class="fas fa-arrow-right"></i>Home</a>
+                        <a href="#about" class="links"><i class="fas fa-arrow-right"></i>About</a>
+                        <a href="#Prouducts" class="links"><i class="fas fa-arrow-right"></i>Prouducts</a>
+                        <a href="#gallery" class="links"><i class="fas fa-arrow-right"></i>Earth</a>
+                        <a href="#tool" class="links"><i class="fas fa-arrow-right"></i>tool</a>
+                        <a href="#review" class="links"><i class="fas fa-arrow-right"></i>Views</a>
+
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="box" data-aos="fade-up" data-aos-delay="750">
+                        <h3>Contact Info</h3>
+                        <p><i class="fas fa-map"></i>Syria, aleppo</p>
+                        <p><i class="fas fa-phone"></i>+123-456-7890</p>
+                        <p><i class="fas fa-envelope"></i>AgroCare@Gmail.Com</p>
+                        <p><i class="fas fa-clock"></i>7:00am - 10:00pm</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </footer>
+    <!-- end footer section  -->
+
+    <div class="created"><span>Agro Care</span>| All Rights Reserved!</div>
+    <script src="~/js/index/bootstrap.bundle.min.js"></script>
+    <script src="~/js/index/bootstrap.bundle.min.js.map"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init(
+            {
+                duration: 600,
+                offset: 150,
+            }
+        );
+    </script>
+</body>
+
+</html>

@@ -25,6 +25,15 @@ namespace Models.Models
         [Column("Order_Date", TypeName = "date")]
         public DateOnly OrderDate { get; set; }
 
+        [Column("Clicked_By_Buyer")]
+        public bool ClickedByBuyer { get; set; }
+
+        [Column("Clicked_By_Admin")]
+        public bool ClickedByAdmin { get; set; }
+
+        [Column("Clicked_By_Team")]
+        public bool ClickedByTeam { get; set; }
+
         [ForeignKey("AdminEngineerId")]
         [InverseProperty("OrderAdminEngineers")]
         public virtual Engineer AdminEngineer { get; set; } = null!;

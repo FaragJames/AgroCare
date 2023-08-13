@@ -27,6 +27,9 @@ namespace Models.Models
 
         public float Quantity { get; set; }
 
+        [Column("Clicked_By_Farmer")]
+        public bool ClickByFarmer { get; set; }
+
         [ForeignKey("LandId")]
         [InverseProperty("Plans")]
         public virtual Land Land { get; set; } = null!;

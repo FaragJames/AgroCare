@@ -130,9 +130,9 @@ namespace AgroCare.Data
                 engineers[9].EngineerType = engineerTypes[1];
                 engineers[9].HeadEngineer = engineers[7];
 
-                List<Item> items = new();
+                List<Item> Items = new();
                 foreach (var item in landTypes)
-                    items.Add(new Item() { Name = item.Name, Price = 24.4 });
+                    Items.Add(new Item() { Name = item.Name, Price = 24.4F });
 
                 json = await File.ReadAllTextAsync($"{path}Farmer.json");
                 Farmer[] farmers = JsonConvert.DeserializeObject<Farmer[]>(json)!;
@@ -146,11 +146,11 @@ namespace AgroCare.Data
                 };
                 List<OrderDetail> orderDetails = new()
                 {
-                    new() { Order = orders[0], Item = items[0], Kilos = 4, KiloPrice = 123.23F, DeliveryDate = DateOnly.FromDateTime(DateTime.Now) },
-                    new() { Order = orders[1], Item = items[1], Kilos = 4, KiloPrice = 123.23F, DeliveryDate = DateOnly.FromDateTime(DateTime.Now) },
-                    new() { Order = orders[1], Item = items[2], Kilos = 4, KiloPrice = 123.23F, DeliveryDate = DateOnly.FromDateTime(DateTime.Now) },
-                    new() { Order = orders[2], Item = items[3], Kilos = 4, KiloPrice = 123.23F, DeliveryDate = DateOnly.FromDateTime(DateTime.Now) },
-                    new() { Order = orders[2], Item = items[4], Kilos = 4, KiloPrice = 123.23F, DeliveryDate = DateOnly.FromDateTime(DateTime.Now) }
+                    new() { Order = orders[0], Item = Items[0], Kilos = 4, KiloPrice = 123.23F, DeliveryDate = DateOnly.FromDateTime(DateTime.Now) },
+                    new() { Order = orders[1], Item = Items[1], Kilos = 4, KiloPrice = 123.23F, DeliveryDate = DateOnly.FromDateTime(DateTime.Now) },
+                    new() { Order = orders[1], Item = Items[2], Kilos = 4, KiloPrice = 123.23F, DeliveryDate = DateOnly.FromDateTime(DateTime.Now) },
+                    new() { Order = orders[2], Item = Items[3], Kilos = 4, KiloPrice = 123.23F, DeliveryDate = DateOnly.FromDateTime(DateTime.Now) },
+                    new() { Order = orders[2], Item = Items[4], Kilos = 4, KiloPrice = 123.23F, DeliveryDate = DateOnly.FromDateTime(DateTime.Now) }
                 };
                 List<Land> lands = new() {
                     new() { Farmer = farmers[0], Type = landTypes[0], SoilType = soilTypes[0], HasWell = true, Area = 34.34f, Location = "fasdf" },
@@ -254,7 +254,7 @@ namespace AgroCare.Data
 
                 if (!context.Items.Any())
                 {
-                    await context.AddRangeAsync(items);
+                    await context.AddRangeAsync(Items);
                 }
 
                 if (!context.Orders.Any())
