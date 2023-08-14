@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "0xglT+4DkUWc/I2NgEWUq7E8kJysL3bVn+igKcPFupo=",
+  "Hash": "le5A2N2TbvibZQWG7T+C9Zy6sC5dgHbhfR3+7Pnhfe0=",
   "Source": "AgroCare",
   "BasePath": "_content/AgroCare",
   "Mode": "Default",
@@ -831,6 +831,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\login\\شخص.png"
+    },
+    {
+      "Identity": "C:\\Programming\\C#\\AgroCare\\AgroCare\\wwwroot\\js\\buyer\\create_buyer_order_patch.js",
+      "SourceId": "AgroCare",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Programming\\C#\\AgroCare\\AgroCare\\wwwroot\\",
+      "BasePath": "_content/AgroCare",
+      "RelativePath": "js/buyer/create_buyer_order_patch.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\buyer\\create_buyer_order_patch.js"
     },
     {
       "Identity": "C:\\Programming\\C#\\AgroCare\\AgroCare\\wwwroot\\js\\buyer\\create_buyer_order_post.js",

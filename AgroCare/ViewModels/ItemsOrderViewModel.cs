@@ -4,13 +4,13 @@ namespace AgroCare.ViewModels
 {
     public class ItemsOrderViewModel
     {
-        public OrderDto? Order;
-        public List<ItemDto> Items;
+        public OrderDto? OrderDto;
+        public List<ItemDto> ItemsDto;
 
         public ItemsOrderViewModel(OrderDto? order, List<ItemDto> items)
         {
-            Order = order;
-            Items = items;
+            OrderDto = order;
+            ItemsDto = items;
         }
     }
 }

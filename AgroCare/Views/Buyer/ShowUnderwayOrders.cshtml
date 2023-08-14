@@ -28,7 +28,11 @@
                 </select>
                 <span>@(Model.Count)</span>
             </div>
-            <li data-state="wait"><a asp-action="ShowPendingOrders">Waiting</a></li>
+            <li data-state="wait">
+                <a asp-action="ShowPendingOrders" style="text-decoration: none">
+                    Waiting
+                </a>
+            </li>
             <li class="active" data-state="excute">Executing</li>
         </ul>
         <div class="table excute">
@@ -42,7 +46,7 @@
                 </thead>
                 @for (int i = 0; i < Model.Count; i++)
                 {
-                    <tbody class="table@(i + 1)">
+                    <tbody class="table@(i + 1)" style="display: @(i != 0 ? "none" : "table-row-group")">
                         @foreach (var item in Model[i].OrderDetails)
                         {
                             <tr>

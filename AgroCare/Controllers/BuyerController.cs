@@ -6,7 +6,6 @@ using Models.Models;
 using Services;
 using AgroCare.ViewModels;
 using Microsoft.AspNetCore.JsonPatch;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace AgroCare.Controllers
 {
@@ -24,12 +23,8 @@ namespace AgroCare.Controllers
             _itemService = itemService;
             _orderService = orderService;
         }
-        public IActionResult Index()
-        {
-            return View();
-        }
 
-        [HttpGet("{orderId}")]
+        [HttpGet]
         public IActionResult CreateOrder(int? orderId)
         {
             OrderDto? orderDto = orderId.HasValue ?
@@ -40,16 +35,10 @@ namespace AgroCare.Controllers
         }
 
         [HttpPost]
-        public IActionResult CreateOrder(List<OrderDetail> items)
+        public IActionResult CreateOrder(List<OrderDetail> items, int? orderId)
         {
             //Algorithm (Queue Theory) for assigning an admin to the order.
             return View(nameof(ShowPendingOrders));
-        }
-
-        [HttpPatch("{orderId}")]
-        public string CreateOrder(int orderId, Dictionary<int, JsonPatchDocument<Order>> operations)
-        {
-            return "true";
         }
 
         public IActionResult ShowPendingOrders()

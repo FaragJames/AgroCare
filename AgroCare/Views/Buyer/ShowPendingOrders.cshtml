@@ -23,14 +23,17 @@
                             <option value="table@(i + 1)">Order@(i + 1)</option>
                             continue;
                         }
-
                         <option value="table@(i + 1)" selected>Order@(i + 1)</option>
                     }
                 </select>
                 <span>@(Model.Count)</span>
             </div>
             <li class="active" data-state="wait">Waiting</li>
-            <li data-state="excute"><a asp-action="ShowUnderwayOrders">Executing</a></li>
+            <li data-state="excute">
+                <a asp-action="ShowUnderwayOrders" style="text-decoration: none">
+                    Executing
+                </a>
+            </li>
         </ul>
         <div class="table wait">
             <table>
@@ -44,7 +47,7 @@
                 </thead>
                 @for (int i = 0; i < Model.Count; i++)
                 {
-                    <tbody class="table@(i + 1)">
+                    <tbody class="table@(i + 1)" style="display: @(i != 0 ? "none" : "table-row-group")">
                         @foreach (var item in Model[i].OrderDetails)
                         {
                             <tr>
@@ -55,10 +58,10 @@
                             </tr>
                         }
                     </tbody>
-                    <tfoot class="table@(i + 1)">
+                    <tfoot class="table@(i + 1)" style="display: @(i != 0 ? "none" : "table-row-group")">
                         <tr>
                             <td>
-                                <a asp-action="CreateOrder" asp-route-orderId="@Model[i].Id">
+                                <a asp-action="CreateOrder" asp-route-orderId="@(Model[i].Id)">
                                     <img class="active" src="~/images/buyer/edit.png" alt="edit" />
                                 </a>
                             </td>

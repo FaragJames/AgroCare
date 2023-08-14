@@ -20,5 +20,3 @@ function showTable(selectedValue) {
         }
     }
 }
-
-showTable(selectElement.value);

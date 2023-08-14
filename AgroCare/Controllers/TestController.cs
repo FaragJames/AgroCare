@@ -1,5 +1,6 @@
 ﻿using AgroCare.Data.DTOs;
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Models.Models;
@@ -119,6 +120,12 @@ namespace AgroCare.Controllers
             else
                 entity = mapper.Map<TDestination>(entity) ?? entity;
             return JsonConvert.SerializeObject(entity, Formatting.Indented, new JsonSerializerSettings() { ReferenceLoopHandling = ReferenceLoopHandling.Ignore });
+        }
+
+        [HttpPatch]
+        public string PatchActionMethod()
+        {
+            return "This is the patch.";
         }
 
         #region Testing PlanService
