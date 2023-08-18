@@ -6,9 +6,9 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Pending</title>
 
-    <link rel="stylesheet" href="~/css/buyer/buyer.css" />
+    <link rel="stylesheet" href="~/css/buyer/buyer-style.css" />
 </head>
 
 <body class="">
@@ -16,22 +16,25 @@
         <ul class="status">
             <div class="first-li">
                 <select id="mySelect">
-                    @for (int i = 0; i < Model.Count; i++)
+                    <option value="none" selected>Choose an Order</option>
+                    @{
+                        int i = 0;
+                    }
+
+                    @foreach (var order in Model)
                     {
-                        if (i != 0)
-                        {
-                            <option value="table@(i + 1)">Order@(i + 1)</option>
-                            continue;
-                        }
-                        <option value="table@(i + 1)" selected>Order@(i + 1)</option>
+                        <option value="table@(i + 1)" data-order-id="@order.Id" style="font-weight: @(!order.ClickedByBuyer ? "bold" : "")">
+                            Order@(i + 1)
+                        </option>
+                        i++;
                     }
                 </select>
-                <span>@(Model.Count)</span>
+                <span>@(Model.Where(o => !o.ClickedByBuyer).Count())</span>
             </div>
             <li class="active" data-state="wait">Waiting</li>
             <li data-state="excute">
                 <a asp-action="ShowUnderwayOrders" style="text-decoration: none">
-                    Executing
+                    Underway
                 </a>
             </li>
         </ul>
@@ -45,9 +48,9 @@
                         <td>Message</td>
                     </tr>
                 </thead>
-                @for (int i = 0; i < Model.Count; i++)
+                @for (i = 0; i < Model.Count; i++)
                 {
-                    <tbody class="table@(i + 1)" style="display: @(i != 0 ? "none" : "table-row-group")">
+                    <tbody class="table@(i + 1)" style="display: none">
                         @foreach (var item in Model[i].OrderDetails)
                         {
                             <tr>
@@ -57,8 +60,8 @@
                                 <td>@(item.Feedback ?? "")</td>
                             </tr>
                         }
-                    </tbody>
-                    <tfoot class="table@(i + 1)" style="display: @(i != 0 ? "none" : "table-row-group")">
+                    </tbody>@* 
+                    <tfoot class="table@(i + 1)" style="display: none">
                         <tr>
                             <td>
                                 <a asp-action="CreateOrder" asp-route-orderId="@(Model[i].Id)">
@@ -66,12 +69,22 @@
                                 </a>
                             </td>
                         </tr>
-                    </tfoot>
+                    </tfoot> *@
                 }
             </table>
+            @foreach (var order in Model)
+            {
+                <div class="tfoot" style="display: none">
+                    <a asp-action="CreateOrder" asp-route-orderId="@(order.Id)">
+                        <div class="edit">
+                            <button class="edit_b">Edit</button>
+                        </div>
+                    </a>
+                </div>
+            }
         </div>
     </div>
 
-    <script src="~/js/buyer/show_buyer_orders.js"></script>
+    <script src="~/js/buyer/show_orders.js"></script>
 </body>
 </html>

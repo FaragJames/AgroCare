@@ -54,9 +54,12 @@ namespace AgroCare.Controllers
         public async Task CheckStep([FromServices] StepService stepService, [FromBody] dynamic body)
         {
             int stepId = (int)body.stepId;
-            Step step = (await stepService.GetOneAsync(stepId))!;
-            step.IsChecked = true;
-            await stepService.EditAsync(step);
+            var step = await stepService.GetOneAsync(stepId);
+            if (step != null)
+            {
+                step.IsChecked = true;
+                await stepService.EditAsync(step);
+            }
         }
 
         [HttpPost]
@@ -68,29 +71,5 @@ namespace AgroCare.Controllers
             Program.PlansCodes[farmerId] = (code, planId);
             return code;
         }
-
-        #region Add to an API Controller.
-        [NonAction]
-        public Plan GetPlan(long? id)
-        {
-            throw new NotImplementedException();
-        }
-
-        [NonAction]
-        [HttpPost]
-        public string GeneratePlanCode(long? id)
-        {
-            //'id' is the plan's id.
-            throw new NotImplementedException();
-        }
-
-        [NonAction]
-        [HttpPost]
-        public bool CheckStep(long? id)
-        {
-            //'id' is the step's id.
-            throw new NotImplementedException();
-        }
-        #endregion
     }
 }

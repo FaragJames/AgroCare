@@ -1,4 +1,5 @@
 //.details is a land.
+//Testing something with this comment.
 let items = document.querySelectorAll(".details");
 items.forEach((ele) => {
     ele.onclick = () => {

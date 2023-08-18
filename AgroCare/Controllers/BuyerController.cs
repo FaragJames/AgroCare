@@ -58,13 +58,15 @@ namespace AgroCare.Controllers
                 else
                 {
                     var oldOrder = await _orderService.GetOneAsync(orderId.Value);
-                    await _orderService.RemoveOrderDetailsAsync(oldOrder!);
-                    oldOrder!.OrderDetails = items;
-
-                    if (!await _orderService.EditAsync(oldOrder))
+                    if(oldOrder != null)
                     {
-                        ModelState.AddModelError("", "Not Added Try Again..!");
-                        return RedirectToAction(nameof(CreateOrder));
+                        await _orderService.RemoveOrderDetailsAsync(oldOrder);
+                        oldOrder.OrderDetails = items;
+                        if (!await _orderService.EditAsync(oldOrder))
+                        {
+                            ModelState.AddModelError("", "Not Added Try Again..!");
+                            return RedirectToAction(nameof(CreateOrder));
+                        }
                     }
                 }
 
@@ -73,8 +75,7 @@ namespace AgroCare.Controllers
 
             return RedirectToAction(nameof(CreateOrder));
         }
-
-        public int GetAdmin()
+        private int GetAdmin()
         {
             var Admins = _orderService.GetPendingOrders().GroupBy(order => order.AdminEngineerId)
                 .Select(group => new { adminId = group.Key, pendingOrdersCount = group.Count() })
@@ -91,6 +92,18 @@ namespace AgroCare.Controllers
         {
             var underway = _orderService.GetUnderwayOrdersByBuyerId(39).Select(i => _mapper.Map<OrderDto>(i));
             return View(underway.ToList());
+        }
+
+        [HttpPost]
+        public async Task ClickedByBuyer([FromBody] dynamic body)
+        {
+            int orderId = (int)body.orderId;
+            var order = await _orderService.GetOneAsync(orderId);
+            if (order != null)
+            {
+                order.ClickedByBuyer = true;
+                await _orderService.EditAsync(order);
+            }
         }
     }
 }

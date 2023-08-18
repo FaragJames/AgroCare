@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "XYmIg/r55Ts+e900wL0SMRD8EJVMeyKI5M5funa2E+s=",
+  "Hash": "86VTBEcV9mS+5Iay1j4khS+xIR6y1InJL25odCwwF1M=",
   "Source": "AgroCare",
   "BasePath": "_content/AgroCare",
   "Mode": "Default",
@@ -51,12 +51,12 @@
       "OriginalItemSpec": "C:\\Programming\\C#\\AgroCare\\AgroCare\\obj\\Debug\\net7.0\\scopedcss\\projectbundle\\AgroCare.bundle.scp.css"
     },
     {
-      "Identity": "C:\\Programming\\C#\\AgroCare\\AgroCare\\wwwroot\\css\\buyer\\buyer.css",
+      "Identity": "C:\\Programming\\C#\\AgroCare\\AgroCare\\wwwroot\\css\\buyer\\buyer-style.css",
       "SourceId": "AgroCare",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Programming\\C#\\AgroCare\\AgroCare\\wwwroot\\",
       "BasePath": "_content/AgroCare",
-      "RelativePath": "css/buyer/buyer.css",
+      "RelativePath": "css/buyer/buyer-style.css",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -65,7 +65,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\css\\buyer\\buyer.css"
+      "OriginalItemSpec": "wwwroot\\css\\buyer\\buyer-style.css"
     },
     {
       "Identity": "C:\\Programming\\C#\\AgroCare\\AgroCare\\wwwroot\\css\\farmer\\show_plans.css",
@@ -918,12 +918,12 @@
       "OriginalItemSpec": "wwwroot\\js\\buyer\\create_buyer_order.js"
     },
     {
-      "Identity": "C:\\Programming\\C#\\AgroCare\\AgroCare\\wwwroot\\js\\buyer\\show_buyer_orders.js",
+      "Identity": "C:\\Programming\\C#\\AgroCare\\AgroCare\\wwwroot\\js\\buyer\\show_orders.js",
       "SourceId": "AgroCare",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Programming\\C#\\AgroCare\\AgroCare\\wwwroot\\",
       "BasePath": "_content/AgroCare",
-      "RelativePath": "js/buyer/show_buyer_orders.js",
+      "RelativePath": "js/buyer/show_orders.js",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -932,7 +932,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\js\\buyer\\show_buyer_orders.js"
+      "OriginalItemSpec": "wwwroot\\js\\buyer\\show_orders.js"
     },
     {
       "Identity": "C:\\Programming\\C#\\AgroCare\\AgroCare\\wwwroot\\js\\chat.js",

@@ -5,8 +5,8 @@
       "PackagePath": "staticwebassets\\AgroCare.bundle.scp.css"
     },
     {
-      "Id": "C:\\Programming\\C#\\AgroCare\\AgroCare\\wwwroot\\css\\buyer\\buyer.css",
-      "PackagePath": "staticwebassets\\css\\buyer\\buyer.css"
+      "Id": "C:\\Programming\\C#\\AgroCare\\AgroCare\\wwwroot\\css\\buyer\\buyer-style.css",
+      "PackagePath": "staticwebassets\\css\\buyer\\buyer-style.css"
     },
     {
       "Id": "C:\\Programming\\C#\\AgroCare\\AgroCare\\wwwroot\\css\\farmer\\show_plans.css",
@@ -209,8 +209,8 @@
       "PackagePath": "staticwebassets\\js\\buyer\\create_buyer_order.js"
     },
     {
-      "Id": "C:\\Programming\\C#\\AgroCare\\AgroCare\\wwwroot\\js\\buyer\\show_buyer_orders.js",
-      "PackagePath": "staticwebassets\\js\\buyer\\show_buyer_orders.js"
+      "Id": "C:\\Programming\\C#\\AgroCare\\AgroCare\\wwwroot\\js\\buyer\\show_orders.js",
+      "PackagePath": "staticwebassets\\js\\buyer\\show_orders.js"
     },
     {
       "Id": "C:\\Programming\\C#\\AgroCare\\AgroCare\\wwwroot\\js\\chat.js",
