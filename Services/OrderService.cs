@@ -28,6 +28,19 @@ namespace Services
             _context.RemoveRange(entity.OrderDetails);
             return await base.RemoveAsync(entity);
         }
+        public async Task<bool> RemoveOrderDetailsAsync(Order order)
+        {
+            try
+            {
+                _context.RemoveRange(order.OrderDetails);
+                await _context.SaveChangesAsync();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
 
         public IQueryable<Order> GetPendingOrders()
         {

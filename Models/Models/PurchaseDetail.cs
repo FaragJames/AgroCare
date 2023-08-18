@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.EntityFrameworkCore;
 using Models.Models.Auxiliary;
 
@@ -28,6 +29,7 @@ namespace Models.Models
         [StringLength(50)]
         public string? Details { get; set; }
 
+        
         [ForeignKey("PurchaseId")]
         [InverseProperty("PurchaseDetails")]
         public virtual Purchase Purchase { get; set; } = null!;

@@ -4,7 +4,6 @@
     {
         public string Location { get; set; } = null!;
         public bool HasWell { get; set; }
-
         public float Area { get; set; }
         public FarmerDto Farmer { get; set; } = null!;
         public SoilTypeDto SoilType { get; set; } = null!;

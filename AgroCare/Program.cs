@@ -6,11 +6,16 @@ using AgroCare.Data;
 using Models.Models;
 using Services;
 using AgroCare.Hubs;
+using Microsoft.AspNetCore.Mvc;
 
 namespace AgroCare
 {
     public class Program
     {
+        //<farmerId, (code, planId)>
+        public static Dictionary<int, (string, int)> PlansCodes = new();
+
+
         public static async Task Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
@@ -18,7 +23,8 @@ namespace AgroCare
 
 
             #region Services
-            services.AddControllersWithViews().AddNewtonsoftJson();
+            services.AddControllersWithViews(options => options.SuppressImplicitRequiredAttributeForNonNullableReferenceTypes = true)
+                .AddNewtonsoftJson();
             services.AddRazorPages();
             services.AddSignalR();
             services.AddDbContext<AppDbContext>(options =>
@@ -44,6 +50,7 @@ namespace AgroCare
             services.AddScoped<FarmerService>();
             services.AddScoped<StoreService>();
             services.AddScoped<EngineerService>();
+            services.AddScoped(typeof(UserIdService<>));
             #endregion
 
 

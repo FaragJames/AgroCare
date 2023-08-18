@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.EntityFrameworkCore;
 using Models.Models.Auxiliary;
 
 namespace Models.Models
 {
     [Table("Engineer")]
-    public partial class Engineer : IBaseProperties
+    public partial class Engineer : IBaseProperties, IUserName
     {
         [Key]
         public int Id { get; set; }
@@ -27,9 +28,8 @@ namespace Models.Models
 
         [StringLength(50)]
         public string Phone { get; set; } = null!;
-
         public float Salary { get; set; }
-
+        
         [ForeignKey("EngineerTypeId")]
         [InverseProperty("Engineers")]
         public virtual EngineerType EngineerType { get; set; } = null!;
@@ -37,7 +37,7 @@ namespace Models.Models
         [ForeignKey("HeadEngineerId")]
         [InverseProperty("InverseHeadEngineer")]
         public virtual Engineer? HeadEngineer { get; set; }
-
+        
         [InverseProperty("HeadEngineer")]
         public virtual ICollection<Engineer> InverseHeadEngineer { get; set; } = new List<Engineer>();
 

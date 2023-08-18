@@ -1,0 +1,177 @@
+﻿@model UserInfoViewModel
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+
+    <title>Add User</title>
+</head>
+<body>
+    <div class="container">
+        <h2>Add @Model.Role</h2>
+        <form asp-action="UserInfo@(Model.Role)" method="post">
+            <div asp-validation-summary="All"></div>
+
+            <div class="form-group">
+                <input type="text" class="form-control" id="username" name="UserName" hidden value="@Model.UserName">
+            </div>
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" class="form-control" id="name" name="Name" placeholder="Enter Name" required>
+            </div>
+            <div class="form-group">
+                <label for="phone">Phone:</label>
+                <input type="tel" class="form-control" id="phone" name="Phone" placeholder="Enter Phone" required>
+            </div>
+
+            @if (Model.Role.Equals("Engineer"))
+            {
+                <div class="form-group">
+                    <label for="salary">Salary:</label>
+                    <input type="number" class="form-control" id="salary" name="Salary" required>
+                </div>
+                <div class="form-group">
+                    <label for="engineerType">Engineer Type:</label>
+                    <select class="form-control" id="engineerType" name="EngineerTypeId" required>
+                        <option value="">--Please choose an option--</option>
+                        @foreach(var type in Model.EngineerTypes)
+                        {
+                            <option value="@type.Id">@type.Name</option>
+                        }
+                    </select>
+                </div>
+            }
+            else if (Model.Role.Equals("Store"))
+            {
+                <div class="form-group">
+                    <label for="imagePath">Choose An Image:</label>
+                    <input class="form-control" type="file" accept="image/*" name="ImagePath" id="imagePath" required>
+                </div>
+                <div class="form-group">
+                    <label for="location">Location:</label>
+                    <input type="text" class="form-control" id="location" name="Location" required>
+                </div>
+                <div class="form-group">
+                    <label for="storeType">Store Type:</label>
+                    <select class="form-control" id="storeType" name="TypeId" required>
+                        <option value="">--Please choose an option--</option>
+                        @foreach (var type in Model.StoreTypes)
+                        {
+                            <option value="@type.Id">@type.Name</option>
+                        }
+                    </select>
+                </div>
+            }
+            else if (Model.Role.Equals("Farmer"))
+            {
+                <div class="land-form0">
+                    <div class="form-group">
+                        <label for="location0">Location:</label>
+                        <input type="text" class="form-control" id="location0" name="Lands[0].Location" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="area0">Area:</label>
+                        <input type="number" class="form-control" id="area0" name="Lands[0].Area" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="well0">Well:</label>
+                        <select class="form-control" id="well0" name="Lands[0].HasWell" required>
+                            <option value="">--Please choose an option--</option>
+                            <option value="true">Yes</option>
+                            <option value="false">No</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="landType0">Land Type:</label>
+                        <select class="form-control" id="landType0" name="Lands[0].TypeId" required>
+                            <option value="">--Please choose an option--</option>
+                            @foreach (var type in Model.LandTypes)
+                            {
+                                <option value="@type.Id">@type.Name</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="soilType0">Soil Type:</label>
+                        <select class="form-control" id="soilType0" name="Lands[0].SoilTypeId" required>
+                            <option value="">--Please choose an option--</option>
+                            @foreach (var type in Model.SoilTypes)
+                            {
+                                <option value="@type.Id">@type.Name</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+
+                <button id="add-land-button" type="button" class="btn btn-primary">Add Land</button>
+
+                <script>
+                    let landCount = 1;
+                    let deleteButton = null;
+
+                    function addLand() {
+                        let landForm = document.querySelector('.land-form' + (landCount - 1)).cloneNode(true);
+                        landForm.className = 'land-form' + landCount;
+
+                        let inputs = landForm.querySelectorAll('input, select');
+
+                        inputs.forEach(input => {
+                            input.id = input.id.replace(/\d+$/, landCount);
+                            input.name = input.name.replace(/\[\d+\]/, '[' + landCount + ']');
+
+                            let label = landForm.querySelector('label[for="' + input.id.replace(/\d+$/, landCount - 1) + '"]');
+
+                            if (label) {
+                                label.setAttribute('for', input.id);
+                            }
+
+                            if (input.tagName === 'SELECT') {
+                                input.selectedIndex = 0;
+                            } else {
+                                input.value = '';
+                            }
+                        });
+
+                        document.querySelector('#add-land-button').insertAdjacentElement('beforebegin', landForm);
+
+                        if (deleteButton === null) {
+                            deleteButton = document.createElement('button');
+                            deleteButton.type = 'button';
+                            deleteButton.className = 'btn btn-danger';
+                            deleteButton.textContent = 'Delete Land';
+
+                            deleteButton.addEventListener('click', deleteLand);
+
+                            document.querySelector('#add-land-button').insertAdjacentElement('beforebegin', deleteButton);
+                        }
+
+                        landCount++;
+                    }
+
+                    function deleteLand() {
+                        if (landCount > 1) {
+                            document.querySelector('.land-form' + (landCount - 1)).remove();
+
+                            landCount--;
+
+                            if (landCount === 1) {
+                                deleteButton.remove();
+                                deleteButton = null;
+                            }
+                        }
+                    }
+
+                    document.querySelector('#add-land-button').addEventListener('click', addLand);
+                </script>
+            }
+            
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">Add User</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

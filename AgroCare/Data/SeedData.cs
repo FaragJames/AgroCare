@@ -8,7 +8,7 @@ namespace AgroCare.Data
 {
     public class SeedData
     {
-        static readonly string[] names = { "farmer", "buyer", "store", "admin", "executive" };
+        static readonly string[] roles = { "Farmer", "Buyer", "Store", "Admin", "Executive" };
         static readonly string password = "Secert123$";
 
 
@@ -30,25 +30,24 @@ namespace AgroCare.Data
 
                 if (!appIdentity.Roles.Any() && roleManager != null)
                 {
-                    foreach (var role in names)
+                    foreach (var role in roles)
                     {
-                        await roleManager.CreateAsync(new($"{char.ToUpper(role[0]) + role[1..]}"));
-
+                        await roleManager.CreateAsync(new(role));
                     }
                 }
 
                 if (userManager != null && !appIdentity.Users.Any())
                 {
                     IdentityUser user;
-                    foreach (var name in names)
+                    foreach (var name in roles)
                     {
                         user = new()
                         {
-                            Email = $"{name}1@gmail.com",
-                            UserName = $"{name}1"
+                            Email = $"{name.ToLower()}_{name}@gmail.com",
+                            UserName = $"{name.ToLower()}_{name}"
                         };
                         await userManager.CreateAsync(user, password);
-                        await userManager.AddToRoleAsync(user, $"{char.ToUpper(name[0]) + name[1..]}");
+                        await userManager.AddToRoleAsync(user, name);
                     }
                 }
             }

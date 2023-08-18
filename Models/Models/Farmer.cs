@@ -8,7 +8,7 @@ using Models.Models.Auxiliary;
 namespace Models.Models
 {
     [Table("Farmer")]
-    public partial class Farmer : IBaseProperties
+    public partial class Farmer : IBaseProperties, IUserName
     {
         [Key]
         public int Id { get; set; }

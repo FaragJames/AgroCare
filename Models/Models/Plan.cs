@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.EntityFrameworkCore;
 using Models.Models.Auxiliary;
 
@@ -24,16 +25,15 @@ namespace Models.Models
 
         [Column("Finish_Date", TypeName = "date")]
         public DateOnly FinishDate { get; set; }
-
         public float Quantity { get; set; }
 
         [Column("Clicked_By_Farmer")]
         public bool ClickByFarmer { get; set; }
-
+        
         [ForeignKey("LandId")]
         [InverseProperty("Plans")]
         public virtual Land Land { get; set; } = null!;
-
+        
         [ForeignKey("OrderDetailsId")]
         [InverseProperty("Plans")]
         public virtual OrderDetail OrderDetails { get; set; } = null!;

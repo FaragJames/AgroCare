@@ -1,29 +1,72 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using AgroCare.Data.DTOs;
+using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Models.Models;
+using Newtonsoft.Json.Linq;
+using Services;
 
 namespace AgroCare.Controllers
 {
     [Authorize(Roles = "Farmer")]
     public class FarmerController : Controller
     {
-        public IActionResult Index()
+        private readonly PlanService planService;
+        private readonly PurchaseService purchaseService;
+        private readonly UserIdService<Farmer> userInfo;
+        private readonly IMapper mapper;
+
+
+        public FarmerController(PurchaseService purchaseService, PlanService planService,
+            UserIdService<Farmer> userInfo, IMapper mapper)
         {
-            return View();
+            this.planService = planService;
+            this.purchaseService = purchaseService;
+            this.userInfo = userInfo;
+            this.mapper = mapper;
         }
 
-        [NonAction]
-        public IActionResult ShowPlans()
+        public async Task<IActionResult> ShowPlans()
         {
-            //Get then pass the farmer's id.
-            return View();
+            var farmerId = await userInfo.GetIdByUserNameAsync(User.Identity!.Name!);
+            var farmerPlans = planService.GetAllByFarmerId(farmerId)
+                .Select(i => mapper.Map<PlanDto>(i)).ToList();
+
+            ViewBag.farmerId = farmerId;
+            return View(farmerPlans);
         }
 
-        [NonAction]
-        public IActionResult ShowPurchases(long? id)
+        public async Task<IActionResult> ShowPurchases()
         {
-            return View();
+            var farmerId = await userInfo.GetIdByUserNameAsync(User.Identity!.Name!);
+            var farmerPlansIds = planService.GetAllByFarmerId(farmerId).Select(p => p.Id).ToList();
+            List<PurchaseDto> purchasesDto = new();
+
+            foreach (var planId in farmerPlansIds)
+                purchasesDto.AddRange(purchaseService.GetAll()
+                    .Where(p => p.PlanId == planId).Select(i => mapper.Map<PurchaseDto>(i)).ToList());
+
+            return View(purchasesDto);
+        }
+
+        [HttpPost]
+        public async Task CheckStep([FromServices] StepService stepService, [FromBody] dynamic body)
+        {
+            int stepId = (int)body.stepId;
+            Step step = (await stepService.GetOneAsync(stepId))!;
+            step.IsChecked = true;
+            await stepService.EditAsync(step);
+        }
+
+        [HttpPost]
+        public string GenerateCode([FromBody] dynamic body)
+        {
+            int farmerId = (int) body.farmerId,
+                planId = (int)body.planId;
+            string code = Guid.NewGuid().ToString()[..8];
+            Program.PlansCodes[farmerId] = (code, planId);
+            return code;
         }
 
         #region Add to an API Controller.

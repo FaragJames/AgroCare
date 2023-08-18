@@ -1,40 +1,44 @@
 ﻿@page
 @model LoginModel
-
 @{
-    ViewData["Title"] = "Log in";
+    Layout = null;
 }
 
-<h1>@ViewData["Title"]</h1>
-<div class="row">
-    <div class="col-md-4">
-        <section>
-            <form id="account" method="post">
-                <h2>Use a local account to log in.</h2>
-                <hr />
-                <div asp-validation-summary="All" class="text-danger"></div>
-                <div class="form-floating">
-                    <input asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true" />
-                    <label asp-for="Input.Email" class="form-label"></label>
-                    <span asp-validation-for="Input.Email" class="text-danger"></span>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="~/css/login/login.css">
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+    <script src="~/js/index/script.js"></script>
+    <title>Log In</title>
+</head>
+
+<body>
+    <div class="login">
+        <div class="contain">
+            <div class="profile">
+                <img class="imge" src="~/images/login/شخص.png" alt="" style="width: 250px; height: 250px;">
+                <h1>login</h1>
+            </div>
+            <form method="post" class="input">
+                <div class="box_input">
+                    <span class="material-symbols-outlined">person</span>
+                    <input asp-for="Input.Email" class="input1" placeholder="your email">
                 </div>
-                <div class="form-floating">
-                    <input asp-for="Input.Password" class="form-control" autocomplete="current-password" aria-required="true" />
-                    <label asp-for="Input.Password" class="form-label"></label>
-                    <span asp-validation-for="Input.Password" class="text-danger"></span>
+                <div class="box_input">
+                    <span class="material-symbols-outlined">lock</span>
+                    <input asp-for="Input.Password" class="input1" placeholder="your password">
                 </div>
-                <div>
-                    <div class="checkbox">
-                        <label asp-for="Input.RememberMe" class="form-label">
-                            <input class="form-check-input" asp-for="Input.RememberMe" />
-                            @Html.DisplayNameFor(m => m.Input.RememberMe)
-                        </label>
-                    </div>
-                </div>
-                <div>
-                    <button id="login-submit" type="submit" class="w-100 btn btn-lg btn-primary">Log in</button>
-                </div>
+
+                <button type="submit">Log in</button>
             </form>
-        </section>
+        </div>
     </div>
-</div>
+</body>
+
+</html>

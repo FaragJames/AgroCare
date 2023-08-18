@@ -1,0 +1,109 @@
+﻿@model List<PlanDto>
+@{
+    int i = 1, j = 1;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Show Land's Plan</title>
+    <link rel="stylesheet" href="~/css/farmer/show_plans.css">
+</head>
+
+<body class="">
+    <nav>
+        <ul>
+            <li> <a asp-action="ShowPlans"><img src="~/images/farmer/home.svg" alt=""></a></li>
+            <li><a asp-action="ShowPurchases"><img src="~/images/farmer/purchases.png" alt=""></a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <header>
+            <h1>Farmer @ViewBag.farmerId</h1>
+        </header>
+
+        <div class="list">
+            @foreach (var plan in Model)
+            {
+                <div class="item">
+                    <div class="details" id="@i">
+                        <div class="top-title">Land @i</div>
+                        <div class="title">The site: <span>@plan.Land.Location</span></div>
+                        <div class="title">The Area: <span>@plan.Land.Area</span> ha</div>
+                        <div class="title">Date of the beginning: <span>@plan.StartDate</span></div>
+                        <div class="title">Date of the end: <span>@plan.FinishDate</span> </div>
+                        @* @plan.OrderDetails.Item.Name *@
+                        <div class="title">
+                            The expected amount of agriculture crop: <span>@plan.Quantity</span> KG <span>Orange</span>
+                        </div>
+                    </div>
+
+                    <div>
+                        <button type="button" onclick="generateCode(@plan.Id, @ViewBag.farmerId)">
+                            Generate Code
+                        </button>
+                    </div>
+
+                    <div class="plan-@i plan" id="@i">
+                        @foreach (var step in plan.Steps)
+                        {
+                            <div class="seconde-kind kind">
+                                <h1>0 @(j++)</h1>
+                                <p>@step.Action.Name</p>
+                                <div class="title">
+                                    Can you start at: <span>@step.EstimatedStartDate</span>
+                                </div>
+                                <div class="title">
+                                    Last Date you should finish it: <span>@step.EstimatedFinishDate</span>
+                                </div>
+                                <div class="title">Use the following requirements<br /></div>
+                                @foreach (var stepDetails in step.StepDetails)
+                                {
+                                    <div class="title">
+                                        @stepDetails.AgriculturalItem.Name<span>@stepDetails.Quantity</span> KG
+                                    </div>
+                                }
+                                @if (step.IsChecked)
+                                {
+                                    <input type="checkbox" class="class@(i)" id="@step.Id" checked>
+                                }
+                                else
+                                {
+                                    <input type="checkbox" class="class@(i)" id="@step.Id">
+                                }
+                            </div>
+
+                        }
+                    </div>
+                </div>
+
+                j = 1;
+                i++;
+            }
+        </div>
+    </div>
+    <script src="~/js/farmer/farmer.js"></script>
+    <script>
+        function generateCode(planId, farmerId) {
+            let options = {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ planId: planId, farmerId: farmerId })
+            };
+            fetch('farmer/GenerateCode', options)
+                .then(response => response.text())
+                .then(text => {
+                    document.querySelector("button").textContent = `Code: ${text}`;
+                });
+        }
+    </script>
+</body>
+
+</html>

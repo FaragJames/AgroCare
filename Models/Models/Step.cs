@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.EntityFrameworkCore;
 using Models.Models.Auxiliary;
 
@@ -32,6 +33,7 @@ namespace Models.Models
         [InverseProperty("Steps")]
         public virtual Action Action { get; set; } = null!;
 
+        
         [ForeignKey("PlanId")]
         [InverseProperty("Steps")]
         public virtual Plan Plan { get; set; } = null!;

@@ -20,16 +20,8 @@ build_property._RazorSourceGeneratorDebug =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWNjb3VudFxMb2dpbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Programming/C\#/AgroCare/AgroCare/Pages/Account/Logout.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWNjb3VudFxMb2dvdXQuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
 [C:/Programming/C\#/AgroCare/AgroCare/Pages/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5kZXguY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Programming/C\#/AgroCare/AgroCare/Pages/Shared/_LoginPartial.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9Mb2dpblBhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Programming/C\#/AgroCare/AgroCare/Pages/Shared/_ValidationScriptsPartial.cshtml]
@@ -50,6 +42,14 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Programming/C\#/AgroCare/AgroCare/Views/Admin/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Programming/C\#/AgroCare/AgroCare/Views/Admin/Register.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cUmVnaXN0ZXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Programming/C\#/AgroCare/AgroCare/Views/Admin/UserInfo.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cVXNlckluZm8uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Programming/C\#/AgroCare/AgroCare/Views/Buyer/CreateOrder.cshtml]
@@ -74,6 +74,14 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Programming/C\#/AgroCare/AgroCare/Views/Farmer/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRmFybWVyXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Programming/C\#/AgroCare/AgroCare/Views/Farmer/ShowPlans.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRmFybWVyXFNob3dQbGFucy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Programming/C\#/AgroCare/AgroCare/Views/Farmer/ShowPurchases.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRmFybWVyXFNob3dQdXJjaGFzZXMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Programming/C\#/AgroCare/AgroCare/Views/Shared/Error.cshtml]

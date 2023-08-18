@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.EntityFrameworkCore;
 using Models.Models.Auxiliary;
 
@@ -30,14 +31,17 @@ namespace Models.Models
         [Column(TypeName = "nvarchar(150)")]
         public string? Feedback { get; set; }
 
+        
         [ForeignKey("ItemId")]
         [InverseProperty("OrderDetails")]
         public virtual Item Item { get; set; } = null!;
 
+        
         [ForeignKey("OrderId")]
         [InverseProperty("OrderDetails")]
         public virtual Order Order { get; set; } = null!;
 
+        
         [InverseProperty("OrderDetails")]
         public virtual ICollection<Plan> Plans { get; set; } = new List<Plan>();
     }

@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Models.Models;
 using Services;
 using AgroCare.ViewModels;
-using Microsoft.AspNetCore.JsonPatch;
+using System.Xml.Serialization;
 
 namespace AgroCare.Controllers
 {
@@ -35,10 +35,51 @@ namespace AgroCare.Controllers
         }
 
         [HttpPost]
-        public IActionResult CreateOrder(List<OrderDetail> items, int? orderId)
+        public async Task<IActionResult> CreateOrder(int? orderId, List<OrderDetail> items,
+            [FromServices] UserIdService<Buyer> userId)
         {
-            //Algorithm (Queue Theory) for assigning an admin to the order.
-            return View(nameof(ShowPendingOrders));
+            if (ModelState.IsValid)
+            {
+                if (!orderId.HasValue)
+                {
+                    Order newOrder = new()
+                    {
+                        BuyerId = await userId.GetIdByUserNameAsync(User.Identity!.Name!),
+                        AdminEngineerId = GetAdmin(),
+                        OrderDate = DateOnly.FromDateTime(DateTime.Now),
+                        OrderDetails = items
+                    };
+                    if (!await _orderService.AddAsync(newOrder))
+                    {
+                        ModelState.AddModelError("", "Not Added Try Again..!");
+                        return RedirectToAction(nameof(CreateOrder));
+                    }
+                }
+                else
+                {
+                    var oldOrder = await _orderService.GetOneAsync(orderId.Value);
+                    await _orderService.RemoveOrderDetailsAsync(oldOrder!);
+                    oldOrder!.OrderDetails = items;
+
+                    if (!await _orderService.EditAsync(oldOrder))
+                    {
+                        ModelState.AddModelError("", "Not Added Try Again..!");
+                        return RedirectToAction(nameof(CreateOrder));
+                    }
+                }
+
+                return RedirectToAction(nameof(ShowPendingOrders));
+            }
+
+            return RedirectToAction(nameof(CreateOrder));
+        }
+
+        public int GetAdmin()
+        {
+            var Admins = _orderService.GetPendingOrders().GroupBy(order => order.AdminEngineerId)
+                .Select(group => new { adminId = group.Key, pendingOrdersCount = group.Count() })
+                .OrderBy(admin => admin.pendingOrdersCount).ToList();
+            return Admins[0].adminId;
         }
 
         public IActionResult ShowPendingOrders()

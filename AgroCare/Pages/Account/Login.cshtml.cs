@@ -26,11 +26,7 @@ namespace AgroCare.Pages.Account
             [Required]
             [DataType(DataType.Password)]
             public string Password { get; set; }
-
-            [Display(Name = "Remember me?")]
-            public bool RememberMe { get; set; }
         }
-
 
 
         public LoginModel(SignInManager<IdentityUser> signInManager, ILogger<LoginModel> logger)
@@ -49,11 +45,11 @@ namespace AgroCare.Pages.Account
             {
                 var userName = Input.Email.Split('@')[0];
                 var result = await _signInManager.PasswordSignInAsync(userName,
-                    Input.Password, Input.RememberMe, lockoutOnFailure: false);
+                    Input.Password, false, lockoutOnFailure: false);
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User logged in.");
-                    return LocalRedirect($"~/{userName[..^1]}");
+                    return LocalRedirect($"~/{userName.Split('_')[1]}");
                 }
                 
                 ModelState.AddModelError(string.Empty, "Invalid login attempt.");

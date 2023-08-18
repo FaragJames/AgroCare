@@ -9,6 +9,14 @@
       "PackagePath": "staticwebassets\\css\\buyer\\buyer.css"
     },
     {
+      "Id": "C:\\Programming\\C#\\AgroCare\\AgroCare\\wwwroot\\css\\farmer\\show_plans.css",
+      "PackagePath": "staticwebassets\\css\\farmer\\show_plans.css"
+    },
+    {
+      "Id": "C:\\Programming\\C#\\AgroCare\\AgroCare\\wwwroot\\css\\farmer\\show_purchases.css",
+      "PackagePath": "staticwebassets\\css\\farmer\\show_purchases.css"
+    },
+    {
       "Id": "C:\\Programming\\C#\\AgroCare\\AgroCare\\wwwroot\\css\\index\\all.css",
       "PackagePath": "staticwebassets\\css\\index\\all.css"
     },
@@ -87,6 +95,14 @@
     {
       "Id": "C:\\Programming\\C#\\AgroCare\\AgroCare\\wwwroot\\images\\buyer\\edit.png",
       "PackagePath": "staticwebassets\\images\\buyer\\edit.png"
+    },
+    {
+      "Id": "C:\\Programming\\C#\\AgroCare\\AgroCare\\wwwroot\\images\\farmer\\home.svg",
+      "PackagePath": "staticwebassets\\images\\farmer\\home.svg"
+    },
+    {
+      "Id": "C:\\Programming\\C#\\AgroCare\\AgroCare\\wwwroot\\images\\farmer\\purchases.png",
+      "PackagePath": "staticwebassets\\images\\farmer\\purchases.png"
     },
     {
       "Id": "C:\\Programming\\C#\\AgroCare\\AgroCare\\wwwroot\\images\\index\\Apple.jpg",
@@ -189,12 +205,8 @@
       "PackagePath": "staticwebassets\\images\\login\\شخص.png"
     },
     {
-      "Id": "C:\\Programming\\C#\\AgroCare\\AgroCare\\wwwroot\\js\\buyer\\create_buyer_order_patch.js",
-      "PackagePath": "staticwebassets\\js\\buyer\\create_buyer_order_patch.js"
-    },
-    {
-      "Id": "C:\\Programming\\C#\\AgroCare\\AgroCare\\wwwroot\\js\\buyer\\create_buyer_order_post.js",
-      "PackagePath": "staticwebassets\\js\\buyer\\create_buyer_order_post.js"
+      "Id": "C:\\Programming\\C#\\AgroCare\\AgroCare\\wwwroot\\js\\buyer\\create_buyer_order.js",
+      "PackagePath": "staticwebassets\\js\\buyer\\create_buyer_order.js"
     },
     {
       "Id": "C:\\Programming\\C#\\AgroCare\\AgroCare\\wwwroot\\js\\buyer\\show_buyer_orders.js",
@@ -203,6 +215,10 @@
     {
       "Id": "C:\\Programming\\C#\\AgroCare\\AgroCare\\wwwroot\\js\\chat.js",
       "PackagePath": "staticwebassets\\js\\chat.js"
+    },
+    {
+      "Id": "C:\\Programming\\C#\\AgroCare\\AgroCare\\wwwroot\\js\\farmer\\farmer.js",
+      "PackagePath": "staticwebassets\\js\\farmer\\farmer.js"
     },
     {
       "Id": "C:\\Programming\\C#\\AgroCare\\AgroCare\\wwwroot\\js\\index\\bootstrap.bundle.min.js",

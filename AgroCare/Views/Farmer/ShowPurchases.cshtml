@@ -1,0 +1,51 @@
+﻿@model List<PurchaseDto>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Purchases</title>
+    <link rel="stylesheet" href="~/css/farmer/show_purchases.css">
+</head>
+
+<body class="">
+    <nav>
+        <ul>
+            <li> <a asp-action="ShowPlans"><img src="~/images/farmer/home.svg" alt=""></a></li>
+            <li><a asp-action="ShowPurchases"><img src="~/images/farmer/purchases.png" alt=""></a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <header>
+            <h1>Materials Purchased</h1>
+        </header>
+
+        <div class="list">
+            @foreach (var purchase in Model)
+            {
+                @foreach (var detail in purchase.PurchaseDetails)
+                {
+                    <div class="item">
+                        <div class="photo">
+                            @* <img src="@purchase.Store.ImagePath" /> *@
+                        </div>
+
+                        <div class="details">
+                            <div class="title">- @detail.Item -</div>
+                            <div class="title"> @detail.Details </div>
+                            <div class="title">Price: <span>@detail.Price</span>  SP</div>
+                            <div class="title">Quantitiy: <span>@detail.Quantity</span> KG</div>
+                            <div class="final-price">Total Price: @(detail.Quantity * detail.Price) SP</div>
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+</body>
+
+</html>

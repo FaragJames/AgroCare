@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.EntityFrameworkCore;
 using Models.Models.Auxiliary;
 
@@ -25,6 +26,7 @@ namespace Models.Models
         [InverseProperty("StepDetails")]
         public virtual AgriculturalItem AgriculturalItem { get; set; } = null!;
 
+        
         [ForeignKey("StepId")]
         [InverseProperty("StepDetails")]
         public virtual Step Step { get; set; } = null!;
