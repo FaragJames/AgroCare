@@ -564,6 +564,11 @@ namespace Models.Migrations.AppDb
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
+                    b.Property<string>("Phone")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
                     b.Property<int>("TypeId")
                         .HasColumnType("int")
                         .HasColumnName("Type_Id");

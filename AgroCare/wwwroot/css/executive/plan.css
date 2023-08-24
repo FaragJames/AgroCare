@@ -1,0 +1,503 @@
+ /* start rouls */
+ *{
+  -webkit-box-sizing: border-box ;
+  -moz-box-sizing:border-box ;
+   box-sizing:border-box ;
+   color: #111;
+}
+:root{
+  --background-box: #DFE0BA; 
+  --primary-color:#33b353;
+  --secondry-color : #E7E6D4;
+  --third-color : #7E7F6F;
+  --black: #111;
+  --white: #fff;
+  --light-color: #aaa;
+  --bg-color: #222;
+  --black-bg: rgba(17, 17, 17, .7);
+  --border: .2rem solid $blue;
+}
+a{
+  text-decoration: none;
+  color: white;
+}
+  .leftt{
+      position: fixed;
+      background: #158f20;
+      width: 20vw;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      z-index: 2;
+  }
+.img {
+    width: 250px;
+    height: 250px;
+    left: 224px;
+    top: 30px;
+    background: url(../../images/executive/1\ \(1\).jpg);
+    border-radius: 50%;
+    position: absolute;
+}
+.img1 {
+    width: 250px;
+    height: 250px;
+    left: 224px;
+    top: 330px;
+    background: url(../../images/executive/1\ \(2\).jpg);
+    border-radius: 50%;
+    position: absolute;
+}
+.img2 {
+    width: 250px;
+    height: 250px;
+    left: 224px;
+    top: 635px;
+    background: url(../../images/executive/photo_2023-08-12_20-54-04.jpg);
+    border-radius: 50%;
+    position: absolute;
+}
+  .right{
+    display: flex;
+    justify-content: end;
+    align-items: center;
+
+  }
+#OrderDetailId, #ActionId, #AgriculturalItemId {
+    height: 40px;
+    width: 100%;
+    border-radius: 7px;
+    outline: none;
+    border: 1px solid #6fc00d;
+    padding: 0 5px;
+    background-color: white;
+}
+  .box1{
+    background: var(--background-box);
+    padding: 28px;
+    margin: 35px 20px;
+    border-radius: 10px;
+    box-shadow: inset -2px 2px 2px white;
+    box-shadow: 5px 8px 12px 8px #c9c5c5;
+}
+.box1 h3{
+  margin: 0;
+    font-size: 26px;
+      font-weight: 600;
+      text-align: center;
+      padding-bottom: 6px;
+      color: white;
+      text-shadow: 2px 2px 2px rgb(80, 180, 59);
+      border-bottom: 2px solid white;
+}
+.box1 h4 {
+  text-align: center;
+  color: white;
+  margin-bottom: 10px;
+}
+.details{
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.details span{
+  height: 5px;
+  width: 5px;
+  border-radius: 50%;
+  border: 5px solid black;
+}
+.details .d1,.d2,.d3 {
+  border: 1.5px solid var(--primary-color) ;
+  border-radius: 10%;
+  padding: 5px;
+  background-color: white;
+  margin: 0;
+}
+.box{
+  width: 100%;
+  max-width: 890px;
+  background: var(--background-box);
+  padding: 28px;
+  margin: 35px 35px;
+  border-radius: 10px;
+  box-shadow: inset -2px 2px 2px white;
+  box-shadow: 5px 8px 12px 8px #c9c5c5;
+}
+.form-title{
+  font-size: 26px;
+  font-weight: 600;
+  text-align: center;
+  padding-bottom: 6px;
+  color: white;
+  text-shadow: 2px 2px 2px rgb(80, 180, 59);
+  border-bottom: 2px solid white;
+}
+.main-user-info{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+.land button {
+  font-size: 20px;
+  padding-left: 11px;
+  padding-right: 11px;
+
+  border: none;
+  border-radius: 7px;
+  color: rgb(255, 255, 255);
+  background: rgba(7, 143, 41, 0.8);
+}
+
+.land button:hover {
+  background: rgba(40, 212, 83, 10);
+  cursor: pointer;
+}
+.user-input-box{
+  margin: 9px;
+}
+.user-input-box label{
+
+  color: white;
+  font-size: 17px;
+  font-weight: 400;
+}
+.user-input-box input , .user-input-box select{
+  height: 40px;
+  width: 100%;
+  border-radius: 7px;
+  outline: none;
+  border: 1px solid #6fc00d;
+  padding: 0 5px;
+}
+.user-input-box .land_b{
+background-color: white;
+    border: 1px solid #6fc00d;
+}
+.form-submit-btn{
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  /* margin-top:auto; */
+}
+.steps .send{
+  display: flex;
+  justify-content: center;
+}
+.steps .send input {
+  margin-top: 15px;
+  font-size: 20px;
+  padding: 5px;
+  border:none;
+  border-radius: 7px;
+  color: rgb(255, 255, 255);
+  background: rgba(7, 143, 41, 0.8);
+}
+.steps input:hover , .steps .user-input-box select:hover{
+  background: rgba(40, 212, 83, 10);
+    cursor: pointer;
+}
+.form-submit-btn .add span {
+  position: relative;
+  top: 8.5px;
+  font-size: 20px;
+  padding: 11px;
+  border:none;
+  border-radius: 7px;
+  color: rgb(255, 255, 255);
+  background: rgba(7, 143, 41, 0.8);
+}
+.form-submit-btn  span:hover{
+  background: rgba(40, 212, 83, 10);
+  cursor: pointer;
+}
+table {
+  width: 100%;
+  text-align: center;
+  margin: 10px 0;
+}
+
+table th {
+  text-transform: uppercase;
+  color: green;
+}
+
+th,
+td {
+  padding: 5px;
+  color: rgb(77, 197, 29);
+}
+
+#deleteall {
+  margin: 20px 0;
+
+}
+
+.inputs {
+  padding: 1rem 3rem 0rem 5rem;
+}
+
+.outputs {
+  padding: 0 5rem;
+}
+@media(max-width: 1270px) {
+  .leftt {
+    position: fixed;
+    background: #158f20;
+    width: 15vw;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    z-index: 2;
+  }
+
+  .img {
+    width: 150px;
+    height: 150px;
+    left: 65px;
+    top: 60px;
+    background: url(../../images/executive/photo_2023-08-12_20-54-04.jpg);
+    border-radius: 50%;
+    position: absolute;
+  }
+
+  .img1 {
+    width: 150px;
+    height: 150px;
+    left: 65px;
+    top: 245px;
+    background: url(../../images/executive/1\ \(2\).jpg);
+    border-radius: 50%;
+    position: absolute;
+  }
+
+  .img2 {
+    width: 150px;
+    height: 150px;
+    left: 65px;
+    top: 430px;
+    background: url(../../images/executive/1\ \(1\).jpg);
+    border-radius: 50%;
+    position: absolute;
+  }
+
+}
+
+@media (max-width: 1140px) {
+  .leftt {
+    display: none;
+  }
+}
+
+@media (max-width: 960px) {
+  .leftt {
+    display: none;
+  }
+
+  .form-submit-btn input {
+    font-size: 15px;
+    width: 95px;
+  }
+
+  .user-input-box {
+    margin: 0;
+  }
+
+  .land button {
+    margin: 10px;
+  }
+}
+
+@media(max-width: 800px) and (min-width: 550px) {
+  .leftt {
+    display: none;
+  }
+
+  .land button {
+    margin: 10px;
+  }
+
+  .main-user-info,
+  .form-submit-btn {
+    display: block;
+  }
+
+  .add {
+    display: flex;
+    justify-content: center;
+  }
+
+  .form-submit-btn span {
+
+    margin-top: 10px;
+  }
+
+  .form-submit-btn input {
+    font-size: 18px;
+    width: 100%;
+  }
+
+  .user-input-box {
+    margin: 0;
+  }
+}
+
+@media(max-width: 549px) {
+  .leftt {
+    display: none;
+  }
+
+  .main-user-info,
+  .form-submit-btn {
+    display: block;
+  }
+
+  .add {
+    display: flex;
+    justify-content: center;
+  }
+
+  .form-submit-btn span {
+
+    margin-top: 10px;
+  }
+
+  .form-submit-btn input {
+    font-size: 18px;
+    width: 100%;
+  }
+
+  .user-input-box {
+    margin: 0;
+  }
+}
+
+@media(max-width: 461px) {
+  .leftt {
+    display: none;
+  }
+
+  table th {
+    font-size: 70%;
+
+  }
+
+  th,
+  td {
+    font-size: 63%;
+  }
+
+  .main-user-info,
+  .form-submit-btn {
+    display: block;
+  }
+
+  .add {
+    display: flex;
+    justify-content: center;
+  }
+
+  .form-submit-btn span {
+
+    margin-top: 10px;
+  }
+
+  .form-submit-btn input {
+    font-size: 17px;
+    width: 100%;
+  }
+
+  .user-input-box {
+    margin: 0;
+  }
+}
+
+@media(max-width: 438px) {
+  .leftt {
+    display: none;
+  }
+
+  table th {
+    font-size: 65%;
+  }
+
+  th,
+  td {
+    font-size: 58%;
+  }
+
+  .main-user-info,
+  .form-submit-btn {
+    display: block;
+  }
+
+  .add {
+    display: flex;
+    justify-content: center;
+  }
+
+  .form-submit-btn span {
+
+    margin-top: 10px;
+  }
+
+  .form-submit-btn input {
+    font-size: 17px;
+    width: 100%;
+  }
+
+  .user-input-box {
+    margin: 0;
+  }
+}
+
+@media(max-width: 373px) {
+  .leftt {
+    display: none;
+  }
+
+  table th {
+    font-size: 58%;
+
+  }
+
+  th,
+  td {
+    font-size: 50%;
+  }
+
+  .main-user-info,
+  .form-submit-btn {
+    display: block;
+  }
+
+  .add {
+    display: flex;
+    justify-content: center;
+  }
+
+  .form-submit-btn span {
+
+    margin-top: 10px;
+  }
+
+  .form-submit-btn input {
+    font-size: 15px;
+    width: 100%;
+  }
+
+  .user-input-box {
+    margin: 0;
+  }
+
+  .box {
+    margin: 0;
+    padding: 10px;
+  }
+  .box1{
+    margin: 0 0 20px 0;
+    padding: 10px;
+  }
+}
+
+

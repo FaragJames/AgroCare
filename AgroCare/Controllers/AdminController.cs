@@ -16,34 +16,61 @@ namespace AgroCare.Controllers
     public class AdminController : Controller
     {
         private readonly UserManager<IdentityUser> _userManager;
+        private readonly OrderService _orderService;
         private readonly AppDbContext _appDbContext;
         private readonly IMapper _mapper;
 
 
-        public AdminController(UserManager<IdentityUser> manager, AppDbContext appDbContext, IMapper mapper)
+        public AdminController(UserManager<IdentityUser> manager, AppDbContext appDbContext, IMapper mapper, OrderService orderService)
         {
             _userManager = manager;
             _appDbContext = appDbContext;
             _mapper = mapper;
+            _orderService = orderService;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> ReceivedOrders([FromServices] UserIdService<Engineer> userIdService)
         {
-            return View();
+            return View(_orderService.GetAdminOrders(await userIdService.GetIdByUserNameAsync(User.Identity!.Name!))
+                .Where(o => o.ExecutiveTeam == null).Select(o => _mapper.Map<OrderDto>(o)).ToList());
         }
 
-        [NonAction]
-        public IActionResult ReceivedOrders()
+        [HttpPost]
+        public async Task<IActionResult> ReceivedOrders([FromBody] dynamic body)
         {
-            //Get the admin's id.
-            return View();
+            int teamId = (int)body.TeamId,
+                orderId = (int)body.OrderId;
+            Order order = (await _orderService.GetOneAsync(orderId))!;
+            if(teamId > 0)
+            {
+                order.ExecutiveTeamId = teamId;
+            }
+            else
+            {
+                List<string> feedbacks = new();
+                foreach (var item in body.Feedbacks)
+                    feedbacks.Add((string)item.name);
+
+                int i = 0;
+                foreach (var orderDetail in order.OrderDetails)
+                    orderDetail.Feedback = feedbacks[i++];
+            }
+
+            order.ClickedByBuyer = false;
+            await _orderService.EditAsync(order);
+            return RedirectToAction(nameof(ReceivedOrders));
         }
 
-        [NonAction]
-        public IActionResult AccessDatabase()
+        [HttpPost]
+        public async Task ClickedByAdmin([FromBody] dynamic body)
         {
-            //Blazor Database.
-            return RedirectToPage("");
+            int orderId = (int)body.orderId;
+            var order = await _orderService.GetOneAsync(orderId);
+            if (order != null)
+            {
+                order.ClickedByAdmin = true;
+                await _orderService.EditAsync(order);
+            }
         }
 
         public IActionResult Register()
@@ -173,27 +200,5 @@ namespace AgroCare.Controllers
                     userName = store.UserName
                 });
         }
-
-        #region Add to an API Controller.
-        [NonAction]
-        public Order GetOrder(long? id)
-        {
-            throw new NotImplementedException();
-        }
-
-        [NonAction]
-        [HttpPatch]
-        public void PatchOrder(Order model)
-        {
-
-        }
-
-        [NonAction]
-        [HttpPost]
-        public void FeedbackToBuyer(/*FeedbackViewModel model*/)
-        {
-
-        }
-        #endregion
     }
 }

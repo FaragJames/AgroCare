@@ -6,6 +6,9 @@ using Models.Models;
 using Services;
 using AgroCare.ViewModels;
 using System.Xml.Serialization;
+using Microsoft.AspNetCore.SignalR;
+using AgroCare.Hubs;
+using Models.Models.Auxiliary;
 
 namespace AgroCare.Controllers
 {
@@ -15,20 +18,23 @@ namespace AgroCare.Controllers
         private readonly IMapper _mapper;
         private readonly IService<Item> _itemService;
         private readonly OrderService _orderService;
+        private readonly UserIdService<Buyer> _userIdService;
 
 
-        public BuyerController(IMapper mapper, IService<Item> itemService, OrderService orderService)
+        public BuyerController(IMapper mapper, IService<Item> itemService, OrderService orderService, UserIdService<Buyer> userIdService)
         {
             _mapper = mapper;
             _itemService = itemService;
             _orderService = orderService;
+            _userIdService = userIdService;
         }
 
         [HttpGet]
-        public IActionResult CreateOrder(int? orderId)
+        public async Task<IActionResult> CreateOrder(int? orderId)
         {
+            var buyerId = await _userIdService.GetIdByUserNameAsync(User.Identity!.Name!);
             OrderDto? orderDto = orderId.HasValue ?
-                _mapper.Map<OrderDto>(_orderService.GetPendingOrdersByBuyerId(39).Where(o => o.Id == orderId).First())
+                _mapper.Map<OrderDto>(_orderService.GetPendingOrdersByBuyerId(buyerId).Where(o => o.Id == orderId).First())
                 : null;
             var itemsDto = _itemService.GetAll().Select(i => _mapper.Map<ItemDto>(i)).ToList();
             return View(new ItemsOrderViewModel(orderDto, itemsDto));
@@ -36,16 +42,19 @@ namespace AgroCare.Controllers
 
         [HttpPost]
         public async Task<IActionResult> CreateOrder(int? orderId, List<OrderDetail> items,
-            [FromServices] UserIdService<Buyer> userId)
+            [FromServices] IHubContext<BuyerAdminHub> hub,
+            [FromServices] EngineerService engineerService)
         {
             if (ModelState.IsValid)
             {
+                int adminId = 0;
                 if (!orderId.HasValue)
                 {
+                    adminId = GetAdmin(engineerService);
                     Order newOrder = new()
                     {
-                        BuyerId = await userId.GetIdByUserNameAsync(User.Identity!.Name!),
-                        AdminEngineerId = GetAdmin(),
+                        BuyerId = await _userIdService.GetIdByUserNameAsync(User.Identity!.Name!),
+                        AdminEngineerId = adminId,
                         OrderDate = DateOnly.FromDateTime(DateTime.Now),
                         OrderDetails = items
                     };
@@ -60,6 +69,7 @@ namespace AgroCare.Controllers
                     var oldOrder = await _orderService.GetOneAsync(orderId.Value);
                     if(oldOrder != null)
                     {
+                        adminId = oldOrder.AdminEngineerId;
                         await _orderService.RemoveOrderDetailsAsync(oldOrder);
                         oldOrder.OrderDetails = items;
                         if (!await _orderService.EditAsync(oldOrder))
@@ -70,27 +80,38 @@ namespace AgroCare.Controllers
                     }
                 }
 
+                await hub.Clients.All.SendAsync("ChangeIcon", (await engineerService.GetOneAsync(adminId))!.UserName);
                 return RedirectToAction(nameof(ShowPendingOrders));
             }
 
             return RedirectToAction(nameof(CreateOrder));
         }
-        private int GetAdmin()
+        private int GetAdmin(EngineerService engineerService)
         {
-            var Admins = _orderService.GetPendingOrders().GroupBy(order => order.AdminEngineerId)
-                .Select(group => new { adminId = group.Key, pendingOrdersCount = group.Count() })
-                .OrderBy(admin => admin.pendingOrdersCount).ToList();
-            return Admins[0].adminId;
+            var adminsId = engineerService.GetAll().Where(e => e.EngineerType.Name.Contains("admin")).Select(e => e.Id).ToList();
+            int lowest = int.MaxValue, adminId = 0;
+            foreach (var admin in adminsId)
+            {
+                int tmp = _orderService.GetPendingOrdersByAdminId(admin).Count();
+                if (tmp < lowest)
+                {
+                    lowest = tmp;
+                    adminId = admin;
+                }
+            }
+            return adminId;
         }
 
-        public IActionResult ShowPendingOrders()
+        public async Task<IActionResult> ShowPendingOrders()
         {
-            var pending = _orderService.GetPendingOrdersByBuyerId(39).Select(i => _mapper.Map<OrderDto>(i));
+            var buyerId = await _userIdService.GetIdByUserNameAsync(User.Identity!.Name!);
+            var pending = _orderService.GetPendingOrdersByBuyerId(buyerId).Select(i => _mapper.Map<OrderDto>(i));
             return View(pending.ToList());
         }
-        public IActionResult ShowUnderwayOrders()
+        public async Task<IActionResult> ShowUnderwayOrders()
         {
-            var underway = _orderService.GetUnderwayOrdersByBuyerId(39).Select(i => _mapper.Map<OrderDto>(i));
+            var buyerId = await _userIdService.GetIdByUserNameAsync(User.Identity!.Name!);
+            var underway = _orderService.GetUnderwayOrdersByBuyerId(buyerId).Select(i => _mapper.Map<OrderDto>(i));
             return View(underway.ToList());
         }
 

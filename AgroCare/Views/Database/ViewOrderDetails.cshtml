@@ -1,0 +1,225 @@
+﻿@{
+    Layout = "_DatabaseLayout";
+}
+@model List<OrderDto>
+@inject IService<Item> itemService
+@inject OrderService orderService
+@inject IMapper mapper
+@{
+    var items = itemService.GetAll().Select(i => mapper.Map<ItemDto>(i)).ToList();
+    var ordersId = orderService.GetAll().Select(o => o.Id).ToList();
+}
+
+
+<div class="recent_payments">
+    <div class="title">
+        <h2>Order Details</h2>
+        <div class="action">
+            <button onclick="addHeader()" data-bs-toggle="modal" data-bs-target="#Orderdetails-edit">Add</button>
+        </div>
+    </div>
+    <table>
+        <tr>
+            <th>Id</th>
+            <th>Delivery Date</th>
+            <th>Item</th>
+            <th>Kilos</th>
+            <th>Kilo Price</th>
+            <th>Feedback</th>
+            <th>Order Id</th>
+            <th></th>
+        </tr>
+        @{
+            int i = 0;
+        }
+        @foreach (var order in Model)
+        {
+            @foreach (var orderDetail in order.OrderDetails)
+            {
+                <tr id="tr@(i)">
+                    <td data-key="Id">@orderDetail.Id</td>
+                    <td data-key="DeliveryDate">@orderDetail.DeliveryDate.ToString("yyyy-MM-dd")</td>
+
+                    <td data-key="ItemId" style="display: none">@orderDetail.Item.Id</td>
+                    <td data-key="none">@orderDetail.Item.Name</td>
+
+                    <td data-key="Kilos">@orderDetail.Kilos</td>
+                    <td data-key="KiloPrice">@orderDetail.KiloPrice</td>
+                    <td data-key="Feedback">@(orderDetail.Feedback ?? "")</td>
+                    <td data-key="OrderId">@order.Id</td>
+                    <td data-key="none">
+                        <div class="icon">
+                            <span onclick="fillEditInfo('tr@(i)')" class="material-symbols-outlined" data-bs-toggle="modal" data-bs-target="#Orderdetails-edit">surgical</span>
+                            <span class="material-symbols-outlined" onclick="deleteRecord('tr@(i)')">delete</span>
+                        </div>
+                    </td>
+                </tr>
+                i++;
+            }
+        }
+    </table>
+</div>
+
+<!-- start EDIT orderdetails -->
+<div class="modal fade" id="Orderdetails-edit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-10" id="exampleModalLabel">Edit Order Detail</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form method="post">
+                    <div class="">
+                        <div class="main-user-info">
+                            <div class="row1">
+                                <div class="user-input-box">
+                                    <label style="color: black;">Id:</label>
+                                    <input type="text" name="Id" value="0" readonly />
+                                </div>
+                                <div class="user-input-box">
+                                    <label style="color: black;">Delivery Date:</label>
+                                    <input type="date" id="e_date" name="DeliveryDate" required />
+                                </div>
+                            </div>
+                            <div class="row2">
+                                <div class="user-input-box">
+                                    <label style="color: black;">Item:</label>
+                                    <select required name="ItemId">
+                                        @foreach (var item in items)
+                                        {
+                                            <option value="@item.Id">@item.Name</option>
+                                        }
+                                    </select>
+                                </div>
+                                <div class="user-input-box">
+                                    <label style="color: black;">Kilos:</label>
+                                    <input type="number" min="0" name="Kilos" required />
+                                </div>
+                                <div class="user-input-box">
+                                    <label style="color: black;">Kilo Price:</label>
+                                    <input type="number" min="0" name="KiloPrice" required />
+                                </div>
+                            </div>
+                            <div class="row3">
+                                <div class="user-input-box">
+                                    <label style="color: black;">Feedback:</label>
+                                    <input type="text" name="Feedback" value="-1" />
+                                </div>
+                                <div class="user-input-box">
+                                    <label style="color: black;">Order Id:</label>
+                                    <select required name="OrderId">
+                                        @foreach (var item in ordersId)
+                                        {
+                                            <option value="@item">@item</option>
+                                        }
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="send"><input type="submit" value="Edit"></div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end EDIT orderdetails -->
+
+<script>
+    function addHeader() {
+        document.querySelector('#Orderdetails-edit h1').textContent = "Add Order Detail";
+        document.querySelector('#Orderdetails-edit [type="submit"]').value = "Add";
+    }
+
+    function fillEditInfo(trId) {
+        document.querySelector('#Orderdetails-edit h1').textContent = "Edit Order Detail";
+        document.querySelector('#Orderdetails-edit [type="submit"]').value = "Edit";
+
+        let cells = document.getElementById(trId).querySelectorAll('td');
+        let data = {};
+
+        cells.forEach(cell => {
+            let key = cell.getAttribute('data-key');
+            if (key !== 'none') {
+                data[key] = cell.textContent;
+            }
+        });
+
+        document.querySelector('#Orderdetails-edit [name="Id"]').value = data.Id;
+        document.querySelector('#Orderdetails-edit [name="DeliveryDate"]').value = data.DeliveryDate;
+        document.querySelector('#Orderdetails-edit [name="ItemId"]').value = data.ItemId;
+        document.querySelector('#Orderdetails-edit [name="Kilos"]').value = data.Kilos;
+        document.querySelector('#Orderdetails-edit [name="KiloPrice"]').value = data.KiloPrice;
+        document.querySelector('#Orderdetails-edit [name="Feedback"]').value = data.Feedback;
+        document.querySelector('#Orderdetails-edit [name="OrderId"]').value = data.OrderId;
+    }
+
+    function deleteRecord(trId) {
+        let cells = document.getElementById(trId).querySelectorAll('td');
+        let data = {};
+
+        cells.forEach(cell => {
+            let key = cell.getAttribute('data-key');
+            if (key !== 'none') {
+                data[key] = cell.textContent;
+            }
+        });
+        data.key = "OrderDetail";
+
+        fetch('/database/delete', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        }).then(response => response.text())
+            .then(data => {
+                if (data === 'true') {
+                    location.reload();
+                }
+            });
+    }
+
+    document.querySelector('form').addEventListener('submit', event => {
+        event.preventDefault();
+        let form = document.querySelector('form');
+        let formData = {};
+
+        const date1 = "@DateOnly.FromDateTime(DateTime.Now).ToString("yyyy-MM-dd")";
+        const date2 = form.elements['DeliveryDate'].value;
+        if (date2 < date1) {
+            alert('Delivery Date is incorrect.');
+            return;
+        }
+
+        formData.Id = form.elements['Id'].value;
+        formData.DeliveryDate = form.elements['DeliveryDate'].value;
+        formData.ItemId = form.elements['ItemId'].value;
+        formData.Kilos = form.elements['Kilos'].value;
+        formData.KiloPrice = form.elements['KiloPrice'].value;
+        formData.Feedback = form.elements['Feedback'].value;
+        formData.OrderId = form.elements['OrderId'].value;
+        formData.key = 'OrderDetail';
+
+        let header = document.querySelector('#Orderdetails-edit h1').textContent;
+        let action;
+        if (header === 'Add Order Detail') {
+            action = 'add';
+        } else {
+            action = 'edit';
+        }
+        fetch(`/database/${action}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(formData)
+        }).then(response => response.text())
+            .then(data => {
+                if (data === 'true') {
+                    location.reload();
+                }
+            });
+    });
+</script>

@@ -13,10 +13,11 @@ closeShopping.addEventListener('click', () => {
     body.classList.remove('active');
 });
 
-function addToCard(id, name, price) {
+function addToCard(id, name, imagePath, price) {
     if (listCards[id] == null) {
         var item = {
             name: name,
+            imagePath: imagePath,
             price: price,
             quantity: 1,
             date: '',
@@ -38,9 +39,9 @@ function reloadCard() {
             count = count + value.quantity;
             let newDiv = document.createElement('li');
             newDiv.innerHTML = `
-                    <div><img src=""/></div>
+                    <div><img src="../images/items/${value.imagePath}"/></div>
                     <div>${value.name}</div>
-                    <input type="date" value="${value.date}" class="date" id="deliveryDate${index}" name="items[${index}].deliveryDate" onchange="saveDate(${key}, ${index})">
+                    <input type="date" value="${value.date}" class="date" id="deliveryDate${index}" name="items[${index}].deliveryDate" onchange="saveDate(${key}, ${index})" required>
                     <input type="number" id="itemId" name="items[${index}].itemId" value="${key}" hidden>
                     <input type="number" id="kiloPrice" name="items[${index}].kiloPrice" value="${value.price}" hidden>
                     <div>${value.totalPrice.toLocaleString()}</div>
@@ -70,5 +71,23 @@ function changeQuantity(key, quantity) {
 function saveDate(key, index) {
     listCards[key].date = document.querySelector(`#deliveryDate${index}`).value;
 }
-
 reloadCard();
+
+
+function checkDates(event) {
+    const dateInputs = document.querySelectorAll('input[type="date"]');
+
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+
+    for (const input of dateInputs) {
+        const inputDate = new Date(input.value);
+        if (inputDate < today) {
+            event.preventDefault();
+            alert('One or more dates are earlier than today.');
+            return;
+        }
+    }
+}
+
+document.querySelector('form').addEventListener('submit', checkDates);

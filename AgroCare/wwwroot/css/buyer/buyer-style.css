@@ -12,12 +12,23 @@ body {
     margin: auto;
     transition: 0.8s;
 }
-
-header {
-    display: grid;
-    grid-template-columns: 1fr 80px;
-    margin-top: 50px;
+.arrow_back {
+    display:flex;
+    align-items:center;
 }
+    .arrow_back a {
+        position:relative;
+        top:30px;
+    }
+        .arrow_back a:hover {
+            color:green;
+        }
+
+        header {
+            display: grid;
+            grid-template-columns: 1fr 80px;
+            margin-top: 50px;
+        }
 
     header h1 {
         color: var(--main-color);

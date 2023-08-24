@@ -6,12 +6,12 @@ using AgroCare.Data;
 using Models.Models;
 using Services;
 using AgroCare.Hubs;
-using Microsoft.AspNetCore.Mvc;
 
 namespace AgroCare
 {
     public class Program
     {
+        //cout << "farag" << endl;
         //<farmerId, (code, planId)>
         public static Dictionary<int, (string, int)> PlansCodes = new();
 
@@ -78,13 +78,13 @@ namespace AgroCare
                 new { controller = "Farmer", action = nameof(FarmerController.ShowPlans) });
             app.MapControllerRoute("executive-default",
                 "/executive",
-                new { controller = "Executive", action = nameof(ExecutiveController.ReceivedTasks) });
+                new { controller = "Database", action = nameof(DatabaseController.ViewPlans) });
             app.MapControllerRoute("admin-default",
                 "/admin",
-                new { controller = "Admin", action = nameof(AdminController.ReceivedOrders) });
+                new { controller = "Database", action = nameof(DatabaseController.ViewFarmers) });
             app.MapDefaultControllerRoute();
             app.MapRazorPages();
-            app.MapHub<ChatHub>("/chatHub");
+            app.MapHub<BuyerAdminHub>($"/{nameof(BuyerAdminHub)}");
             #endregion
 
 

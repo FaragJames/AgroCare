@@ -1,0 +1,149 @@
+﻿@inject OrderService orderService
+@inject IMapper mapper
+@inject UserIdService<Engineer> userIdService
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="~/css/database/database.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+
+    <title>Database</title>
+</head>
+<body>
+
+    <div class="side_menuu">
+        <div class="Tables_name">
+            <h1 class="Tables">Tables</h1>
+        </div>
+        <div class="listt">
+            <ul>
+                <li id="farmer">
+                    <a asp-controller="Database" asp-action="@nameof(DatabaseController.ViewFarmers)">Farmers</a>
+                </li>
+                <li id="land">
+                    <a asp-controller="Database" asp-action="@nameof(DatabaseController.ViewLands)">Lands</a>
+                </li>
+                <li id="plan">
+                    <a asp-controller="Database" asp-action="@nameof(DatabaseController.ViewPlans)">Plans</a>
+                </li>
+                <li id="step">
+                    <a asp-controller="Database" asp-action="@nameof(DatabaseController.ViewSteps)">Steps</a>
+                </li>
+                <li id="Step_details">
+                    <a asp-controller="Database" asp-action="@nameof(DatabaseController.ViewStepDetails)">Step Details</a>
+                </li>
+                @if (User.IsInRole("Admin"))
+                {
+                    <li id="Store">
+                        <a asp-controller="Database" asp-action="@nameof(DatabaseController.ViewStores)">Stores</a>
+                    </li>
+                    <li id="Purchase">
+                        <a asp-controller="Database" asp-action="@nameof(DatabaseController.ViewPurchases)">Purchases</a>
+                    </li>
+                    <li id="Purchase_details">
+                        <a asp-controller="Database" asp-action="@nameof(DatabaseController.ViewPurchaseDetails)">Purchase Details</a>
+                    </li>
+                    <li id="Item">
+                        <a asp-controller="Database" asp-action="@nameof(DatabaseController.ViewItems)">Items</a>
+                    </li>
+                    <li id="Order">
+                        <a asp-controller="Database" asp-action="@nameof(DatabaseController.ViewOrders)">Orders</a>
+                    </li>
+                    <li id="Order_details">
+                        <a asp-controller="Database" asp-action="@nameof(DatabaseController.ViewOrderDetails)">Order Details</a>
+                    </li>
+                    <li id="Buyer">
+                        <a asp-controller="Database" asp-action="@nameof(DatabaseController.ViewBuyers)">Buyers</a>
+                    </li>
+                    <li id="Engineer">
+                        <a asp-controller="Database" asp-action="@nameof(DatabaseController.ViewEngineers)">Engineers</a>
+                    </li>
+                }
+            </ul>
+        </div>
+    </div>
+    <div class="containerr">
+        <div class="headerr">
+            <div class="nav">
+                @if (User.IsInRole("Admin"))
+                {
+                    <div class="icon signalr">
+                        <a asp-controller="Admin" asp-action="@nameof(AdminController.ReceivedOrders)" style="color: #158f20;">
+                            <span class="material-symbols-outlined">notifications</span>
+                        </a>
+                    </div>
+                }
+                else if (User.IsInRole("Executive"))
+                {
+                    <div class="icon" onclick="toggleNotifi()">
+                        <span class="material-symbols-outlined">notifications</span>
+                    </div>
+                }
+                @if (User.IsInRole("Executive"))
+                {
+                    <div class="notifi_box" id="box">
+                        <h2>Tasks</h2>
+
+                        @{
+                            var orders = orderService.GetUnderwayOrdersByExecutiveId
+                            (await userIdService.GetIdByUserNameAsync(User.Identity!.Name!))
+                            .Select(o => mapper.Map<OrderDto>(o)).ToList();
+                        }
+                        @foreach (var order in orders)
+                        {
+                            <div class="notifi_item">
+                                <h4>@order.Buyer.Name</h4>
+                                <p>Admin: @order.AdminEngineer.Name</p>
+                                <p>Order Date: @order.OrderDate</p>
+                                <p>@order.OrderDetails.Count Order Details</p>
+                                <a asp-controller="Executive" asp-action="@nameof(ExecutiveController.CreatePlan)" asp-route-orderId="@order.Id">
+                                    <button>Create Plan</button>
+                                </a>
+                            </div>
+                        }
+                    </div>
+                }
+            </div>
+        </div>
+        <div class="content" id="content">
+            @RenderBody()
+        </div>
+    </div>
+    <script src="~/js/database/database_layout.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/lib/signalr/dist/browser/signalr.js"></script>
+    <script>
+        "use strict";
+        var connection = new signalR.HubConnectionBuilder().withUrl("/@(nameof(AgroCare.Hubs.BuyerAdminHub))").build();
+
+        connection.on("ChangeIcon", function (userName) {
+            if (userName === '@User.Identity!.Name') {
+                const iconDiv = document.querySelector('div.signalr');
+                const aElement = iconDiv.querySelector('a');
+                const spans = aElement.querySelectorAll('span');
+
+                for (const span of spans) {
+                    span.remove();
+                }
+
+                const newSpan = document.createElement('span');
+                newSpan.className = 'material-symbols-outlined';
+                newSpan.style.color = 'red';
+                newSpan.textContent = 'notifications_active';
+
+                aElement.appendChild(newSpan);
+            }
+        });
+
+        connection.logging = true;
+        connection.start().then(function () {
+        }).catch(function (err) {
+            return console.error(err.toString());
+        });
+    </script>
+</body>
+</html>

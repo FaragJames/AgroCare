@@ -68,6 +68,8 @@
             else if (Model.Role.Equals("Farmer"))
             {
                 <div class="land-form0">
+                    <br />
+                    <h3>Land #0</h3>
                     <div class="form-group">
                         <label for="location0">Location:</label>
                         <input type="text" class="form-control" id="location0" name="Lands[0].Location" required>
@@ -117,6 +119,8 @@
                         landForm.className = 'land-form' + landCount;
 
                         let inputs = landForm.querySelectorAll('input, select');
+                        let header3 = landForm.querySelector('h3');
+                        header3.textContent = header3.textContent.replace(/\d+$/, landCount)
 
                         inputs.forEach(input => {
                             input.id = input.id.replace(/\d+$/, landCount);

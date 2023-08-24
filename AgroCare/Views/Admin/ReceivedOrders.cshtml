@@ -1,0 +1,90 @@
+﻿@model List<OrderDto>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="~/css/admin/admin_received_orders.css">
+
+    <title>Orders</title>
+</head>
+
+<body>
+    <div class="container">
+        <ul class="status">
+            <div class="first-li">
+                <select id="mySelect">
+                    <option value="none" selected>Choose an Order</option>
+                    @{
+                        int i = 0;
+                    }
+
+                    @foreach (var order in Model)
+                    {
+                        <option value="table@(i + 1)" data-order-id="@order.Id" style="font-weight: @(!order.ClickedByAdmin ? "bold" : "")">
+                            Order@(i + 1)
+                        </option>
+                        i++;
+                    }
+                </select>
+                <span>@(Model.Where(o => !o.ClickedByAdmin).Count())</span>
+            </div>
+        </ul>
+        <div class="table wait">
+            <table>
+                <thead>
+                    <tr>
+                        <td>Item Name</td>
+                        <td>Quantity</td>
+                        <td>Delivery Date</td>
+                        <td>Message</td>
+                    </tr>
+                </thead>
+                @for (i = 0; i < Model.Count; i++)
+                {
+                    <tbody class="table@(i + 1)" style="display: none">
+                        @{
+                            int j = 0;
+                        }
+                        @foreach (var item in Model[i].OrderDetails)
+                        {
+                            <tr>
+                                <td>@item.Item.Name</td>
+                                <td>@item.Kilos</td>
+                                <td>@item.DeliveryDate</td>
+                                <td><input type="text" name="Feedbacks[@(j++)]" value="@(item.Feedback ?? "")" /></td>
+                            </tr>
+                        }
+                        @{
+                            j = 0;
+                        }
+                    </tbody>
+                }
+            </table>
+        </div>
+    </div>
+    @for (i = 0; i < Model.Count; i++)
+    {
+        <div class="send tfoot@(i + 1)" style="display: none">
+            <div class="ENG">
+                <button type="button" class="button1" onclick="moveToDatabase()">Database</button>
+
+            </div>
+            <div class="input">
+                <div class="g">
+                    <input class="inputt" type="number" min="0" name="TeamId" value="0" />
+                </div>
+
+                <div class="button2">
+                    <button onclick="sendToDatabase(@(i + 1), @Model[i].Id)">Send</button>
+                </div>
+            </div>
+
+        </div>
+    }
+
+    <script src="~/js/admin/admin_received_orders.js"></script>
+</body>
+</html>

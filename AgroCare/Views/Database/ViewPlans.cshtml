@@ -1,0 +1,204 @@
+﻿@{
+    Layout = "_DatabaseLayout";
+}
+@model List<PlanDto>
+@inject LandService landService
+@inject IService<OrderDetail> oDetailService
+@{
+    var landsId = landService.GetAll().Select(l => l.Id).ToList();
+    var oDetailsId = oDetailService.GetAll().Select(oD => oD.Id).ToList();
+}
+
+<div class="recent_payments">
+    <div class="title">
+        <h2>Plans</h2>
+        <div class="action">
+            <button onclick="addHeader()" data-bs-toggle="modal" data-bs-target="#plan-edit">Add</button>
+        </div>
+    </div>
+    <table>
+        <tr>
+            <th>Id</th>
+            <th>Land Id</th>
+            <th>Order Detail</th>
+            <th>Start Date</th>
+            <th>Finish Date</th>
+            <th>Quantity</th>
+            <th></th>
+        </tr>
+        @for (int i = 0; i < Model.Count; i++)
+        {
+            <tr id="tr@(i)">
+                <td data-key="Id">@Model[i].Id</td>
+                <td data-key="LandId">@Model[i].Land.Id</td>
+                <td data-key="OrderDetailsId">@Model[i].OrderDetails.Id</td>
+                <td data-key="StartDate">@Model[i].StartDate.ToString("yyyy-MM-dd")</td>
+                <td data-key="FinishDate">@Model[i].FinishDate.ToString("yyyy-MM-dd")</td>
+                <td data-key="Quantity">@Model[i].Quantity</td>
+                <td data-key="none">
+                    <div class="icon">
+                        <span onclick="fillEditInfo('tr@(i)')" class="material-symbols-outlined" data-bs-toggle="modal" data-bs-target="#plan-edit">surgical</span>
+                        <span class="material-symbols-outlined" onclick="deleteRecord('tr@(i)')">delete</span>
+                    </div>
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+
+<!-- start EDIT plans -->
+<div class="modal fade" id="plan-edit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-10" id="exampleModalLabel">Edit Plan</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form method="post">
+                    <div class="">
+                        <div class="main-user-info">
+                            <div class="row1">
+                                <div class="user-input-box">
+                                    <label style="color: black;">Id:</label>
+                                    <input type="text" name="Id" value="0" readonly/>
+                                </div>
+                                <div class="user-input-box">
+                                    <label style="color: black;">Land Id:</label>
+                                    <select required name="LandId">
+                                        @foreach (var item in landsId)
+                                        {
+                                            <option value="@item">@item</option>
+                                        }
+                                    </select>
+                                </div>
+                                <div class="user-input-box">
+                                    <label style="color: black;">Order Detail:</label>
+                                    <select required name="OrderDetailsId">
+                                        @foreach (var item in oDetailsId)
+                                        {
+                                            <option value="@item">@item</option>
+                                        }
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row2">
+                                <div class="user-input-box">
+                                    <label style="color: black;">Start Date:</label>
+                                    <input type="date" name="StartDate" required/>
+                                </div>
+                                <div class="user-input-box">
+                                    <label style="color: black;">Finish Date:</label>
+                                    <input type="date" name="FinishDate" required />
+                                </div>
+                                <div class="user-input-box">
+                                    <label style="color: black;">Quantity:</label>
+                                    <input type="number" min="0" name="Quantity" required />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="send"><input type="submit" value="Edit"></div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end EDIT plan -->
+
+<script>
+    function addHeader() {
+        document.querySelector('#plan-edit h1').textContent = "Add Plan";
+        document.querySelector('#plan-edit [type="submit"]').value = "Add";
+    }
+
+    function fillEditInfo(trId) {
+        document.querySelector('#plan-edit h1').textContent = "Edit Plan";
+        document.querySelector('#plan-edit [type="submit"]').value = "Edit";
+
+        let cells = document.getElementById(trId).querySelectorAll('td');
+        let data = {};
+
+        cells.forEach(cell => {
+            let key = cell.getAttribute('data-key');
+            if (key !== 'none') {
+                data[key] = cell.textContent;
+            }
+        });
+
+        document.querySelector('#plan-edit [name="Id"]').value = data.Id;
+        document.querySelector('#plan-edit [name="LandId"]').value = data.LandId;
+        document.querySelector('#plan-edit [name="OrderDetailsId"]').value = data.OrderDetailsId;
+        document.querySelector('#plan-edit [name="StartDate"]').value = data.StartDate;
+        document.querySelector('#plan-edit [name="FinishDate"]').value = data.FinishDate;
+        document.querySelector('#plan-edit [name="Quantity"]').value = data.Quantity;
+    }
+
+    function deleteRecord(trId) {
+        let cells = document.getElementById(trId).querySelectorAll('td');
+        let data = {};
+
+        cells.forEach(cell => {
+            let key = cell.getAttribute('data-key');
+            if (key !== 'none') {
+                data[key] = cell.textContent;
+            }
+        });
+        data.key = "Plan";
+
+        fetch('/database/delete', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        }).then(response => response.text())
+            .then(data => {
+                if (data === 'true') {
+                    location.reload();
+                }
+            });
+    }
+
+    document.querySelector('form').addEventListener('submit', event => {
+        event.preventDefault();
+        let form = document.querySelector('form');
+        let formData = {};
+
+        const today = "@DateOnly.FromDateTime(DateTime.Now).ToString("yyyy-MM-dd")";
+        const start = form.elements['StartDate'].value;
+        const finish = form.elements['FinishDate'].value;
+        if (start < today || start > finish || finish < today) {
+            alert('Start/Finish Date is incorrect.');
+            return;
+        }
+
+        formData.Id = form.elements['Id'].value;
+        formData.LandId = form.elements['LandId'].value;
+        formData.OrderDetailsId = form.elements['OrderDetailsId'].value;
+        formData.StartDate = form.elements['StartDate'].value;
+        formData.FinishDate = form.elements['FinishDate'].value;
+        formData.Quantity = form.elements['Quantity'].value;
+        formData.key = 'Plan';
+
+        let header = document.querySelector('#plan-edit h1').textContent;
+        let action;
+        if (header === 'Add Plan') {
+            action = 'add';
+        } else {
+            action = 'edit';
+        }
+        fetch(`/database/${action}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(formData)
+        }).then(response => response.text())
+            .then(data => {
+                if (data === 'true') {
+                    location.reload();
+                }
+            });
+    });
+</script>

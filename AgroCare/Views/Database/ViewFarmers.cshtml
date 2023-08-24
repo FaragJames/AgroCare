@@ -1,0 +1,157 @@
+﻿@{
+    Layout = "_DatabaseLayout";
+}
+@model List<FarmerDto>
+@{
+    bool admin = User.IsInRole("Admin");
+}
+
+<div class="recent_payments">
+    <div class="title">
+        <h2>Farmers</h2>
+        <div class="action">
+            @if (admin)
+            {
+                <button><a asp-controller="Admin" asp-action="@nameof(AdminController.Register)">Add</a></button>
+            }
+        </div>
+    </div>
+    <table>
+        <tr>
+            <th>Id</th>
+            <th>UserName</th>
+            <th>Name</th>
+            <th>Phone</th>
+            <th></th>
+        </tr>
+        @for (int i = 0; i < Model.Count; i++)
+        {
+            <tr id="tr@(i)">
+                <td data-key="Id">@Model[i].Id</td>
+                <td data-key="UserName">@Model[i].UserName</td>
+                <td data-key="Name">@Model[i].Name</td>
+                <td data-key="Phone">@Model[i].Phone</td>
+                <td data-key="none">
+                    @if (admin)
+                    {
+                        <div class="icon">
+                            <span onclick="fillEditInfo('tr@(i)')" class="material-symbols-outlined" data-bs-toggle="modal" data-bs-target="#farmer-edit">surgical</span>
+                            <span class="material-symbols-outlined" onclick="deleteRecord('tr@(i)')">delete</span>
+                        </div>
+                    }
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+
+<!-- Farmer EDIT -->
+<div class="modal fade" id="farmer-edit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-10" id="exampleModalLabel">Edit Farmer</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+
+                <form method="post">
+                    <div class="">
+                        <div class="main-user-info">
+                            <div class="user-input-box">
+                                <label style="color: black;">Id:</label>
+                                <input type="text" name="Id" value="0" readonly />
+                            </div>
+                            <div class="user-input-box">
+                                <label style="color: black;">UserName:</label>
+                                <input type="text" name="UserName" pattern=".+_Farmer" placeholder="example_Farmer" required />
+                            </div>
+                            <div class="user-input-box">
+                                <label style="color: black;">Name:</label>
+                                <input type="text" name="Name" required />
+                            </div>
+                            <div class="user-input-box">
+                                <label style="color: black;">Phone:</label>
+                                <input type="tel" pattern="[+][9][6][3][9][0-9]{8}" placeholder="+963900000000" name="Phone" required />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="send">
+                        <input type="submit" value="Edit">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end EDIT -->
+
+<script>
+    function fillEditInfo(trId) {
+        let cells = document.getElementById(trId).querySelectorAll('td');
+        let data = {};
+
+        cells.forEach(cell => {
+            let key = cell.getAttribute('data-key');
+            if (key !== 'none') {
+                data[key] = cell.textContent;
+            }
+        });
+
+        document.querySelector('#farmer-edit [name="Id"]').value = data.Id;
+        document.querySelector('#farmer-edit [name="UserName"]').value = data.UserName;
+        document.querySelector('#farmer-edit [name="Name"]').value = data.Name;
+        document.querySelector('#farmer-edit [name="Phone"]').value = data.Phone;
+    }
+
+    function deleteRecord(trId) {
+        let cells = document.getElementById(trId).querySelectorAll('td');
+        let data = {};
+
+        cells.forEach(cell => {
+            let key = cell.getAttribute('data-key');
+            if (key !== 'none') {
+                data[key] = cell.textContent;
+            }
+        });
+        data.key = "Farmer";
+
+        fetch('/database/delete', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        }).then(response => response.text())
+            .then(data => {
+                if (data === 'true') {
+                    location.reload();
+                }
+            });
+    }
+
+    document.querySelector('form').addEventListener('submit', event => {
+        event.preventDefault();
+        let form = document.querySelector('form');
+        let formData = {};
+
+        formData.Id = form.elements['Id'].value;
+        formData.UserName = form.elements['UserName'].value;
+        formData.Name = form.elements['Name'].value;
+        formData.Phone = form.elements['Phone'].value;
+        formData.key = 'Farmer';
+
+        fetch('/database/edit', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(formData)
+        }).then(response => response.text())
+            .then(data => {
+                if (data === 'true') {
+                    location.reload();
+                }
+            });
+    });
+</script>

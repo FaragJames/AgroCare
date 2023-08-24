@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="~/css/store/store_order.css">
+    <link rel="stylesheet" href="~/css/store/normalize.css">
+    <link rel="stylesheet" href="~/css/store/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,600,0,0" />
+    <!-- <link rel="stylesheet" href="main.css"> -->
+
+    <title>Add Farmer's Purchases</title>
+</head>
+<body>
+    <div class="leftt">
+        <div class="img"></div>
+        <div class="img1"></div>
+        <div class="img2"></div>
+    </div>
+
+    <div class="right">
+        <div class="box">
+            <h1 class="form-title">New Process Of Adding Purchases..</h1>
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <form>
+                <div class="main-user-info">
+                    <div class="user-input-box">
+                        <label for="Item">Item Name :</label>
+                        <input id="Item" name="Item" type="text" required />
+                    </div>
+                    <div class="user-input-box input">
+                        <label for="quantity">Quantity :</label>
+                        <input id="quantity" name="quantity" type="number" required min="1" />
+                    </div>
+                    <div class="user-input-box input">
+                        <label for="price">Price :</label>
+                        <input id="price" name="price" required />
+                    </div>
+                    <div class="user-input-box input">
+                        <label for="details"> Details :</label>
+                        <input id="details" name="Details" type="text" />
+                    </div>
+                    <div class="user-input-box input ">
+                        <label for="IsRented">Is For…?</label>
+                        <select name="IsRented" id="IsRented">
+                            <option value="">None</option>
+                            <option value="Buying"> Buying </option>
+                            <option value="Renting"> Renting </option>
+                        </select>
+                    </div>
+                    <div class="form-submit-btn add">
+                        <button class="material-symbols-outlined" id="add" type="button">add_circle</button>
+                    </div>
+                </div>
+                <div id="errors"></div>
+
+                <table>
+                    <tr>
+                        <th>item</th>
+                        <th>Quantity</th>
+                        <th>Price</th>
+                        <th>Details</th>
+                        <th>Is For </th>
+                    </tr>
+                    <tbody id="tbody"> </tbody>
+                </table>
+                <div class="form-submit-btn last_submit">
+                    <div class="code">
+                        <label for="code">Code :</label>
+                        <input id="code" name="Code" required />
+                        <label for="farmerId">Farmer ID :</label>
+                        <input id="farmerId" name="FarmerId" required />
+                    </div>
+                    <button id="save" type="submit" disabled>Save</button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+  
+    <script src="~/js/store/AddPurchase.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</body>
+</html>
+

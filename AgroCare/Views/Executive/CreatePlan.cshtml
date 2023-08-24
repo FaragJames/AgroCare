@@ -1,0 +1,141 @@
+﻿@model Plsn_Step_Oreder_DetailsView
+@{
+    int i = 1;
+    int j = 1;
+}
+@inject PlanService planservice
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="~/css/executive/plan.css">
+    <link rel="stylesheet" href="~/css/executive/normalize.css">
+    <link rel="stylesheet" href="~/css/executive/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,600,0,0" />
+
+    <title> Create PLAN </title>
+</head>
+
+<body>
+    <div class="leftt">
+        <div class="img"></div>
+        <div class="img1"></div>
+        <div class="img2"></div>
+    </div>
+
+    <div class="right">
+        <div class="box1">
+            <h3>Order Deatils</h3>
+            @foreach (var Order_Det in Model.orderdetails)
+            {
+                <div class="item1">
+                    <h4>#@(i++)</h4>
+                    <div class="details">
+                        <span></span>
+                        <div class="d1">@Order_Det.Item.Name</div>
+                        <div class="d2">@(Order_Det.Kilos - planservice.GetAll().Where(p => p.OrderDetailsId == Order_Det.Id).Select(p => p.Quantity).Sum())</div>
+                        <div class="d3">@Order_Det.DeliveryDate</div>
+                    </div>
+                </div>
+            }
+        </div>
+        <div class="box">
+            <h1 class="form-title">New Plan</h1>
+            <form>
+                <div id="errors"></div>
+                <div class="">
+                    <div class="main-user-info">
+                        <div class="land">
+                            <button><a asp-controller="Database" asp-action="@nameof(DatabaseController.ViewPlans)">Database</a></button>
+                        </div>
+                        <div class="user-input-box">
+                            <label for="OrderDetailId">Order Detail</label>
+                            <select id="OrderDetailId" name="OrderDetailId" required>
+
+                                @foreach (var Order_Det in Model.orderdetails)
+                                {
+                                    <option value="@Order_Det.Id">@(j++)</option>
+                                }
+                            </select>
+                        </div>
+                        <div class="user-input-box">
+                            <label for="LandId">Land ID</label>
+                            <input id="LandId" name="LandId" class="land_b" required />
+                        </div>
+                        <div class="user-input-box">
+                            <label for="StartDate"> Start Date: </label>
+                            <input type="date" min="2023-8-22" id="StartDate" name="StartDate" required />
+                        </div>
+                        <div class="user-input-box">
+                            <label for="FinishDate">End Date: </label>
+                            <input type="date" id="FinishDate" min="2023-8-27" name="FinishDate" required />
+                        </div>
+                        <div class="user-input-box">
+                            <label for="Quantity"> Kilos Expected: </label>
+                            <input type="number" id="Quantity" name="Quantity" required />
+                        </div>
+                    </div>
+                </div>
+                <div class="steps">
+                    <h1 class="form-title">Plan Steps</h1>
+                    <div class="form-submit-btn">
+                        <div class="user-input-box">
+                            <label for="ActionId">Action</label>
+                            <select name="ActionId" id="ActionId" class="form-control">
+                                @foreach (var action in Model.Actions)
+                                {
+                                    <option value="@action.Id">@action.Name</option>
+                                }
+                            </select>
+                        </div>
+                        <div class="user-input-box">
+                            <label for="EstimatedStartDate"> Start Date: </label>
+                            <input type="date" id="EstimatedStartDate" name="EstimatedStartDate" />
+                        </div>
+                        <div class="user-input-box">
+                            <label for="EstimatedFinishDate">End Date: </label>
+                            <input type="date" id="EstimatedFinishDate" name="EstimatedFinishDate" />
+                        </div>
+                        <div class="user-input-box">
+                            <label for="AgriculturalItemId">hoe</label>
+                            <select name="AgriculturalItemId" id="AgriculturalItemId" class="form-control">
+                                @foreach (var Item in Model.AgriculturalItems)
+                                {
+                                    <option value="@Item.Id">@Item.Name</option>
+                                }
+                            </select>
+                        </div>
+                        <div class="user-input-box">
+                            <label for="Quantity1"> Quantity: </label>
+                            <input type="number" id="Quantity1" name="Quantity1" />
+                        </div>
+                        <div class="add">
+                            <button type="button" id="add" class="material-symbols-outlined">add_circle</button>
+                        </div>
+                       
+                    </div>
+                    <table>
+                        <tr>
+                            <th>Action Step:</th>
+                            <th>Start Date:</th>
+                            <th>End Date:</th>
+                            <th>Agricultural Item:</th>
+                            <th>Quantity:</th>
+                        </tr>
+                        <tbody id="tbody"></tbody>
+                    </table>
+                    <button class="send" id="save" type="submit" disabled>Create</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="~/js/executive/main.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</body>
+
+</html>

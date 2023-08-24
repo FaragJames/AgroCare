@@ -6,13 +6,21 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Pending</title>
-
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
     <link rel="stylesheet" href="~/css/buyer/buyer-style.css" />
+    
+    <title>Pending</title>
 </head>
 
 <body class="">
     <div class="container">
+        <div class="arrow_back">
+            <a asp-action="CreateOrder">
+                <span class="material-symbols-outlined">
+                    arrow_back
+                </span>
+            </a>
+        </div>
         <ul class="status">
             <div class="first-li">
                 <select id="mySelect">
@@ -31,13 +39,15 @@
                 </select>
                 <span>@(Model.Where(o => !o.ClickedByBuyer).Count())</span>
             </div>
-            <li class="active" data-state="wait">Waiting</li>
+
+            <li class="active" data-state="wait">Pending</li>
             <li data-state="excute">
                 <a asp-action="ShowUnderwayOrders" style="text-decoration: none">
                     Underway
                 </a>
             </li>
         </ul>
+
         <div class="table wait">
             <table>
                 <thead>
@@ -60,26 +70,20 @@
                                 <td>@(item.Feedback ?? "")</td>
                             </tr>
                         }
-                    </tbody>@* 
-                    <tfoot class="table@(i + 1)" style="display: none">
-                        <tr>
-                            <td>
-                                <a asp-action="CreateOrder" asp-route-orderId="@(Model[i].Id)">
-                                    <img class="active" src="~/images/buyer/edit.png" alt="edit" />
-                                </a>
-                            </td>
-                        </tr>
-                    </tfoot> *@
+                    </tbody>
                 }
             </table>
             @foreach (var order in Model)
             {
                 <div class="tfoot" style="display: none">
-                    <a asp-action="CreateOrder" asp-route-orderId="@(order.Id)">
-                        <div class="edit">
-                            <button class="edit_b">Edit</button>
-                        </div>
-                    </a>
+                    @if(order.OrderDetails.Where(oD => oD.Feedback != null && oD.Feedback.Length > 0).Any())
+                    {
+                        <a asp-action="CreateOrder" asp-route-orderId="@(order.Id)">
+                            <div class="edit">
+                                <button class="edit_b">Edit</button>
+                            </div>
+                        </a>
+                    }
                 </div>
             }
         </div>

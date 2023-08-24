@@ -1,0 +1,188 @@
+﻿@{
+    Layout = "_DatabaseLayout";
+}
+@model List<StoreDto>
+@inject IService<StoreType> storeTypeService
+@inject IMapper mapper
+@{
+    var storeTypes = storeTypeService.GetAll().Select(sT => mapper.Map<StoreTypeDto>(sT)).ToList();
+}
+
+
+<div class="recent_payments">
+    <div class="title">
+        <h2>Stores</h2>
+        <div class="action">
+            <button><a asp-controller="Admin" asp-action="@nameof(AdminController.Register)">Add</a></button>
+        </div>
+    </div>
+    <table>
+        <tr>
+            <th class="sto_th">Id</th>
+            <th class="sto_th">UserName</th>
+            <th class="sto_th">Name</th>
+            <th class="sto_th">Phone</th>
+            <th class="sto_th">Location</th>
+            <th class="sto_th">Store Type</th>
+            <th class="sto_th">Image Path</th>
+            <th class="sto_th"></th>
+        </tr>
+        @for (int i = 0; i < Model.Count; i++)
+        {
+            <tr id="tr@(i)">
+                <td class="sto_td" data-key="Id">@Model[i].Id</td>
+                <td class="sto_td" data-key="UserName">@Model[i].UserName</td>
+                <td class="sto_td" data-key="Name">@Model[i].Name</td>
+                <td class="sto_td" data-key="Phone">@Model[i].Phone</td>
+                <td class="sto_td" data-key="Location">@Model[i].Location</td>
+
+                <td class="sto_td" data-key="TypeId" style="display: none">@Model[i].Type.Id</td>
+                <td class="sto_td" data-key="none">@Model[i].Type.Name</td>
+
+                <td class="sto_td" data-key="ImagePath">@Model[i].ImagePath</td>
+                <td class="sto_td" data-key="none">
+                    <div class="icon">
+                        <span onclick="fillEditInfo('tr@(i)')" class="material-symbols-outlined" data-bs-toggle="modal" data-bs-target="#store-edit">surgical</span>
+                        <span class="material-symbols-outlined" onclick="deleteRecord('tr@(i)')">delete</span>
+                    </div>
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+
+
+<!-- start EDIT store -->
+<div class="modal fade" id="store-edit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-10" id="exampleModalLabel">Edit Store</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form method="post">
+                    <div class="">
+                        <div class="main-user-info">
+                            <div class="row1">
+                                <div class="user-input-box">
+                                    <label style="color: black;">Id:</label>
+                                    <input type="text" name="Id" readonly value="0"/>
+                                </div>
+                                <div class="user-input-box">
+                                    <label style="color: black;">UserName:</label>
+                                    <input type="text" name="UserName" pattern=".+_Store" placeholder="example_Store" required />
+                                </div>
+                                <div class="user-input-box">
+                                    <label style="color: black;">Name:</label>
+                                    <input type="text" name="Name" required />
+                                </div>
+                            </div>
+                            <div class="row2">
+                                <div class="user-input-box">
+                                    <label style="color: black;">Phone:</label>
+                                    <input type="tel" pattern="[+][9][6][3][9][0-9]{8}" placeholder="+963900000000" name="Phone" required />
+                                </div>
+                                <div class="user-input-box">
+                                    <label style="color: black;">Location:</label>
+                                    <input type="text" name="Location" required />
+                                </div>
+                                <div class="user-input-box">
+                                    <label style="color: black;">Store Type:</label>
+                                    <select required name="TypeId">
+                                        @foreach (var type in storeTypes)
+                                        {
+                                            <option value="@type.Id">@type.Name</option>
+                                        }
+                                    </select>
+                                </div>
+                                <div class="user-input-box">
+                                    <label style="color: black;">Image Path:</label>
+                                    <input type="file" accept="image/*" name="ImagePath" required />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="send"><input type="submit" value="Edit"></div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end EDIT store -->
+
+<script>
+    function fillEditInfo(trId) {
+        let cells = document.getElementById(trId).querySelectorAll('td');
+        let data = {};
+
+        cells.forEach(cell => {
+            let key = cell.getAttribute('data-key');
+            if (key !== 'none') {
+                data[key] = cell.textContent;
+            }
+        });
+
+        document.querySelector('#store-edit [name="Id"]').value = data.Id;
+        document.querySelector('#store-edit [name="UserName"]').value = data.UserName;
+        document.querySelector('#store-edit [name="Name"]').value = data.Name;
+        document.querySelector('#store-edit [name="Phone"]').value = data.Phone;
+        document.querySelector('#store-edit [name="Location"]').value = data.Location;
+        document.querySelector('#store-edit [name="TypeId"]').value = data.TypeId;
+        document.querySelector('#store-edit [name="ImagePath"]').value = data.ImagePath;
+    }
+
+    function deleteRecord(trId) {
+        let cells = document.getElementById(trId).querySelectorAll('td');
+        let data = {};
+
+        cells.forEach(cell => {
+            let key = cell.getAttribute('data-key');
+            if (key !== 'none') {
+                data[key] = cell.textContent;
+            }
+        });
+        data.key = "Store";
+
+        fetch('/database/delete', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        }).then(response => response.text())
+            .then(data => {
+                if (data === 'true') {
+                    location.reload();
+                }
+            });
+    }
+
+    document.querySelector('form').addEventListener('submit', event => {
+        event.preventDefault();
+        let form = document.querySelector('form');
+        let formData = {};
+
+        formData.Id = form.elements['Id'].value;
+        formData.UserName = form.elements['UserName'].value;
+        formData.Name = form.elements['Name'].value;
+        formData.Phone = form.elements['Phone'].value;
+        formData.Location = form.elements['Location'].value;
+        formData.TypeId = form.elements['TypeId'].value;
+        formData.ImagePath = form.elements['ImagePath'].value;
+        formData.key = 'Store';
+
+        fetch('/database/edit', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(formData)
+        }).then(response => response.text())
+            .then(data => {
+                if (data === 'true') {
+                    location.reload();
+                }
+            });
+    });
+</script>

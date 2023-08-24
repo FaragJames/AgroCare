@@ -21,6 +21,9 @@ namespace Models.Models
         public string Name { get; set; } = null!;
 
         [StringLength(50)]
+        public string Phone { get; set; } = null!;
+
+        [StringLength(50)]
         public string UserName { get; set; } = null!;
 
         [StringLength(50)]
@@ -29,7 +32,6 @@ namespace Models.Models
         [Column("Image_Path")]
         [StringLength(100)]
         public string ImagePath { get; set; } = null!;
-
         
         [InverseProperty("Store")]
         public virtual ICollection<Purchase> Purchases { get; set; } = new List<Purchase>();

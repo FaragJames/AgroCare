@@ -76,9 +76,9 @@ namespace Services
                 return false;
             }
         }
-        public virtual bool DoesExist(int id)
+        public virtual async Task<bool> DoesExist(int id)
         {
-            return GetOneAsync(id) != null;
+            return await GetOneAsync(id) != null;
         }
     }
 }

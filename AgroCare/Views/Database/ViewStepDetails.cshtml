@@ -1,0 +1,187 @@
+﻿@{
+    Layout = "_DatabaseLayout";
+}
+@model List<StepDto>
+@inject IService<AgriculturalItem> agriItemService
+@inject IMapper mapper
+@{
+    var agriItems = agriItemService.GetAll().Select(item => mapper.Map<AgriculturalItemDto>(item)).ToList();
+    var stepsId = Model.Select(s => s.Id).ToList();
+}
+
+<div class="recent_payments">
+    <div class="title">
+        <h2>Step Details</h2>
+        <div class="action">
+            <button onclick="addHeader()" data-bs-toggle="modal" data-bs-target="#Stepdetails-edit">Add</button>
+        </div>
+    </div>
+    <table>
+        <tr>
+            <th>Id</th>
+            <th>Step Id</th>
+            <th>Agricultural Item</th>
+            <th>Quantity</th>
+            <th></th>
+        </tr>
+        @{
+            int i = 0;
+        }
+        @foreach (var step in Model)
+        {
+            @foreach (var stepDetail in step.StepDetails)
+            {
+                <tr id="tr@(i)">
+                    <td data-key="Id">@stepDetail.Id</td>
+                    <td data-key="StepId">@step.Id</td>
+
+                    <td data-key="AgriculturalItemId" style="display: none">@stepDetail.AgriculturalItem.Id</td>
+                    <td data-key="none">@stepDetail.AgriculturalItem.Name</td>
+
+                    <td data-key="Quantity">@stepDetail.Quantity</td>
+                    <td data-key="none">
+                        <div class="icon">
+                            <span onclick="fillEditInfo('tr@(i)')" class="material-symbols-outlined" data-bs-toggle="modal" data-bs-target="#Stepdetails-edit">surgical</span>
+                            <span class="material-symbols-outlined" onclick="deleteRecord('tr@(i)')">delete</span>
+                        </div>
+                    </td>
+                </tr>
+                i++;
+            }
+        }
+    </table>
+</div>
+<!-- start EDIT stepdetails -->
+<div class="modal fade" id="Stepdetails-edit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-10" id="exampleModalLabel">Edit Step Detail</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form method="post">
+                    <div class="">
+                        <div class="main-user-info">
+                            <div class="user-input-box">
+                                <label style="color: black;">Id:</label>
+                                <input type="text" name="Id" value="0" readonly/>
+                            </div>
+                            <div class="user-input-box">
+                                <label style="color: black;">Step:</label>
+                                <select required name="StepId">
+                                    @foreach (var item in stepsId)
+                                    {
+                                        <option value="@item">@item</option>
+                                    }
+                                </select>
+                            </div>
+                            <div class="user-input-box">
+                                <label style="color: black;">Agricultural Item:</label>
+                                <select required name="AgriculturalItemId">
+                                    @foreach (var item in agriItems)
+                                    {
+                                        <option value="@item.Id">@item.Name</option>
+                                    }
+                                </select>
+                            </div>
+
+                            <div class="user-input-box">
+                                <label style="color: black;">Quantity:</label>
+                                <input type="number" min="0" step="0.01" name="Quantity" required />
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="send"><input type="submit" value="Edit"></div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end EDIT stepdetails -->
+
+<script>
+    function addHeader() {
+        document.querySelector('#Stepdetails-edit h1').textContent = "Add Step Detail";
+        document.querySelector('#Stepdetails-edit [type="submit"]').value = "Add";
+    }
+
+    function fillEditInfo(trId) {
+        document.querySelector('#Stepdetails-edit h1').textContent = "Edit Step Detail";
+        document.querySelector('#Stepdetails-edit [type="submit"]').value = "Edit";
+
+        let cells = document.getElementById(trId).querySelectorAll('td');
+        let data = {};
+
+        cells.forEach(cell => {
+            let key = cell.getAttribute('data-key');
+            if (key !== 'none') {
+                data[key] = cell.textContent;
+            }
+        });
+
+        document.querySelector('#Stepdetails-edit [name="Id"]').value = data.Id;
+        document.querySelector('#Stepdetails-edit [name="StepId"]').value = data.StepId;
+        document.querySelector('#Stepdetails-edit [name="AgriculturalItemId"]').value = data.AgriculturalItemId;
+        document.querySelector('#Stepdetails-edit [name="Quantity"]').value = data.Quantity;
+    }
+
+    function deleteRecord(trId) {
+        let cells = document.getElementById(trId).querySelectorAll('td');
+        let data = {};
+
+        cells.forEach(cell => {
+            let key = cell.getAttribute('data-key');
+            if (key !== 'none') {
+                data[key] = cell.textContent;
+            }
+        });
+        data.key = "StepDetail";
+
+        fetch('/database/delete', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        }).then(response => response.text())
+            .then(data => {
+                if (data === 'true') {
+                    location.reload();
+                }
+            });
+    }
+
+    document.querySelector('form').addEventListener('submit', event => {
+        event.preventDefault();
+        let form = document.querySelector('form');
+        let formData = {};
+
+        formData.Id = form.elements['Id'].value;
+        formData.StepId = form.elements['StepId'].value;
+        formData.AgriculturalItemId = form.elements['AgriculturalItemId'].value;
+        formData.Quantity = form.elements['Quantity'].value;
+        formData.key = 'StepDetail';
+
+        let header = document.querySelector('#Stepdetails-edit h1').textContent;
+        let action;
+        if (header === 'Add Step Detail') {
+            action = 'add';
+        } else {
+            action = 'edit';
+        }
+        fetch(`/database/${action}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(formData)
+        }).then(response => response.text())
+            .then(data => {
+                if (data === 'true') {
+                    location.reload();
+                }
+            });
+    });
+</script>

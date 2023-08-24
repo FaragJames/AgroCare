@@ -1,24 +1,24 @@
-Actions: 5.
-AgriculturalItem: 6.
+Actions: 6.
+AgriculturalItem: 8.
 LandType: 5.
-SoilType: 6.
+SoilType: 5.
 EngineerType: 2.
-
-Buyer: 3.
-Farmer: 3.
-Land: 5.
-Engineer: 10.
+StoreType: 3.
 Item: 5.
 
-Order: 3.
-OrderDetail: 5.
-Plan: 5.
+Buyer: 1.
+Farmer: 1.
+Land: 5.
+Engineer: 3.
+Store: 3.
+
+Order: 4.
+OrderDetail: 6.
+Plan: 6.
 Step: 10.
 StepDetail: 6.
 Edit() adds 1 Step, 1 StepDetail.
 Add() adds 1 Plan, 1 Step, 1 StepDetail.
 
-StoreType: 3.
-Store: 3.
 Purchase: 3.
 PurchaseDetail: 6.

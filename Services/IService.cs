@@ -7,6 +7,6 @@
         Task<bool> AddAsync(T entity);
         Task<bool> EditAsync(T entity);
         Task<bool> RemoveAsync(T entity);
-        bool DoesExist(int id);
+        Task<bool> DoesExist(int id);
     }
 }

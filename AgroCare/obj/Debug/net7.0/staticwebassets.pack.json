@@ -5,8 +5,28 @@
       "PackagePath": "staticwebassets\\AgroCare.bundle.scp.css"
     },
     {
+      "Id": "C:\\Programming\\C#\\AgroCare\\AgroCare\\wwwroot\\css\\admin\\admin_received_orders.css",
+      "PackagePath": "staticwebassets\\css\\admin\\admin_received_orders.css"
+    },
+    {
       "Id": "C:\\Programming\\C#\\AgroCare\\AgroCare\\wwwroot\\css\\buyer\\buyer-style.css",
       "PackagePath": "staticwebassets\\css\\buyer\\buyer-style.css"
+    },
+    {
+      "Id": "C:\\Programming\\C#\\AgroCare\\AgroCare\\wwwroot\\css\\database\\database.css",
+      "PackagePath": "staticwebassets\\css\\database\\database.css"
+    },
+    {
+      "Id": "C:\\Programming\\C#\\AgroCare\\AgroCare\\wwwroot\\css\\executive\\all.min.css",
+      "PackagePath": "staticwebassets\\css\\executive\\all.min.css"
+    },
+    {
+      "Id": "C:\\Programming\\C#\\AgroCare\\AgroCare\\wwwroot\\css\\executive\\normalize.css",
+      "PackagePath": "staticwebassets\\css\\executive\\normalize.css"
+    },
+    {
+      "Id": "C:\\Programming\\C#\\AgroCare\\AgroCare\\wwwroot\\css\\executive\\plan.css",
+      "PackagePath": "staticwebassets\\css\\executive\\plan.css"
     },
     {
       "Id": "C:\\Programming\\C#\\AgroCare\\AgroCare\\wwwroot\\css\\farmer\\show_plans.css",
@@ -81,6 +101,22 @@
       "PackagePath": "staticwebassets\\css\\site.css"
     },
     {
+      "Id": "C:\\Programming\\C#\\AgroCare\\AgroCare\\wwwroot\\css\\store\\all.min.css",
+      "PackagePath": "staticwebassets\\css\\store\\all.min.css"
+    },
+    {
+      "Id": "C:\\Programming\\C#\\AgroCare\\AgroCare\\wwwroot\\css\\store\\normalize.css",
+      "PackagePath": "staticwebassets\\css\\store\\normalize.css"
+    },
+    {
+      "Id": "C:\\Programming\\C#\\AgroCare\\AgroCare\\wwwroot\\css\\store\\store.css",
+      "PackagePath": "staticwebassets\\css\\store\\store.css"
+    },
+    {
+      "Id": "C:\\Programming\\C#\\AgroCare\\AgroCare\\wwwroot\\css\\store\\store_order.css",
+      "PackagePath": "staticwebassets\\css\\store\\store_order.css"
+    },
+    {
       "Id": "C:\\Programming\\C#\\AgroCare\\AgroCare\\wwwroot\\favicon.ico",
       "PackagePath": "staticwebassets\\favicon.ico"
     },
@@ -95,6 +131,38 @@
     {
       "Id": "C:\\Programming\\C#\\AgroCare\\AgroCare\\wwwroot\\images\\buyer\\edit.png",
       "PackagePath": "staticwebassets\\images\\buyer\\edit.png"
+    },
+    {
+      "Id": "C:\\Programming\\C#\\AgroCare\\AgroCare\\wwwroot\\images\\database\\Leaves.jpg",
+      "PackagePath": "staticwebassets\\images\\database\\Leaves.jpg"
+    },
+    {
+      "Id": "C:\\Programming\\C#\\AgroCare\\AgroCare\\wwwroot\\images\\executive\\1 (1).jpg",
+      "PackagePath": "staticwebassets\\images\\executive\\1 (1).jpg"
+    },
+    {
+      "Id": "C:\\Programming\\C#\\AgroCare\\AgroCare\\wwwroot\\images\\executive\\1 (2).jpg",
+      "PackagePath": "staticwebassets\\images\\executive\\1 (2).jpg"
+    },
+    {
+      "Id": "C:\\Programming\\C#\\AgroCare\\AgroCare\\wwwroot\\images\\executive\\edit.png",
+      "PackagePath": "staticwebassets\\images\\executive\\edit.png"
+    },
+    {
+      "Id": "C:\\Programming\\C#\\AgroCare\\AgroCare\\wwwroot\\images\\executive\\photo_2023-08-12_20-54-04.jpg",
+      "PackagePath": "staticwebassets\\images\\executive\\photo_2023-08-12_20-54-04.jpg"
+    },
+    {
+      "Id": "C:\\Programming\\C#\\AgroCare\\AgroCare\\wwwroot\\images\\executive\\png_transparent_computer_icons_delete_icon_white_text_logo_removebg.png",
+      "PackagePath": "staticwebassets\\images\\executive\\png_transparent_computer_icons_delete_icon_white_text_logo_removebg.png"
+    },
+    {
+      "Id": "C:\\Programming\\C#\\AgroCare\\AgroCare\\wwwroot\\images\\executive\\pngtree-vector-add-icon-png-image_956621-removebg-preview.png",
+      "PackagePath": "staticwebassets\\images\\executive\\pngtree-vector-add-icon-png-image_956621-removebg-preview.png"
+    },
+    {
+      "Id": "C:\\Programming\\C#\\AgroCare\\AgroCare\\wwwroot\\images\\executive\\صورة-ورق-شجر-طبيعي-جميل.jpg",
+      "PackagePath": "staticwebassets\\images\\executive\\صورة-ورق-شجر-طبيعي-جميل.jpg"
     },
     {
       "Id": "C:\\Programming\\C#\\AgroCare\\AgroCare\\wwwroot\\images\\farmer\\home.svg",
@@ -201,8 +269,64 @@
       "PackagePath": "staticwebassets\\images\\index\\عنب احمر.jpg"
     },
     {
+      "Id": "C:\\Programming\\C#\\AgroCare\\AgroCare\\wwwroot\\images\\items\\Apple.jpg",
+      "PackagePath": "staticwebassets\\images\\items\\Apple.jpg"
+    },
+    {
+      "Id": "C:\\Programming\\C#\\AgroCare\\AgroCare\\wwwroot\\images\\items\\Grapes.jpeg",
+      "PackagePath": "staticwebassets\\images\\items\\Grapes.jpeg"
+    },
+    {
+      "Id": "C:\\Programming\\C#\\AgroCare\\AgroCare\\wwwroot\\images\\items\\Orange.jpeg",
+      "PackagePath": "staticwebassets\\images\\items\\Orange.jpeg"
+    },
+    {
+      "Id": "C:\\Programming\\C#\\AgroCare\\AgroCare\\wwwroot\\images\\items\\Potato.jpeg",
+      "PackagePath": "staticwebassets\\images\\items\\Potato.jpeg"
+    },
+    {
+      "Id": "C:\\Programming\\C#\\AgroCare\\AgroCare\\wwwroot\\images\\items\\Tomato.jpg",
+      "PackagePath": "staticwebassets\\images\\items\\Tomato.jpg"
+    },
+    {
       "Id": "C:\\Programming\\C#\\AgroCare\\AgroCare\\wwwroot\\images\\login\\شخص.png",
       "PackagePath": "staticwebassets\\images\\login\\شخص.png"
+    },
+    {
+      "Id": "C:\\Programming\\C#\\AgroCare\\AgroCare\\wwwroot\\images\\stores\\1 (1).jpg",
+      "PackagePath": "staticwebassets\\images\\stores\\1 (1).jpg"
+    },
+    {
+      "Id": "C:\\Programming\\C#\\AgroCare\\AgroCare\\wwwroot\\images\\stores\\1 (2).jpg",
+      "PackagePath": "staticwebassets\\images\\stores\\1 (2).jpg"
+    },
+    {
+      "Id": "C:\\Programming\\C#\\AgroCare\\AgroCare\\wwwroot\\images\\stores\\Agro Pharmacy.jpeg",
+      "PackagePath": "staticwebassets\\images\\stores\\Agro Pharmacy.jpeg"
+    },
+    {
+      "Id": "C:\\Programming\\C#\\AgroCare\\AgroCare\\wwwroot\\images\\stores\\IAid.jpeg",
+      "PackagePath": "staticwebassets\\images\\stores\\IAid.jpeg"
+    },
+    {
+      "Id": "C:\\Programming\\C#\\AgroCare\\AgroCare\\wwwroot\\images\\stores\\Tool UP.jpeg",
+      "PackagePath": "staticwebassets\\images\\stores\\Tool UP.jpeg"
+    },
+    {
+      "Id": "C:\\Programming\\C#\\AgroCare\\AgroCare\\wwwroot\\images\\stores\\photo_2023-07-25_20-08-02.jpg",
+      "PackagePath": "staticwebassets\\images\\stores\\photo_2023-07-25_20-08-02.jpg"
+    },
+    {
+      "Id": "C:\\Programming\\C#\\AgroCare\\AgroCare\\wwwroot\\images\\stores\\photo_2023-08-12_20-54-04.jpg",
+      "PackagePath": "staticwebassets\\images\\stores\\photo_2023-08-12_20-54-04.jpg"
+    },
+    {
+      "Id": "C:\\Programming\\C#\\AgroCare\\AgroCare\\wwwroot\\images\\stores\\search.png",
+      "PackagePath": "staticwebassets\\images\\stores\\search.png"
+    },
+    {
+      "Id": "C:\\Programming\\C#\\AgroCare\\AgroCare\\wwwroot\\js\\admin\\admin_received_orders.js",
+      "PackagePath": "staticwebassets\\js\\admin\\admin_received_orders.js"
     },
     {
       "Id": "C:\\Programming\\C#\\AgroCare\\AgroCare\\wwwroot\\js\\buyer\\create_buyer_order.js",
@@ -215,6 +339,14 @@
     {
       "Id": "C:\\Programming\\C#\\AgroCare\\AgroCare\\wwwroot\\js\\chat.js",
       "PackagePath": "staticwebassets\\js\\chat.js"
+    },
+    {
+      "Id": "C:\\Programming\\C#\\AgroCare\\AgroCare\\wwwroot\\js\\database\\database_layout.js",
+      "PackagePath": "staticwebassets\\js\\database\\database_layout.js"
+    },
+    {
+      "Id": "C:\\Programming\\C#\\AgroCare\\AgroCare\\wwwroot\\js\\executive\\main.js",
+      "PackagePath": "staticwebassets\\js\\executive\\main.js"
     },
     {
       "Id": "C:\\Programming\\C#\\AgroCare\\AgroCare\\wwwroot\\js\\farmer\\farmer.js",
@@ -235,6 +367,10 @@
     {
       "Id": "C:\\Programming\\C#\\AgroCare\\AgroCare\\wwwroot\\js\\site.js",
       "PackagePath": "staticwebassets\\js\\site.js"
+    },
+    {
+      "Id": "C:\\Programming\\C#\\AgroCare\\AgroCare\\wwwroot\\js\\store\\AddPurchase.js",
+      "PackagePath": "staticwebassets\\js\\store\\AddPurchase.js"
     },
     {
       "Id": "C:\\Programming\\C#\\AgroCare\\AgroCare\\wwwroot\\lib\\bootstrap\\LICENSE",

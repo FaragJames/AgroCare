@@ -1,0 +1,182 @@
+﻿@{
+    Layout = "_DatabaseLayout";
+}
+@model List<PurchaseDto>
+@inject StoreService storeService
+@inject PlanService planService
+@{
+    var storesId = storeService.GetAll().Select(s => s.Id).ToList();
+    var plansId = planService.GetAll().Select(p => p.Id).ToList();
+}
+
+<div class="recent_payments">
+    <div class="title">
+        <h2>Purchases</h2>
+        <div class="action">
+        </div>
+    </div>
+    <table>
+        <tr>
+            <th>Id</th>
+            <th>Store Id</th>
+            <th>Plan Id</th>
+            <th>Date</th>
+            <th></th>
+        </tr>
+        @for (int i = 0; i < Model.Count; i++)
+        {
+            <tr id="tr@(i)">
+                <td data-key="Id">@Model[i].Id</td>
+                <td data-key="StoreId">@Model[i].Store.Id</td>
+                <td data-key="PlanId">@Model[i].Plan.Id</td>
+                <td data-key="Date">@Model[i].Date.ToString("yyyy-MM-dd")</td>
+                <td data-key="none">
+                    <div class="icon">
+                        <span onclick="fillEditInfo('tr@(i)')" class="material-symbols-outlined" data-bs-toggle="modal" data-bs-target="#Purchase-edit">surgical</span>
+                        <span class="material-symbols-outlined" onclick="deleteRecord('tr@(i)')">delete</span>
+                    </div>
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+
+<!-- start EDIT purchases -->
+<div class="modal fade" id="Purchase-edit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-10" id="exampleModalLabel">Edit Purchase</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form method="post">
+                    <div class="">
+                        <div class="main-user-info">
+                            <div class="user-input-box">
+                                <label style="color: black;">Id:</label>
+                                <input type="text" name="Id" value="0" readonly />
+                            </div>
+                            <div class="user-input-box">
+                                <label style="color: black;">Store Id:</label>
+                                <select required name="StoreId">
+                                    @foreach (var item in storesId)
+                                    {
+                                        <option value="@item">@item</option>
+                                    }
+                                </select>
+                            </div>
+                            <div class="user-input-box">
+                                <label style="color: black;">Plan Id:</label>
+                                <select required name="PlanId">
+                                    @foreach (var item in plansId)
+                                    {
+                                        <option value="@item">@item</option>
+                                    }
+                                </select>
+                            </div>
+                            <div class="user-input-box">
+                                <label style="color: black;">Date:</label>
+                                <input type="date" name="Date" required/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="send"><input type="submit" value="Edit"></div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end EDIT purchases -->
+
+<script>
+    function addHeader() {
+        document.querySelector('#Purchase-edit h1').textContent = "Add Purchase";
+        document.querySelector('#Purchase-edit [type="submit"]').value = "Add";
+    }
+
+    function fillEditInfo(trId) {
+        document.querySelector('#Purchase-edit h1').textContent = "Edit Purchase";
+        document.querySelector('#Purchase-edit [type="submit"]').value = "Edit";
+
+        let cells = document.getElementById(trId).querySelectorAll('td');
+        let data = {};
+
+        cells.forEach(cell => {
+            let key = cell.getAttribute('data-key');
+            if (key !== 'none') {
+                data[key] = cell.textContent;
+            }
+        });
+
+        document.querySelector('#Purchase-edit [name="Id"]').value = data.Id;
+        document.querySelector('#Purchase-edit [name="PlanId"]').value = data.PlanId;
+        document.querySelector('#Purchase-edit [name="StoreId"]').value = data.StoreId;
+        document.querySelector('#Purchase-edit [name="Date"]').value = data.Date;
+    }
+
+    function deleteRecord(trId) {
+        let cells = document.getElementById(trId).querySelectorAll('td');
+        let data = {};
+
+        cells.forEach(cell => {
+            let key = cell.getAttribute('data-key');
+            if (key !== 'none') {
+                data[key] = cell.textContent;
+            }
+        });
+        data.key = "Purchase";
+
+        fetch('/database/delete', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        }).then(response => response.text())
+            .then(data => {
+                if (data === 'true') {
+                    location.reload();
+                }
+            });
+    }
+
+    document.querySelector('form').addEventListener('submit', event => {
+        event.preventDefault();
+        let form = document.querySelector('form');
+        let formData = {};
+
+        const date1 = "@DateOnly.FromDateTime(DateTime.Now).ToString("yyyy-MM-dd")";
+        const date2 = form.elements['Date'].value;
+        if (date2 < date1) {
+            alert('Date is incorrect.');
+            return;
+        }
+
+        formData.Id = form.elements['Id'].value;
+        formData.PlanId = form.elements['PlanId'].value;
+        formData.StoreId = form.elements['StoreId'].value;
+        formData.Date = form.elements['Date'].value;
+        formData.key = 'Purchase';
+
+        let header = document.querySelector('#Purchase-edit h1').textContent;
+        let action;
+        if (header === 'Add Purchase') {
+            action = 'add';
+        } else {
+            action = 'edit';
+        }
+        fetch(`/database/${action}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(formData)
+        }).then(response => response.text())
+            .then(data => {
+                if (data === 'true') {
+                    location.reload();
+                }
+            });
+    });
+</script>

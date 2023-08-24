@@ -28,10 +28,6 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Programming/C\#/AgroCare/AgroCare/Pages/SignalRIndex.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2lnbmFsUkluZGV4LmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
 [C:/Programming/C\#/AgroCare/AgroCare/Pages/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
@@ -40,8 +36,8 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Programming/C\#/AgroCare/AgroCare/Views/Admin/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cSW5kZXguY3NodG1s
+[C:/Programming/C\#/AgroCare/AgroCare/Views/Admin/ReceivedOrders.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cUmVjZWl2ZWRPcmRlcnMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Programming/C\#/AgroCare/AgroCare/Views/Admin/Register.cshtml]
@@ -64,8 +60,60 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQnV5ZXJcU2hvd1VuZGVyd2F5T3JkZXJzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Programming/C\#/AgroCare/AgroCare/Views/Executive/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRXhlY3V0aXZlXEluZGV4LmNzaHRtbA==
+[C:/Programming/C\#/AgroCare/AgroCare/Views/Database/ViewBuyers.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGF0YWJhc2VcVmlld0J1eWVycy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Programming/C\#/AgroCare/AgroCare/Views/Database/ViewEngineers.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGF0YWJhc2VcVmlld0VuZ2luZWVycy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Programming/C\#/AgroCare/AgroCare/Views/Database/ViewFarmers.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGF0YWJhc2VcVmlld0Zhcm1lcnMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Programming/C\#/AgroCare/AgroCare/Views/Database/ViewItems.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGF0YWJhc2VcVmlld0l0ZW1zLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Programming/C\#/AgroCare/AgroCare/Views/Database/ViewLands.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGF0YWJhc2VcVmlld0xhbmRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Programming/C\#/AgroCare/AgroCare/Views/Database/ViewOrderDetails.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGF0YWJhc2VcVmlld09yZGVyRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Programming/C\#/AgroCare/AgroCare/Views/Database/ViewOrders.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGF0YWJhc2VcVmlld09yZGVycy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Programming/C\#/AgroCare/AgroCare/Views/Database/ViewPlans.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGF0YWJhc2VcVmlld1BsYW5zLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Programming/C\#/AgroCare/AgroCare/Views/Database/ViewPurchaseDetails.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGF0YWJhc2VcVmlld1B1cmNoYXNlRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Programming/C\#/AgroCare/AgroCare/Views/Database/ViewPurchases.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGF0YWJhc2VcVmlld1B1cmNoYXNlcy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Programming/C\#/AgroCare/AgroCare/Views/Database/ViewStepDetails.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGF0YWJhc2VcVmlld1N0ZXBEZXRhaWxzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Programming/C\#/AgroCare/AgroCare/Views/Database/ViewSteps.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGF0YWJhc2VcVmlld1N0ZXBzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Programming/C\#/AgroCare/AgroCare/Views/Database/ViewStores.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGF0YWJhc2VcVmlld1N0b3Jlcy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Programming/C\#/AgroCare/AgroCare/Views/Executive/CreatePlan.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRXhlY3V0aXZlXENyZWF0ZVBsYW4uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Programming/C\#/AgroCare/AgroCare/Views/Farmer/ShowPlans.cshtml]
@@ -80,8 +128,16 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Programming/C\#/AgroCare/AgroCare/Views/Store/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3RvcmVcSW5kZXguY3NodG1s
+[C:/Programming/C\#/AgroCare/AgroCare/Views/Shared/_DatabaseLayout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9EYXRhYmFzZUxheW91dC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Programming/C\#/AgroCare/AgroCare/Views/Store/CreatePurchase.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3RvcmVcQ3JlYXRlUHVyY2hhc2UuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Programming/C\#/AgroCare/AgroCare/Views/Store/ShowPurchases.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3RvcmVcU2hvd1B1cmNoYXNlcy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Programming/C\#/AgroCare/AgroCare/Views/_ViewImports.cshtml]

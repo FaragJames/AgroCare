@@ -2,7 +2,7 @@
 {
     public class PlanDto : BasePropertiesDto
     {
-        public OrderDetailDto OrderDetailDto { get; set; } = null!;
+        public OrderDetailDto OrderDetails { get; set; } = null!;
         public bool ClickByFarmer { get; set; }
         public LandDto Land { get; set; } = null!;
         public DateOnly StartDate { get; set; }

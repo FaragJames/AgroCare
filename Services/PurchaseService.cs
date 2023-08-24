@@ -13,7 +13,10 @@ namespace Services
             return base.GetAll()
                 .Include(p => p.PurchaseDetails)
                 .Include(p => p.Store)
-                    .ThenInclude(store => store.Type);
+                    .ThenInclude(store => store.Type)
+                .Include(p => p.Plan)
+                    .ThenInclude(p => p.Land)
+                        .ThenInclude(l => l.Farmer);
         }
         public override async Task<bool> RemoveAsync(Purchase entity)
         {

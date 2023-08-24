@@ -1,0 +1,203 @@
+﻿@{
+    Layout = "_DatabaseLayout";
+}
+@model List<OrderDto>
+@inject IService<Buyer> buyerService
+@inject EngineerService engService
+@{
+    var buyersId = buyerService.GetAll().Select(b => b.Id).ToList();
+    var adminsId = engService.GetAll().Where(e => e.EngineerType.Name.Contains("admin")).Select(e => e.Id).ToList();
+    var headersId = engService.GetHeadEngineers().Select(e => e.Id).ToList();
+}
+
+
+<div class="recent_payments">
+    <div class="title">
+        <h2>Orders</h2>
+        <div class="action">
+            <button onclick="addHeader()" data-bs-toggle="modal" data-bs-target="#Order-edit">Add</button>
+        </div>
+    </div>
+    <table>
+        <tr>
+            <th>Id</th>
+            <th>Buyer Id</th>
+            <th>Admin Engineer Id</th>
+            <th>Executive Team Id</th>
+            <th>Order Date</th>
+            <th></th>
+        </tr>
+        @for (int i = 0; i < Model.Count; i++)
+        {
+            <tr id="tr@(i)">
+                <td data-key="Id">@Model[i].Id</td>
+                <td data-key="BuyerId">@Model[i].Buyer.Id</td>
+                <td data-key="AdminEngineerId">@Model[i].AdminEngineer.Id</td>
+                <td data-key="ExecutiveTeamId">@Model[i].ExecutiveTeam?.Id</td>
+                <td data-key="OrderDate">@Model[i].OrderDate.ToString("yyyy-MM-dd")</td>
+                <td data-key="none">
+                    <div class="icon">
+                        <span onclick="fillEditInfo('tr@(i)')" class="material-symbols-outlined" data-bs-toggle="modal" data-bs-target="#Order-edit">surgical</span>
+                        <span class="material-symbols-outlined" onclick="deleteRecord('tr@(i)')">delete</span>
+                    </div>
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+
+<!-- start EDIT order -->
+<div class="modal fade" id="Order-edit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-10" id="exampleModalLabel">Edit Order</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form method="post">
+                    <div class="">
+                        <div class="main-user-info">
+                            <div class="row1">
+                                <div class="user-input-box">
+                                    <label style="color: black;">Id:</label>
+                                    <input type="text" name="Id" value="0" readonly />
+                                </div>
+                                <div class="user-input-box">
+                                    <label style="color: black;">Buyer Id:</label>
+                                    <select required name="BuyerId">
+                                        @foreach (var item in buyersId)
+                                        {
+                                            <option value="@item">@item</option>
+                                        }
+                                    </select>
+                                </div>
+                                <div class="user-input-box">
+                                    <label style="color: black;">Admin Engineer Id:</label>
+                                    <select required name="AdminEngineerId">
+                                        @foreach (var item in adminsId)
+                                        {
+                                            <option value="@item">@item</option>
+                                        }
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row2">
+                                <div class="user-input-box">
+                                    <label style="color: black;">Executive Team Id:</label>
+                                    <select required name="ExecutiveTeamId">
+                                        @foreach (var item in headersId)
+                                        {
+                                            <option value="@item">@item</option>
+                                        }
+                                        <option value="null">None</option>
+                                    </select>
+                                </div>
+                                <div class="user-input-box">
+                                    <label style="color: black;">Order Date:</label>
+                                    <input type="date" name="OrderDate" required />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="send"><input type="submit" value="Edit"></div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end EDIT order -->
+
+<script>
+    function addHeader() {
+        document.querySelector('#Order-edit h1').textContent = "Add Order";
+        document.querySelector('#Order-edit [type="submit"]').value = "Add";
+    }
+
+    function fillEditInfo(trId) {
+        document.querySelector('#Order-edit h1').textContent = "Edit Order";
+        document.querySelector('#Order-edit [type="submit"]').value = "Edit";
+
+        let cells = document.getElementById(trId).querySelectorAll('td');
+        let data = {};
+
+        cells.forEach(cell => {
+            let key = cell.getAttribute('data-key');
+            if (key !== 'none') {
+                data[key] = cell.textContent;
+            }
+        });
+
+        document.querySelector('#Order-edit [name="Id"]').value = data.Id;
+        document.querySelector('#Order-edit [name="BuyerId"]').value = data.BuyerId;
+        document.querySelector('#Order-edit [name="AdminEngineerId"]').value = data.AdminEngineerId;
+        document.querySelector('#Order-edit [name="ExecutiveTeamId"]').value = data.ExecutiveTeamId;
+        document.querySelector('#Order-edit [name="OrderDate"]').value = data.OrderDate;
+    }
+
+    function deleteRecord(trId) {
+        let cells = document.getElementById(trId).querySelectorAll('td');
+        let data = {};
+
+        cells.forEach(cell => {
+            let key = cell.getAttribute('data-key');
+            if (key !== 'none') {
+                data[key] = cell.textContent;
+            }
+        });
+        data.key = "Order";
+
+        fetch('/database/delete', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        }).then(response => response.text())
+            .then(data => {
+                if (data === 'true') {
+                    location.reload();
+                }
+            });
+    }
+
+    document.querySelector('form').addEventListener('submit', event => {
+        event.preventDefault();
+        let form = document.querySelector('form');
+        let formData = {};
+
+        const date1 = "@DateOnly.FromDateTime(DateTime.Now).ToString("yyyy-MM-dd")";
+        const date2 = form.elements['OrderDate'].value;
+        if (date2 < date1) {
+            alert('Order Date is incorrect.');
+            return;
+        }
+
+        formData.Id = form.elements['Id'].value;
+        formData.BuyerId = form.elements['BuyerId'].value;
+        formData.AdminEngineerId = form.elements['AdminEngineerId'].value;
+        formData.ExecutiveTeamId = form.elements['ExecutiveTeamId'].value;
+        formData.OrderDate = form.elements['OrderDate'].value;
+        formData.key = 'Order';
+
+        let header = document.querySelector('#Order-edit h1').textContent;
+        let action;
+        if (header === 'Add Order') {
+            action = 'add';
+        } else {
+            action = 'edit';
+        }
+        fetch(`/database/${action}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(formData)
+        }).then(response => response.text())
+            .then(data => {
+                if (data === 'true') {
+                    location.reload();
+                }
+            });
+    });
+</script>

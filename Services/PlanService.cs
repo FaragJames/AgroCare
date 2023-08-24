@@ -12,6 +12,7 @@ namespace Services
         {
             return base.GetAll()
                 .Include(p => p.OrderDetails)
+                    .ThenInclude(od => od.Item)
                 .Include(p => p.Land)
                     .ThenInclude(l => l.Farmer)
                 .Include(p => p.Land)

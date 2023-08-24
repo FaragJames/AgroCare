@@ -1,0 +1,70 @@
+@model PurchaseStore
+@{
+    int i = 1;
+    float SumOfPurchases = 0f;
+}
+<!DOCTYPE html>
+<html lang="en" title="Coding design">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Unpaid Purchases</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+    <link rel="stylesheet" href="~/css/store/store.css">
+</head>
+<body>
+
+    <main class="table">
+        <section class="table__header">
+            <h1 class="farmer_order">Farmers Unpaid Purchases </h1>
+
+            <form method="get" asp-action="ShowPurchases" asp-controller="Store" asp-route-SearchId="@Model.SearchId" class="input-group">
+                <p>
+                    <input type="search" placeholder="Search..." name="SearchId">
+                    <button type="submit"><img src="~/images/stores/search.png" alt=""></button>
+                </p>
+            </form>
+
+            <a asp-action="CreatePurchase" target="_blank">
+                <span class="material-symbols-outlined add"> add </span>
+            </a>
+        </section>
+        <section class="table__body">
+            <table>
+                <thead>
+                    <tr>
+                        <th> RN</th>
+                        <th> Farmer ID</th>
+                        <th> Farmer</th>
+                        <th> Purchase Date</th>
+                        <th> Cost</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var purchase in Model.PurchaseStoreDtais)
+                    {
+                        <tr>
+                            <td> @(i++) </td>
+                            <td>  @purchase.FarmerId </td>
+                            <td> @purchase.Farmer</td>
+                            <td> @purchase.Date </td>
+                            <td>
+                                <p class="Unpaid"><strong> @purchase.Cost</strong></p>
+                            </td>
+                            <div hidden>@(SumOfPurchases += purchase.Cost)</div>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+        </section>
+        @if (Model.IsOneFarmer)
+        {
+            <div class="outPut">Total Cost Is: @SumOfPurchases</div>
+        }
+    </main>
+</body>
+
+</html>

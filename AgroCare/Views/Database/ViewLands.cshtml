@@ -1,0 +1,231 @@
+﻿@{
+    Layout = "_DatabaseLayout";
+}
+@model List<LandDto>
+@inject IService<SoilType> soilService
+@inject IService<LandType> landTypeService
+@inject FarmerService farmerService
+@inject IMapper mapper
+@{
+    bool admin = User.IsInRole("Admin");
+    var soils = soilService.GetAll().Select(soil => mapper.Map<SoilTypeDto>(soil)).ToList();
+    var lands = landTypeService.GetAll().Select(land => mapper.Map<LandTypeDto>(land)).ToList();
+    var farmersId = farmerService.GetAll().Select(f => f.Id).ToList();
+}
+
+<div class="recent_payments">
+    <div class="title">
+        <h2>Lands</h2>
+        @if (admin)
+        {
+            <div class="action">
+                <button onclick="addHeader()" data-bs-toggle="modal" data-bs-target="#land-edit">Add</button>
+            </div>
+        }
+    </div>
+    <table>
+        <tr>
+            <th class="land_th">Id</th>
+            <th class="land_th">Location</th>
+            <th class="land_th">Area (ha)</th>
+            <th class="land_th">Well Availability</th>
+            <th class="land_th">Farmer Id</th>
+            <th class="land_th">Land Type</th>
+            <th class="land_th">Soil Type</th>
+            <th></th>
+        </tr>
+        @for (int i = 0; i < Model.Count; i++)
+        {
+            <tr id="tr@(i)">
+                <td class="land_td" data-key="Id">@Model[i].Id</td>
+                <td class="land_td" data-key="Location">@Model[i].Location</td>
+                <td class="land_td" data-key="Area">@Model[i].Area</td>
+                <td class="land_td" data-key="HasWell">@Model[i].HasWell.ToString()</td>
+                <td class="land_td" data-key="FarmerId">@Model[i].Farmer.Id</td>
+
+                <td class="land_td" data-key="TypeId" style="display: none">@Model[i].Type.Id</td>
+                <td class="land_td" data-key="none">@Model[i].Type.Name</td>
+
+                <td class="land_td" data-key="SoilTypeId" style="display: none">@Model[i].SoilType.Id</td>
+                <td class="land_td" data-key="none">@Model[i].SoilType.Name</td>
+
+                <td class="land_td" data-key="none">
+                    @if (admin)
+                    {
+                        <div class="icon">
+                            <span onclick="fillEditInfo('tr@(i)')" class="material-symbols-outlined" data-bs-toggle="modal" data-bs-target="#land-edit">surgical</span>
+                            <span class="material-symbols-outlined" onclick="deleteRecord('tr@(i)')">delete</span>
+                        </div>
+                    }
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+
+<!-- start EDIT land -->
+<div class="modal fade" id="land-edit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-10" id="exampleModalLabel">Edit Land</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form method="post">
+                    <div class="">
+                        <div class="main-user-info">
+                            <div class="row1">
+                                <div class="user-input-box">
+                                    <label style="color: black;">Id:</label>
+                                    <input type="text" name="Id" value="0" readonly/>
+                                </div>
+                                <div class="user-input-box">
+                                    <label style="color: black;">Location:</label>
+                                    <input type="text" name="Location" required/>
+                                </div>
+                                <div class="user-input-box">
+                                    <label style="color: black;">Area:</label>
+                                    <input type="number" min="0" step="0.01" name="Area" required />
+                                </div>
+                            </div>
+                            <div class="row2">
+                                <div class="user-input-box">
+                                    <label style="color: black;">
+                                        Well Availability:
+                                    </label>
+                                    <select name="HasWell" required>
+                                        <option value="True">Yes</option>
+                                        <option value="False">No</option>
+                                    </select>
+                                </div>
+                                <div class="user-input-box">
+                                    <label style="color: black;">Farmer Id:</label>
+                                    <select required name="FarmerId">
+                                        @foreach (var item in farmersId)
+                                        {
+                                            <option value="@item">@item</option>
+                                        }
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row3">
+                                <div class="user-input-box">
+                                    <label style="color: black;"> Land Type:</label>
+                                    <select required name="TypeId">
+                                        @foreach (var item in lands)
+                                        {
+                                            <option value="@item.Id">@item.Name</option>
+                                        }
+                                    </select>
+                                </div>
+                                <div class="user-input-box">
+                                    <label style="color: black;">Soil Type:</label>
+                                    <select required name="SoilTypeId">
+                                        @foreach (var item in soils)
+                                        {
+                                            <option value="@item.Id">@item.Name</option>
+                                        }
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="send"><input type="submit" value="Edit"></div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end EDIT land -->
+
+<script>
+    function addHeader() {
+        document.querySelector('#land-edit h1').textContent = "Add Land";
+        document.querySelector('#land-edit [type="submit"]').value = "Add";
+    }
+
+    function fillEditInfo(trId) {
+        document.querySelector('#land-edit h1').textContent = "Edit Land";
+        document.querySelector('#land-edit [type="submit"]').value = "Edit";
+
+        let cells = document.getElementById(trId).querySelectorAll('td');
+        let data = {};
+
+        cells.forEach(cell => {
+            let key = cell.getAttribute('data-key');
+            if (key !== 'none') {
+                data[key] = cell.textContent;
+            }
+        });
+
+        document.querySelector('#land-edit [name="Id"]').value = data.Id;
+        document.querySelector('#land-edit [name="Location"]').value = data.Location;
+        document.querySelector('#land-edit [name="Area"]').value = data.Area;
+        document.querySelector('#land-edit [name="HasWell"]').value = data.HasWell;
+        document.querySelector('#land-edit [name="FarmerId"]').value = data.FarmerId;
+        document.querySelector('#land-edit [name="TypeId"]').value = data.TypeId;
+        document.querySelector('#land-edit [name="SoilTypeId"]').value = data.SoilTypeId;
+    }
+
+    function deleteRecord(trId) {
+        let cells = document.getElementById(trId).querySelectorAll('td');
+        let data = {};
+
+        cells.forEach(cell => {
+            let key = cell.getAttribute('data-key');
+            if (key !== 'none') {
+                data[key] = cell.textContent;
+            }
+        });
+        data.key = "Land";
+
+        fetch('/database/delete', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        }).then(response => response.text())
+            .then(data => {
+                if (data === 'true') {
+                    location.reload();
+                }
+            });
+    }
+
+    document.querySelector('form').addEventListener('submit', event => {
+        event.preventDefault();
+        let form = document.querySelector('form');
+        let formData = {};
+
+        formData.Id = form.elements['Id'].value;
+        formData.Location = form.elements['Location'].value;
+        formData.Area = form.elements['Area'].value;
+        formData.HasWell = form.elements['HasWell'].value;
+        formData.FarmerId = form.elements['FarmerId'].value;
+        formData.TypeId = form.elements['TypeId'].value;
+        formData.SoilTypeId = form.elements['SoilTypeId'].value;
+        formData.key = 'Land';
+
+        let header = document.querySelector('#land-edit h1').textContent;
+        let action;
+        if (header === 'Add Land') {
+            action = 'add';
+        } else {
+            action = 'edit';
+        }
+        fetch(`/database/${action}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(formData)
+        }).then(response => response.text())
+            .then(data => {
+                if (data === 'true') {
+                    location.reload();
+                }
+            });
+    });
+</script>
